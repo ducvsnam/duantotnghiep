@@ -1,10 +1,10 @@
 // document.addEventListener("DOMContentLoaded", () => {
 // 	const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-// 	const publicPages = ["nguoidung.html"];
+// 	const chungPages = ["nguoidung.html"];
 
 // 	const currentPage = window.location.pathname.split("/").pop();
 
-// 	if (publicPages.includes(currentPage)) return;
+// 	if (chungPages.includes(currentPage)) return;
 
 // 	if (!currentUser) {
 // 		window.location.href = "nguoidung.html";
