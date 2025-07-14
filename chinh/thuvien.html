@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Thư viện sách</title>
+		<link rel="stylesheet" href="thuvien.css" />
+		<link rel="stylesheet" href="public.css" />
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="filter">
+				<input
+					type="text"
+					id="searchInput"
+					placeholder="Tìm kiếm theo tên sách..."
+				/>
+				<div class="input-wrapper">
+					<input type="text" id="searchBox" readonly />
+				</div>
+			</div>
+		</div>
+
+		<div id="suggestions" class="suggestion-box"></div>
+
+		<div class="reveal">
+			<p id="timkiem"></p>
+		</div>
+
+		<div id="bookGrid" class="grid"></div>
+
+		<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="up">
+			<span>⬆</span>
+		</button>
+
+		<button
+			onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})"
+			class="down"
+		>
+			<span>⬇</span>
+		</button>
+
+		<script src="books.js"></script>
+		<script src="thuvien.js"></script>
+		<script src="public.js"></script>
+	</body>
+</html>

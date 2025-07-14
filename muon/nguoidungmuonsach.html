@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Đăng ký mượn sách</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+		/>
+		<link rel="stylesheet" href="nguoidungmuonsach.css" />
+		<link rel="stylesheet" href="public.css" />
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="form">
+				<label for="phone">Số điện thoại</label>
+				<input type="text" id="phone" placeholder="Nhập số diện thoại..." />
+
+				<label for="bookInput">Tên sách cần mượn</label>
+				<div class="relative">
+					<input
+						type="text"
+						id="bookTitle"
+						placeholder="Nhập hoặc chọn tên sách..."
+						autocomplete="off"
+					/>
+					<div id="suggestions"></div>
+				</div>
+
+				<label for="borrowedDateDisplay">Ngày mượn</label>
+				<input
+					type="text"
+					id="borrowedDateDisplay"
+					placeholder="Chọn ngày mượn..."
+				/>
+				<input type="hidden" id="borrowedDate" />
+
+				<label for="returnDateDisplay">Ngày trả</label>
+				<input
+					type="text"
+					id="returnDateDisplay"
+					placeholder="Chọn ngày trả..."
+				/>
+				<input type="hidden" id="returnDate" />
+			</div>
+			<button onclick="borrowBook()">Xác nhận mượn</button>
+		</div>
+
+		<div id="overlay" class="overlay">
+			<div class="popup">
+				<p id="message"></p>
+				<div id="popup-buttons">
+					<button id="popup-close-btn">Đóng</button>
+					<button id="confirm-yes-btn">Đồng ý</button>
+					<button id="confirm-no-btn">Hủy</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="books.js"></script>
+		<script src="nguoidungmuonsach.js"></script>
+		<script src="public.js"></script>
+	</body>
+</html>

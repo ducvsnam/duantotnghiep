@@ -1,0 +1,138 @@
+body {
+	padding: 30px;
+	max-width: 90%;
+	margin: auto;
+}
+
+p {
+	font-weight: bold;
+	color: #4509ae;
+	text-shadow: 1px 1px 0 black;
+	font-size: 50px;
+	margin-top: 250px;
+	display: none;
+}
+
+.filter {
+	display: flex;
+	gap: 17px;
+	margin-bottom: 35px;
+}
+
+#searchInput,
+.input-wrapper,
+#searchBox {
+	width: 683px;
+}
+
+input,
+select {
+	width: 100%;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	gap: 20px;
+}
+
+.grid .book-card {
+	opacity: 0;
+	transform: translateY(50px);
+	transition: 0.6s;
+}
+
+.grid .book-card.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.book {
+	background-color: #4509ae;
+	border-radius: 5px;
+	border: 2px solid black;
+	box-shadow: 4px 4px black;
+	padding: 15px;
+	text-align: center;
+}
+
+.book img {
+	width: 135px;
+	height: 185px;
+	box-shadow: 0 0 10px white;
+	object-fit: cover;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.book-title {
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.book-meta {
+	font-size: 14px;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+}
+
+.book-card {
+	opacity: 0;
+	transform: translateY(50px);
+	transition: all 0.6s ease;
+}
+
+.book-card.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.input-wrapper {
+	position: relative;
+}
+
+#searchBox {
+	cursor: pointer;
+}
+
+#suggestions::-webkit-scrollbar {
+	display: none;
+}
+
+#suggestions {
+	top: 103px;
+	left: 777px;
+	width: 679px;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.5s ease, visibility 0.5s ease;
+	position: absolute;
+	background: white;
+	border: 2px solid black;
+	border-radius: 5px;
+	box-shadow: 4px 4px 0px black;
+	max-height: 258.5px;
+	overflow-y: auto;
+	z-index: 999999;
+}
+
+#suggestions.show {
+	opacity: 1;
+	visibility: visible;
+}
+
+.suggestion-item {
+	padding: 10px;
+	border-bottom: 2px solid black;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.suggestion-item:hover {
+	background: #4509ae;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+}
