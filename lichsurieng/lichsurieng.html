@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Lịch sử mượn sách của bạn</title>
+		<link rel="stylesheet" href="lichsurieng.css" />
+		<link rel="stylesheet" href="public.css" />
+	</head>
+	<body>
+		<div class="reveal">
+			<div id="borrowHistoryList" class="card-container"></div>
+		</div>
+
+		<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="up">
+			<span>⬆</span>
+		</button>
+
+		<button
+			onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})"
+			class="down"
+		>
+			<span>⬇</span>
+		</button>
+
+		<div id="overlay" class="overlay">
+			<div class="popup">
+				<p id="message"></p>
+				<div id="popup-buttons">
+					<button id="popup-close-btn">Đóng</button>
+					<button id="confirm-yes-btn">Đồng ý</button>
+					<button id="confirm-no-btn">Hủy</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="lichsurieng.js"></script>
+		<script src="public.js"></script>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Menu Người Dùng - Thư Viện</title>
+		<link rel="stylesheet" href="nguoidung.css" />
+		<link rel="stylesheet" href="public.css" />
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="container">
+				<div id="welcome"></div>
+				<div class="menu">
+					<button data-href="doimatkhau.html">Đổi mật khẩu</button>
+					<button data-href="thuvien.html">Xem thư viện</button>
+					<button data-href="nguoidungmuonsach.html">Mượn sách</button>
+					<button data-href="lichsumuonsachcuanguoidung.html">
+						Lịch sử mượn
+					</button>
+					<button onclick="logout()">Đăng xuất</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="overlay" class="overlay">
+			<div class="popup">
+				<p id="message"></p>
+				<div id="popup-buttons">
+					<button id="popup-close-btn">Đóng</button>
+					<button id="confirm-yes-btn">Đồng ý</button>
+					<button id="confirm-no-btn">Hủy</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="public.js"></script>
+		<script src="nguoidung.js"></script>
+	</body>
+</html>

@@ -1,0 +1,467 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Courier New", Courier, monospace;
+}
+
+body::-webkit-scrollbar {
+	display: none;
+}
+
+::selection {
+	background-color: #34018d;
+	color: white;
+	text-shadow: 2px 2px 0 black;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background: azure;
+	opacity: 0;
+	transition: opacity 0.8s ease;
+}
+
+body.fade-out {
+	opacity: 0;
+}
+
+body.fade-in {
+	opacity: 1;
+}
+
+h1 {
+	text-align: center;
+	color: #4509ae;
+	text-shadow: 1px 1px 0 black;
+}
+
+input,
+select {
+	padding: 10px;
+	color: black;
+	border: 2px solid black;
+	box-shadow: 4px 4px 0 black;
+	border-radius: 5px;
+	box-sizing: border-box;
+	font-weight: bold;
+}
+
+input:focus,
+select:focus {
+	border: 2px solid #5d00ff;
+	outline: none;
+}
+
+select option {
+	background-color: white;
+	color: black;
+	font-weight: bold;
+}
+
+.up {
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.2s;
+	color: white;
+	text-shadow: 2px 2px 0 black;
+	font-size: 20px;
+	background-color: #4509ae;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	border-radius: 5px;
+	z-index: 1000;
+	position: fixed;
+	padding: 0 10px;
+	bottom: 10px;
+	left: 6px;
+	padding-bottom: 1px;
+	overflow: hidden;
+}
+
+.up span {
+	display: inline-block;
+	transition: transform 0.3s ease;
+}
+
+.up::before {
+	content: "⬆";
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 100%);
+	color: white;
+	opacity: 0;
+	transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.up:hover span {
+	transform: translateY(-100%);
+}
+
+.up:hover::before {
+	transform: translate(-50%, 0%);
+	opacity: 1;
+}
+
+.up:hover {
+	font-size: 25px;
+	transform: scale(1.1);
+	padding: 0 12px;
+}
+
+.up:active {
+	transform: scale(1.1) translate(3px, 3px);
+	box-shadow: 0 0 black;
+}
+
+.up.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.down {
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.2s;
+	color: white;
+	text-shadow: 2px 2px 0 black;
+	font-size: 20px;
+	background-color: #4509ae;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	border-radius: 5px;
+	z-index: 1000;
+	position: fixed;
+	padding: 0 10px;
+	bottom: 10px;
+	right: 10px;
+	padding-bottom: 1px;
+	overflow: hidden;
+}
+
+.down span {
+	display: inline-block;
+	transition: transform 0.3s ease;
+}
+
+.down::before {
+	content: "⬇";
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -100%);
+	color: white;
+	opacity: 0;
+	transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.down:hover span {
+	transform: translateY(100%);
+}
+
+.down:hover::before {
+	transform: translate(-50%, 0%);
+	opacity: 1;
+}
+
+.down:hover {
+	font-size: 25px;
+	transform: scale(1.1);
+	padding: 0 12px;
+}
+
+.down:active {
+	transform: scale(1.1) translate(3px, 3px);
+	box-shadow: 0 0 black;
+}
+
+.down.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.reveal {
+	opacity: 0;
+	transform: translateY(50px);
+	transition: all 0.6s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.reveal.active {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(240, 240, 240, 0.6);
+	backdrop-filter: blur(5px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.overlay.show {
+	opacity: 1;
+	visibility: visible;
+}
+
+.popup {
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
+	color: #4509ae;
+	text-shadow: 1px 1px 0 black;
+	background-color: white;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	border-radius: 5px;
+	max-width: 90%;
+	padding: 10px 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#message {
+	margin-top: 5px;
+	color: #4509ae;
+}
+
+#popup-close-btn,
+#confirm-yes-btn,
+#confirm-no-btn {
+	cursor: pointer;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+	background-color: #4509ae;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	border-radius: 5px;
+	width: 150px;
+	padding: 5px 20px;
+	margin: 10px 20px;
+	transition: 0.1s;
+}
+
+#popup-close-btn:hover,
+#confirm-yes-btn:hover,
+#confirm-no-btn:hover {
+	font-size: 23px;
+	transform: scale(1.1);
+}
+
+#popup-close-btn:active,
+#confirm-yes-btn:active,
+#confirm-no-btn:active {
+	transform: scale(1.1) translate(3px, 3px);
+	box-shadow: 0 0 black;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+	box-shadow: 0 0 0 black;
+}
+
+.flatpickr-day {
+	font-weight: bold;
+}
+
+.dayContainer {
+	padding: 5px;
+	gap: 5px;
+}
+
+.flatpickr-calendar {
+	font-family: "Courier New", Courier, monospace;
+	border: 2px solid black;
+	border-radius: 5px;
+	box-shadow: 4px 4px 0 black;
+	background-color: white;
+	padding: 10px;
+	width: 340px;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transform: none !important;
+	display: block !important;
+	transition: 0.5s;
+	transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.flatpickr-calendar.animate.open {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
+
+.flatpickr-current-month {
+	padding: 0;
+}
+
+.flatpickr-day:hover,
+.flatpickr-day.today {
+	border-radius: 5px;
+	background: #4509ae;
+	border: 2px solid black;
+	box-shadow: 2px 2px 0 black;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+	font-weight: bold;
+	transition: 0.1s;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+	font-weight: bold;
+	width: 140px;
+}
+
+span.flatpickr-weekday {
+	color: white;
+	display: none;
+}
+
+.flatpickr-weekdays {
+	height: 0;
+}
+
+.flatpickr-day:hover {
+	background: #5d00ff;
+}
+
+.flatpickr-day.selected {
+	font-size: 16px;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+	background: #5d00ff;
+	border: 2px solid black;
+	box-shadow: 2px 2px 0 black;
+	border-radius: 5px;
+	transition: 0.1s;
+}
+
+.flatpickr-day.today:hover {
+	background: #5d00ff;
+	border: 2px solid black;
+	box-shadow: 2px 2px 0 black;
+	font-size: 17px;
+	transform: scale(1.1);
+}
+
+.flatpickr-day.today:active {
+	transform: scale(1.1) translate(3px, 3px);
+	box-shadow: 0 0 black;
+}
+
+.flatpickr-day.selected:hover {
+	background: #34018d;
+	border: 2px solid black;
+	box-shadow: 2px 2px 0 black;
+	font-size: 17px;
+	transform: scale(1.1);
+}
+
+.flatpickr-day.selected:active {
+	transform: scale(1.1) translate(3px, 3px);
+	box-shadow: 0 0 black;
+}
+
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.prevMonthDay {
+	font-size: 16px;
+	color: gray;
+	transition: 0, 1s;
+}
+
+.flatpickr-day.selected.prevMonthDay,
+.flatpickr-day.selected.nextMonthDay {
+	color: white;
+	background: #5d00ff;
+	border: 2px solid black;
+	box-shadow: 2px 2px 0 black;
+	border-radius: 5px;
+}
+
+.flatpickr-day.nextMonthDay:hover,
+.flatpickr-day.prevMonthDay:hover {
+	color: white;
+	background-color: grey;
+	border: 2px solid black;
+	font-size: 17px;
+	transform: scale(1.1);
+}
+
+.flatpickr-day.nextMonthDay:active,
+.flatpickr-day.prevMonthDay:active {
+	background-color: rgb(107, 107, 107);
+	transform: scale(1.1) translate(3px, 3px);
+	box-shadow: 0 0 black;
+}
+
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+	stroke: black;
+	stroke-width: 1px;
+	width: 18px;
+	height: 18px;
+	transition: 0.1s;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-months .flatpickr-next-month:hover svg {
+	stroke-width: 2px;
+	stroke: #5d00ff;
+}
+
+.flatpickr-day.today,
+.flatpickr-day.today.prevMonthDay,
+.flatpickr-day.today.nextMonthDay {
+	color: white !important;
+	font-weight: bold;
+}
+
+.flatpickr-current-month .numInputWrapper {
+	width: 100px;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+	width: 56%;
+}
+
+.flatpickr-calendar.arrowTop::before,
+.flatpickr-calendar.arrowTop::after,
+.flatpickr-calendar.arrowBottom::before,
+.flatpickr-calendar.arrowBottom::after {
+	display: none;
+}
+
+.khongcogi {
+	text-shadow: 2px 2px 0 black;
+	background-color: #4509ae;
+	border: 2px solid black;
+	box-shadow: 4px 4px 0 black;
+	padding: 50px;
+	border-radius: 5px;
+	font-size: 50px;
+	font-weight: bold;
+	margin-top: 300px;
+}

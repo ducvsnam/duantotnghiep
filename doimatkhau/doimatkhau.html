@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Đổi mật khẩu</title>
+		<link rel="stylesheet" href="doimatkhau.css" />
+		<link rel="stylesheet" href="public.css" />
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="container">
+				<label>Mật khẩu hiện tại</label>
+				<input
+					type="password"
+					id="oldPassword"
+					placeholder="Nhập mật khẩu hiện tại..."
+				/>
+				<label>Mật khẩu mới</label>
+				<input
+					type="password"
+					id="newPassword"
+					placeholder="Nhập mật khẩu mới..."
+				/>
+				<label>Nhập lại mật khẩu mới</label>
+				<input
+					type="password"
+					id="confirmPassword"
+					placeholder="Nhập lại mật khẩu mới..."
+				/>
+			</div>
+			<button onclick="changePassword()">Xác nhận đổi mật khẩu</button>
+		</div>
+
+		<div id="overlay" class="overlay">
+			<div class="popup">
+				<p id="message"></p>
+				<div id="popup-buttons">
+					<button id="popup-close-btn">Đóng</button>
+					<button id="confirm-yes-btn">Đồng ý</button>
+					<button id="confirm-no-btn">Hủy</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="doimatkhau.js"></script>
+		<script src="public.js"></script>
+	</body>
+</html>

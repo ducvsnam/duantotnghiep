@@ -1,0 +1,64 @@
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+h1 {
+	margin-bottom: 10px;
+}
+
+label {
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+	margin-left: 5px;
+}
+
+.container {
+	background: #4509ae;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	padding: 30px;
+	border-radius: 10px;
+	width: 350px;
+}
+
+input {
+	width: 100%;
+	font-size: 16px;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
+#confirmPassword {
+	margin-bottom: 7px;
+}
+
+button {
+	padding: 10px 20px;
+	background: #4509ae;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 25px;
+	transition: 0.1s;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+button:hover {
+	font-size: 23px;
+	transform: scale(1.1);
+}
+
+button:active {
+	transform: scale(1.1) translate(3px, 3px);
+	box-shadow: 0 0 black;
+}
