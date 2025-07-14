@@ -80,6 +80,28 @@
 			</div>
 		</footer>
 
+		<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="up">
+			<span>⬆</span>
+		</button>
+
+		<button
+			onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})"
+			class="down"
+		>
+			<span>⬇</span>
+		</button>
+
+		<div id="overlay" class="overlay">
+			<div class="popup">
+				<p id="message"></p>
+				<div id="popup-buttons">
+					<button id="popup-close-btn">Đóng</button>
+					<button id="confirm-yes-btn">Đồng ý</button>
+					<button id="confirm-no-btn">Hủy</button>
+				</div>
+			</div>
+		</div>
+
 		<script src="../chung/chung.js"></script>
 		<script src="../chitiet/chitiet.js"></script>
 	</body>

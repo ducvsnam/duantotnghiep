@@ -1,27 +1,6 @@
-* {
-	margin: 0;
-	padding: 0;
-	font-family: "Courier New", Courier, monospace;
-}
-
-body::-webkit-scrollbar {
-	display: none;
-}
-
-::selection {
-	background-color: #34018d;
-	color: white;
-	text-shadow: 2px 2px 0 black;
-}
-
-html {
-	scroll-behavior: smooth;
-}
-
 body {
 	line-height: 1.5;
 	color: white;
-	background-color: azure;
 }
 
 .container {
