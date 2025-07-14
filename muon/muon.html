@@ -5,121 +5,63 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Cats Stack | Người Dùng | Mượn Sách</title>
 		<link rel="icon" href="../anh/theme/logo.png" />
-		<link rel="stylesheet" href="../muon/muon.css" />
 		<link
 			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+			href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
 		/>
+		<link rel="stylesheet" href="../muon/muon.css" />
+		<link rel="stylesheet" href="../chung/chung.css" />
 	</head>
 	<body>
-		<header>
-			<div class="container">
-				<div class="logo">
-					<a href="../chinh/chinh.html">
-						<img src="../anh/theme/logo.png" class="logo-img" />
-						<h1>Cats Stack</h1>
-					</a>
-				</div>
-				<nav>
-					<ul class="menu">
-						<li><a href="../chinh/chinh.html">Trang Chủ</a></li>
-						<li><a href="../muon/muon.html" class="active">Mượn Sách</a></li>
-						<li><a href="../dangnhap/dangnhap.html">Đăng Nhập</a></li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-
 		<div class="reveal">
-			<div class="form-wrapper">
-				<div class="khung">
-					<div class="anhsach">
-						<img id="anhChiTiet" class="sach" />
-					</div>
-					<div class="thongtin">
-						<h2>Tên sách</h2>
-						<input type="text" id="tensach" readonly />
-						<h2>Thể loại</h2>
-						<input type="text" id="theloai" readonly />
-						<h2>Họ tên</h2>
-						<input type="text" id="hoten" />
-						<p class="loi"></p>
-						<h2>Email</h2>
-						<input type="email" id="email" />
-						<p class="loi"></p>
-						<h2>Số sách còn lại</h2>
-						<input type="number" id="sachconlai" value="1000" readonly />
-					</div>
-					<div class="thongtin">
-						<h2>Tác giả</h2>
-						<input type="text" id="tacgia" readonly />
-						<h2>Năm xuất bản</h2>
-						<input type="number" id="namxuatban" readonly />
-						<h2>Thời gian mượn</h2>
-						<input type="date" id="thoigianmuon" />
-						<p class="loi"></p>
-						<h2>Thời gian trả</h2>
-						<input type="date" id="thoigiantra" />
-						<p class="loi"></p>
-						<h2>Số sách muốn mượn</h2>
-						<input type="number" id="sosachmuon" />
-						<p class="loi"></p>
-					</div>
+			<div class="form">
+				<label for="phone">Số điện thoại</label>
+				<input type="text" id="phone" placeholder="Nhập số diện thoại..." />
+
+				<label for="bookInput">Tên sách cần mượn</label>
+				<div class="relative">
+					<input
+						type="text"
+						id="bookTitle"
+						placeholder="Nhập hoặc chọn tên sách..."
+						autocomplete="off"
+					/>
+					<div id="suggestions"></div>
 				</div>
-				<div class="nutlog">
-					<button class="submit" type="submit" onclick="xacnhan(event)">
-						Xác Nhận
-					</button>
+
+				<label for="borrowedDateDisplay">Ngày mượn</label>
+				<input
+					type="text"
+					id="borrowedDateDisplay"
+					placeholder="Chọn ngày mượn..."
+				/>
+				<input type="hidden" id="borrowedDate" />
+
+				<label for="returnDateDisplay">Ngày trả</label>
+				<input
+					type="text"
+					id="returnDateDisplay"
+					placeholder="Chọn ngày trả..."
+				/>
+				<input type="hidden" id="returnDate" />
+			</div>
+			<button onclick="borrowBook()">Xác nhận mượn</button>
+		</div>
+
+		<div id="overlay" class="overlay">
+			<div class="popup">
+				<p id="message"></p>
+				<div id="popup-buttons">
+					<button id="popup-close-btn">Đóng</button>
+					<button id="confirm-yes-btn">Đồng ý</button>
+					<button id="confirm-no-btn">Hủy</button>
 				</div>
 			</div>
 		</div>
 
-		<div class="thongke">
-			<h4>Danh sách đã được mượn</h4>
-			<table id="borrowTable" class="thongke">
-				<thead>
-					<tr>
-						<th>Tên sách</th>
-						<th>Tác giả</th>
-						<th>Thể loại</th>
-						<th>Năm xuất bản</th>
-						<th>Họ tên</th>
-						<th>Email</th>
-						<th>Thời gian mượn</th>
-						<th>Thời gian trả</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-		</div>
-
-		<footer>
-			<div class="container">
-				<div class="footer-content">
-					<div class="footer-links">
-						<h3>Liên Kết</h3>
-						<ul>
-							<li><a href="../chinh/chinh.html">Trang Chủ</a></li>
-							<li><a href="../muon/muon.html">Mượn Sách</a></li>
-							<li><a href="../dangnhap/dangnhap.html">Đăng Nhập</a></li>
-						</ul>
-					</div>
-					<div class="footer-contact">
-						<h3>Liên Hệ</h3>
-						<p>
-							<i class="fas fa-map-marker-alt"></i> 464 Quang Trung, Hà Đông, Hà
-							Nội
-						</p>
-						<p><i class="fas fa-phone"></i> 0373922616</p>
-						<p><i class="fas fa-envelope"></i> catsstack@gmail.com</p>
-					</div>
-				</div>
-				<div class="footer-bottom">
-					<p>© 2025 Cats Stack.</p>
-				</div>
-			</div>
-		</footer>
-
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="../chung/sach.js"></script>
 		<script src="../muon/muon.js"></script>
+		<script src="../chung/chung.js"></script>
 	</body>
 </html>

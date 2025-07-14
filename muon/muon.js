@@ -1,83 +1,162 @@
-function revealOnScroll() {
-	const reveals = document.querySelectorAll(".reveal");
-	for (let i = 0; i < reveals.length; i++) {
-		const windowHeight = window.innerHeight;
-		const revealTop = reveals[i].getBoundingClientRect().top;
-		const revealPoint = 100;
-
-		if (revealTop < windowHeight - revealPoint) {
-			reveals[i].classList.add("active");
-		} else {
-			reveals[i].classList.remove("active");
-		}
-	}
+if (!localStorage.getItem("bookList")) {
+	localStorage.setItem("bookList", JSON.stringify(defaultBooks));
 }
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
 
-function xacnhan(event) {
-	event.preventDefault();
+const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
+const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const input = document.getElementById("bookTitle");
+const suggestionsBox = document.getElementById("suggestions");
 
-	let loi = document.getElementsByClassName("loi");
-	for (let i = 0; i < loi.length; i++) {
-		loi[i].textContent = "";
+let selectedBookTitle = "";
+
+function updateSuggestions() {
+	const value = input.value.trim().toLowerCase();
+	suggestionsBox.innerHTML = "";
+	suggestionsBox.classList.add("show");
+
+	const exactMatch = bookList.find((b) => b.title.toLowerCase() === value);
+	const filtered = bookList
+		.filter((b) => Number(b.quantity) > 0)
+		.filter((b) =>
+			exactMatch
+				? b.title.toLowerCase() !== value
+				: b.title.toLowerCase().includes(value)
+		);
+
+	if (filtered.length === 0) {
+		const div = document.createElement("div");
+		div.textContent = value
+			? `Không có cuốn sách nào tên là "${value}"`
+			: "Không còn sách nào để gợi ý.";
+		div.style.padding = "8px";
+		div.style.color = "gray";
+		suggestionsBox.appendChild(div);
+		return;
 	}
 
-	let isValid = true;
-
-	let hoten = document.getElementById("hoten").value.trim();
-	let email = document.getElementById("email").value.trim();
-	let sosachmuon = parseInt(document.getElementById("sosachmuon").value);
-	let ngayMuon = new Date(document.getElementById("thoigianmuon").value);
-	let ngayTra = new Date(document.getElementById("thoigiantra").value);
-
-	if (!/^[A-ZÀ-Ỹa-zà-ỹ]+(?:\s[A-ZÀ-Ỹa-zà-ỹ]+)+$/.test(hoten)) {
-		loi[0].textContent = "Họ tên không hợp lệ";
-		isValid = false;
-	}
-
-	if (!/^[\w\.-]+@[\w\.-]+\.\w{2,4}$/.test(email)) {
-		loi[1].textContent = "Email không hợp lệ";
-		isValid = false;
-	}
-
-	if (isNaN(ngayMuon.getTime())) {
-		loi[2].textContent = "Ngày mượn không hợp lệ";
-		isValid = false;
-	} else {
-		const today = new Date();
-		today.setHours(0, 0, 0, 0);
-		if (ngayMuon < today) {
-			loi[2].textContent = "Ngày mượn phải từ hôm nay trở đi";
-			isValid = false;
-		}
-	}
-
-	if (isNaN(ngayTra.getTime())) {
-		loi[3].textContent = "Ngày trả không hợp lệ";
-		isValid = false;
-	}
-
-	if (!isNaN(ngayMuon.getTime()) && !isNaN(ngayTra.getTime())) {
-		if (ngayTra < ngayMuon) {
-			loi[3].textContent = "Ngày trả phải sau hoặc bằng ngày mượn";
-			isValid = false;
-		} else {
-			let motNamSau = new Date(ngayMuon);
-			motNamSau.setFullYear(motNamSau.getFullYear() + 1);
-			if (ngayTra > motNamSau) {
-				loi[3].textContent = "Không được mượn quá 1 năm";
-				isValid = false;
-			}
-		}
-	}
-
-	if (isNaN(sosachmuon) || sosachmuon <= 0 || sosachmuon >= 1000) {
-		loi[4].textContent = "Số sách phải lớn hơn 0 và nhỏ hơn 1000";
-		isValid = false;
-	}
-
-	if (isValid) {
-		alert("Dữ liệu hợp lệ.");
-	}
+	filtered.forEach((book) => {
+		const div = document.createElement("div");
+		div.classList.add("suggestion-item");
+		div.textContent = `${book.title} - ${book.author} (Còn: ${book.quantity})`;
+		div.addEventListener("click", () => {
+			input.value = book.title;
+			selectedBookTitle = book.title;
+			suggestionsBox.innerHTML = "";
+			suggestionsBox.classList.remove("show");
+		});
+		suggestionsBox.appendChild(div);
+	});
 }
+
+input.addEventListener("focus", updateSuggestions);
+input.addEventListener("input", () => {
+	selectedBookTitle = "";
+	updateSuggestions();
+});
+
+document.addEventListener("click", (e) => {
+	if (!e.target.closest("#bookTitle") && !e.target.closest("#suggestions")) {
+		suggestionsBox.innerHTML = "";
+		suggestionsBox.classList.remove("show");
+	}
+});
+
+function borrowBook() {
+	const phone = document.getElementById("phone").value.trim();
+	const bookTitle = input.value.trim();
+	const borrowedDate = document.getElementById("borrowedDate").value.trim();
+	const returnDate = document.getElementById("returnDate").value.trim();
+
+	if (!currentUser) {
+		showPopup("Bạn chưa đăng nhập");
+		return;
+	}
+
+	if (!phone || !bookTitle || !borrowedDate || !returnDate) {
+		showPopup("Vui lòng nhập đầy đủ thông tin");
+		return;
+	}
+
+	if (!/^0\d{9}$/.test(phone)) {
+		showPopup("Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0");
+		return;
+	}
+
+	const [bDay, bMonth, bYear] = borrowedDate.split("/");
+	const [rDay, rMonth, rYear] = returnDate.split("/");
+	const borrowD = new Date(bYear, bMonth - 1, bDay);
+	const returnD = new Date(rYear, rMonth - 1, rDay);
+
+	if (returnD <= borrowD) {
+		showPopup("Ngày trả phải lớn hơn ngày mượn");
+		return;
+	}
+
+	const bookIndex = bookList.findIndex((b) => b.title === bookTitle);
+	if (bookIndex === -1 || bookList[bookIndex].quantity <= 0) {
+		showPopup("Sách không khả dụng");
+		return;
+	}
+
+	const alreadyBorrowed = borrowList.find(
+		(b) => b.email === currentUser.email && b.bookTitle === bookTitle
+	);
+	if (alreadyBorrowed) {
+		showPopup("Bạn đã mượn sách này và chưa trả");
+		return;
+	}
+
+	bookList[bookIndex].quantity--;
+	localStorage.setItem("bookList", JSON.stringify(bookList));
+
+	borrowList.push({
+		id: Date.now(),
+		name: currentUser.name || currentUser.username || "Không rõ",
+		email: currentUser.email,
+		phone,
+		bookTitle,
+		borrowDate: borrowedDate,
+		returnDate,
+	});
+	localStorage.setItem("borrowList", JSON.stringify(borrowList));
+
+	showPopup("Mượn sách thành công");
+	document.querySelectorAll("input").forEach((i) => (i.value = ""));
+	suggestionsBox.innerHTML = "";
+	selectedBookTitle = "";
+
+	const borrowPicker = document.getElementById(
+		"borrowedDateDisplay"
+	)._flatpickr;
+	const returnPicker = document.getElementById("returnDateDisplay")._flatpickr;
+
+	if (borrowPicker) borrowPicker.clear();
+	if (returnPicker) returnPicker.clear();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+	const borrowedDisplay = document.getElementById("borrowedDateDisplay");
+	const borrowedHidden = document.getElementById("borrowedDate");
+
+	const returnDisplay = document.getElementById("returnDateDisplay");
+	const returnHidden = document.getElementById("returnDate");
+
+	if (borrowedDisplay && borrowedHidden) {
+		window.borrowPicker = flatpickr(borrowedDisplay, {
+			dateFormat: "d/m/Y",
+			onChange: (_, dateStr) => {
+				borrowedHidden.value = dateStr;
+			},
+		});
+	}
+
+	if (returnDisplay && returnHidden) {
+		window.returnPicker = flatpickr(returnDisplay, {
+			dateFormat: "d/m/Y",
+			onChange: (_, dateStr) => {
+				returnHidden.value = dateStr;
+			},
+		});
+	}
+});
