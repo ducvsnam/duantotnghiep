@@ -154,26 +154,128 @@ function renderBooks() {
 		timkiem.style.display = "none";
 	}
 
+	// filtered.forEach((book, index) => {
+	// 	const imgSrc = book.image?.trim() !== "" ? book.image : "";
+	// 	const bookDiv = document.createElement("div");
+	// 	bookDiv.classList.add("reveal");
+	// 	bookDiv.innerHTML = `
+	// 							<div class="book-item">
+	// 								<img src="${imgSrc}" />
+	// 								<div class="book-info">
+	// 									<p><b>Tên sách:</b> ${book.title}</p>
+	// 									<p><b>Tác giả:</b> ${book.author}</p>
+	// 									<p><b>Thể loại:</b> ${book.genre}</p>
+	// 									<p><b>Năm xuất bản:</b> ${book.year}</p>
+	// 									<p><b>Số lượng:</b> ${book.quantity}</p>
+	// 									<div class="book-buttons">
+	// 										<button onclick="editBook(${index})">Sửa</button>
+	// 										<button onclick="deleteBook(${index})">Xoá</button>
+	// 									</div>
+	// 								</div>
+	// 							</div>
+	// 						`;
+	// 	result.appendChild(bookDiv);
+	// });
+
+	// filtered.forEach((book, index) => {
+	// 	// const imgSrc =
+	// 	// 	book.image?.trim() !== ""
+	// 	// 		? "/" + book.image.trim()
+	// 	// 		: "/anh/placeholder.jpg";
+
+	// 	const isBase64 = book.image?.startsWith("data:image/");
+	// 	const imgSrc = isBase64
+	// 		? book.image
+	// 		: book.image?.trim()
+	// 		? "/" + book.image.trim()
+	// 		: "/anh/placeholder.jpg";
+
+	// 	const bookDiv = document.createElement("div");
+	// 	bookDiv.classList.add("reveal");
+
+	// 	bookDiv.innerHTML = `
+	// 	<div class="book-item">
+	// 		<img src="${imgSrc}" alt="${book.title}" onerror="this.src='/anh/placeholder.jpg'" />
+	// 		<div class="book-info">
+	// 			<p><b>Tên sách:</b> ${book.title}</p>
+	// 			<p><b>Tác giả:</b> ${book.author}</p>
+	// 			<p><b>Thể loại:</b> ${book.genre}</p>
+	// 			<p><b>Năm xuất bản:</b> ${book.year}</p>
+	// 			<p><b>Số lượng:</b> ${book.quantity}</p>
+	// 			<div class="book-buttons">
+	// 				<button onclick="editBook(${index})">Sửa</button>
+	// 				<button onclick="deleteBook(${index})">Xoá</button>
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// `;
+
+	// 	result.appendChild(bookDiv);
+	// });
+
+	// filtered.forEach((book, index) => {
+	// 	const isBase64 = book.image?.startsWith("data:image/");
+	// 	const imgSrc = isBase64
+	// 		? book.image
+	// 		: book.image?.trim()
+	// 		? "/" + book.image.trim()
+	// 		: "/anh/placeholder.jpg";
+
+	// 	const bookDiv = document.createElement("div");
+	// 	bookDiv.classList.add("reveal");
+
+	// 	bookDiv.innerHTML = `
+	// 	<div class="book-item">
+	// 		<img src="${imgSrc}" alt="${book.title}" onerror="this.src='/anh/placeholder.jpg'" />
+	// 		<div class="book-info">
+	// 			<p><b>Tên sách:</b> ${book.title}</p>
+	// 			<p><b>Tác giả:</b> ${book.author}</p>
+	// 			<p><b>Thể loại:</b> ${book.genre}</p>
+	// 			<p><b>Năm xuất bản:</b> ${book.year}</p>
+	// 			<p><b>Số lượng:</b> ${book.quantity}</p>
+	// 			<div class="book-buttons">
+	// 				<button onclick="editBook(${index})">Sửa</button>
+	// 				<button onclick="deleteBook(${index})">Xoá</button>
+	// 			</div>
+	// 		</div>
+	// 	</div>
+	// `;
+
+	// 	result.appendChild(bookDiv);
+	// });
+
 	filtered.forEach((book, index) => {
-		const imgSrc = book.image?.trim() !== "" ? book.image : "";
+		const isBase64 = book.image?.startsWith("data:image/");
+		const isAbsolutePath = book.image?.startsWith("/");
+
+		const imgSrc = isBase64
+			? book.image
+			: isAbsolutePath
+			? book.image
+			: book.image?.trim()
+			? "/" + book.image.trim()
+			: "/anh/theme/img2.jpg";
+
 		const bookDiv = document.createElement("div");
 		bookDiv.classList.add("reveal");
+
 		bookDiv.innerHTML = `
-								<div class="book-item">
-									<img src="${imgSrc}" />
-									<div class="book-info">
-										<p><b>Tên sách:</b> ${book.title}</p>
-										<p><b>Tác giả:</b> ${book.author}</p>
-										<p><b>Thể loại:</b> ${book.genre}</p>
-										<p><b>Năm xuất bản:</b> ${book.year}</p>
-										<p><b>Số lượng:</b> ${book.quantity}</p>
-										<div class="book-buttons">
-											<button onclick="editBook(${index})">Sửa</button>
-											<button onclick="deleteBook(${index})">Xoá</button>
-										</div>
-									</div>
-								</div>
-							`;
+		<div class="book-item">
+			<img src="${imgSrc}" alt="${book.title}" onerror="this.src='/anh/theme/img2.jpg'" />
+			<div class="book-info">
+				<p><b>Tên sách:</b> ${book.title}</p>
+				<p><b>Tác giả:</b> ${book.author}</p>
+				<p><b>Thể loại:</b> ${book.genre}</p>
+				<p><b>Năm xuất bản:</b> ${book.year}</p>
+				<p><b>Số lượng:</b> ${book.quantity}</p>
+				<div class="book-buttons">
+					<button onclick="editBook(${index})">Sửa</button>
+					<button onclick="deleteBook(${index})">Xoá</button>
+				</div>
+			</div>
+		</div>
+	`;
+
 		result.appendChild(bookDiv);
 	});
 
