@@ -75,7 +75,7 @@ select option {
 	z-index: 1000;
 	position: fixed;
 	padding: 0 10px;
-	bottom: 10px;
+	bottom: 60px;
 	left: 6px;
 	padding-bottom: 1px;
 	overflow: hidden;
@@ -135,8 +135,8 @@ select option {
 	z-index: 1000;
 	position: fixed;
 	padding: 0 10px;
-	bottom: 10px;
-	right: 10px;
+	bottom: 11px;
+	left: 6px;
 	padding-bottom: 1px;
 	overflow: hidden;
 }
