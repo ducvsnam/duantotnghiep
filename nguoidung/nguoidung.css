@@ -5,26 +5,6 @@ body {
 	min-height: 100vh;
 }
 
-.container {
-	background-color: white;
-	box-shadow: 4px 4px 0 black;
-	border: 2px solid black;
-	padding: 40px;
-	border-radius: 5px;
-	max-width: 1000px;
-	text-align: center;
-	position: relative;
-}
-
-.menu {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 30px;
-	justify-content: center;
-	margin-bottom: 30px;
-	margin-top: 5px;
-}
-
 button {
 	padding: 12px 20px;
 	font-size: 19px;
