@@ -280,6 +280,41 @@ select option {
 	box-shadow: 0 0 black;
 }
 
+#suggestions {
+	border: 2px solid black;
+	box-shadow: 4px 4px 0 black;
+	border-radius: 5px;
+	overflow-y: auto;
+	background: white;
+	position: absolute;
+	z-index: 10;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.5s ease, visibility 0.5s ease;
+	font-weight: bold;
+}
+
+#suggestions.show {
+	opacity: 1;
+	visibility: visible;
+}
+
+#suggestions div {
+	padding: 10px;
+	cursor: pointer;
+	border-bottom: 2px solid black;
+}
+
+#suggestions div:hover {
+	background-color: #5d00ff;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+}
+
+#suggestions::-webkit-scrollbar {
+	display: none;
+}
+
 .flatpickr-current-month .flatpickr-monthDropdown-months,
 .flatpickr-current-month input.cur-year {
 	box-shadow: 0 0 0 black;

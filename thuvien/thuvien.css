@@ -83,41 +83,10 @@ select {
 	cursor: pointer;
 }
 
-#suggestions::-webkit-scrollbar {
-	display: none;
-}
-
 #suggestions {
 	top: 103px;
 	left: 777px;
 	width: 679px;
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity 0.5s ease, visibility 0.5s ease;
-	position: absolute;
-	background: white;
-	border: 2px solid black;
-	border-radius: 5px;
-	box-shadow: 4px 4px 0px black;
 	max-height: 258.5px;
-	overflow-y: auto;
 	z-index: 999999;
-}
-
-#suggestions.show {
-	opacity: 1;
-	visibility: visible;
-}
-
-.suggestion-item {
-	padding: 10px;
-	border-bottom: 2px solid black;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-.suggestion-item:hover {
-	background: #4509ae;
-	color: white;
-	text-shadow: 1px 1px 0 black;
 }

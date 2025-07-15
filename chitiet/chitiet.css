@@ -1,30 +1,7 @@
-a {
-	text-decoration: none;
-	color: inherit;
-}
-
-ul {
-	list-style: none;
-}
-
-.muc {
-	color: #4509ae;
-	text-shadow: 1px 1px 0 black;
-	text-align: center;
-	padding-top: 50px;
-}
-
 .sach {
 	height: 400px;
 	width: 300px;
 	box-shadow: 0 0 10px white;
-}
-
-.form-wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 50px;
 }
 
 .khung {
@@ -42,17 +19,6 @@ ul {
 	margin-top: 9px;
 }
 
-.form-wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 50px;
-}
-
-.nutlog {
-	margin-top: 20px;
-}
-
 .nutlog .submit {
 	display: inline-block;
 	background-color: #4509ae;
@@ -68,8 +34,7 @@ ul {
 	transition: 0.1s;
 	font-weight: bold;
 	font-size: 20px;
-	margin-left: 10px;
-	margin-right: 10px;
+	margin: 20px 10px;
 }
 
 .submit:hover {

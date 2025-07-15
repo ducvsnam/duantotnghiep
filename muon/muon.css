@@ -19,57 +19,15 @@ label {
 	width: 719px;
 }
 
-input,
-select {
+input {
 	width: 99.5%;
 	margin: 10px 0;
 	margin-bottom: 20px;
 }
 
 #suggestions {
-	border: 2px solid black;
-	box-shadow: 4px 4px 0 black;
-	border-radius: 5px;
 	max-height: 160px;
-	overflow-y: auto;
-	background: white;
-	position: absolute;
 	width: 712px;
-	z-index: 10;
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity 0.5s ease, visibility 0.5s ease;
-	font-weight: bold;
-}
-
-#suggestions.show {
-	opacity: 1;
-	visibility: visible;
-}
-
-#suggestions div {
-	padding: 10px;
-	cursor: pointer;
-	border-bottom: 2px solid black;
-}
-
-#suggestions div:hover {
-	background-color: #5d00ff;
-	color: white;
-	text-shadow: 1px 1px 0 black;
-}
-
-#suggestions::-webkit-scrollbar {
-	display: none;
-}
-
-.suggestion-item {
-	padding: 8px;
-	cursor: pointer;
-}
-
-.suggestion-item:hover {
-	background-color: #eee;
 }
 
 button {
