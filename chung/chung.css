@@ -66,66 +66,7 @@ select option {
 	font-weight: bold;
 }
 
-.up {
-	font-weight: bold;
-	cursor: pointer;
-	transition: 0.2s;
-	color: white;
-	text-shadow: 2px 2px 0 black;
-	font-size: 20px;
-	background-color: #4509ae;
-	box-shadow: 4px 4px 0 black;
-	border: 2px solid black;
-	border-radius: 5px;
-	z-index: 1000;
-	position: fixed;
-	padding: 0 10px;
-	bottom: 60px;
-	left: 6px;
-	padding-bottom: 1px;
-	overflow: hidden;
-}
-
-.up span {
-	display: inline-block;
-	transition: transform 0.3s ease;
-}
-
-.up::before {
-	content: "⬆";
-	position: absolute;
-	left: 50%;
-	transform: translate(-50%, 100%);
-	color: white;
-	opacity: 0;
-	transition: transform 0.3s ease, opacity 0.2s ease;
-}
-
-.up:hover span {
-	transform: translateY(-100%);
-}
-
-.up:hover::before {
-	transform: translate(-50%, 0%);
-	opacity: 1;
-}
-
-.up:hover {
-	font-size: 25px;
-	transform: scale(1.1);
-	padding: 0 12px;
-}
-
-.up:active {
-	transform: scale(1.1) translate(3px, 3px);
-	box-shadow: 0 0 black;
-}
-
-.up.hidden {
-	opacity: 0;
-	pointer-events: none;
-}
-
+.up,
 .down {
 	font-weight: bold;
 	cursor: pointer;
@@ -140,47 +81,73 @@ select option {
 	z-index: 1000;
 	position: fixed;
 	padding: 0 10px;
-	bottom: 11px;
-	left: 6px;
+
 	padding-bottom: 1px;
 	overflow: hidden;
 }
 
+.up {
+	bottom: 60px;
+	left: 6px;
+}
+
+.down {
+	bottom: 11px;
+	left: 6px;
+}
+
+.up::before,
+.down::before {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 100%);
+	color: white;
+	opacity: 0;
+	transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.up::before {
+	content: "⬆";
+}
+
+.down::before {
+	content: "⬇";
+}
+
+.up span,
 .down span {
 	display: inline-block;
 	transition: transform 0.3s ease;
 }
 
-.down::before {
-	content: "⬇";
-	position: absolute;
-	left: 50%;
-	transform: translate(-50%, -100%);
-	color: white;
-	opacity: 0;
-	transition: transform 0.3s ease, opacity 0.2s ease;
+.up:hover span {
+	transform: translateY(-100%);
 }
 
 .down:hover span {
 	transform: translateY(100%);
 }
 
-.down:hover::before {
-	transform: translate(-50%, 0%);
-	opacity: 1;
-}
-
+.up:hover,
 .down:hover {
 	font-size: 25px;
 	transform: scale(1.1);
 	padding: 0 12px;
 }
 
+.up:hover::before,
+.down:hover::before {
+	transform: translate(-50%, 0%);
+	opacity: 1;
+}
+
+.up:active,
 .down:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }
 
+.up.hidden,
 .down.hidden {
 	opacity: 0;
 	pointer-events: none;

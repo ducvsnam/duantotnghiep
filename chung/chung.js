@@ -46,8 +46,10 @@ function toggleScrollButton() {
 
 	if (scrollBottom) {
 		downBtn.classList.add("hidden");
+		upBtn.style.bottom = "11px";
 	} else {
 		downBtn.classList.remove("hidden");
+		upBtn.style.bottom = "60px";
 	}
 }
 window.addEventListener("load", toggleScrollButton);
