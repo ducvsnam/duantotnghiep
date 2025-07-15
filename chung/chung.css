@@ -582,7 +582,7 @@ header {
 	box-shadow: 0 0 5px black;
 	position: sticky;
 	top: 0;
-	z-index: 1000;
+	z-index: 9999999;
 	transition: background-color 0.3s ease;
 }
 

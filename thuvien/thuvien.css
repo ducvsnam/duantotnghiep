@@ -2,7 +2,7 @@
 	display: flex;
 	gap: 17px;
 	margin-bottom: 35px;
-	margin-top: 37px;
+	margin-top: 85px;
 }
 
 #searchInput,
@@ -86,9 +86,9 @@ select {
 }
 
 #suggestions {
-	top: 103px;
+	top: 230px;
 	left: 777px;
-	width: 679px;
+	width: 695px;
 	max-height: 258.5px;
 	z-index: 999999;
 }
