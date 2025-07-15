@@ -2,12 +2,13 @@
 	display: flex;
 	gap: 17px;
 	margin-bottom: 35px;
+	margin-top: 37px;
 }
 
 #searchInput,
 .input-wrapper,
 #searchBox {
-	width: 683px;
+	width: 700px;
 }
 
 input,
@@ -19,6 +20,7 @@ select {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	gap: 20px;
+	margin: 0 60px;
 }
 
 .grid .book-card {
@@ -55,7 +57,7 @@ select {
 	color: white;
 	text-shadow: 1px 1px 0 black;
 	font-size: 16px;
-	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
 .book-meta {

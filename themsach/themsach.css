@@ -6,6 +6,7 @@
 	border-radius: 5px;
 	width: 100%;
 	max-width: 600px;
+	margin-top: 30px;
 }
 
 p {
@@ -83,7 +84,7 @@ p {
 	font-weight: bold;
 	cursor: pointer;
 	transition: 0.1s;
-	margin-top: 25px;
+	margin-top: 30px;
 	width: 300px;
 }
 
@@ -175,21 +176,21 @@ p {
 
 .input-wrapper {
 	position: relative;
-	width: 1407px;
 	display: flex;
-	gap: 17px;
-	margin-right: 1745px;
+	margin: 0 60px;
+	width: 1407px;
+	gap: 19px;
 }
 
 .filter {
 	display: flex;
 	margin-top: 30px;
-	width: 45%;
+	width: 100%;
 }
 
 #searchInput,
 #searchBox {
-	width: 1070px;
+	width: 1066px;
 	cursor: pointer;
 }
 

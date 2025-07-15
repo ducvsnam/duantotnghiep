@@ -1,10 +1,12 @@
-#loginForm {
+#loginForm,
+#registerForm {
 	background: #4509ae;
 	box-shadow: 4px 4px 0 black;
 	border: 2px solid black;
 	border-radius: 5px;
 	padding: 30px;
 	width: 350px;
+	margin-top: 150px;
 }
 
 label {
@@ -21,9 +23,8 @@ input {
 	margin-top: 10px;
 }
 
-button {
+#mainActionBtn {
 	padding: 10px 20px;
-	margin-top: 75px;
 	background: #4509ae;
 	color: white;
 	text-shadow: 1px 1px 0 black;
@@ -34,14 +35,16 @@ button {
 	transition: 0.1s;
 	font-size: 20px;
 	font-weight: bold;
+	margin-top: 230px;
+	margin-bottom: 150px;
 }
 
-button:hover {
+#mainActionBtn:hover {
 	font-size: 23px;
 	transform: scale(1.1);
 }
 
-button:active {
+#mainActionBtn:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }

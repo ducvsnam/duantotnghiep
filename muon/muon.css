@@ -15,7 +15,7 @@ label {
 	padding: 30px;
 	padding-bottom: 16px;
 	padding-top: 27px;
-	margin-top: 12px;
+	margin-top: 90px;
 	width: 719px;
 }
 
@@ -30,7 +30,7 @@ input {
 	width: 712px;
 }
 
-button {
+.xacnhanmuon {
 	padding: 10px 20px;
 	background: #4509ae;
 	color: white;
@@ -40,22 +40,13 @@ button {
 	border-radius: 5px;
 	cursor: pointer;
 	margin-top: 20px;
+	margin-bottom: 40px;
 	transition: 0.1s;
 	font-size: 20px;
 	font-weight: bold;
 }
 
-button:hover {
-	font-size: 23px;
-	transform: scale(1.1);
-}
-
-button:active {
-	transform: scale(1.1) translate(3px, 3px);
-	box-shadow: 0 0 black;
-}
-
 .flatpickr-calendar {
-	top: 168px !important;
-	left: 20px !important;
+	top: 205px !important;
+	left: 17px !important;
 }

@@ -503,7 +503,8 @@ span.flatpickr-weekday {
 	border-radius: 5px;
 	font-size: 50px;
 	font-weight: bold;
-	margin-top: 300px;
+	margin-bottom: 203px;
+	margin-top: 235px;
 }
 
 .thuonghieu,
@@ -803,13 +804,21 @@ h4 {
 }
 
 .chitiet:hover,
-.tat:hover {
+.tat:hover,
+.doimatkhau:hover,
+.xacnhanmuon:hover,
+#mainActionBtn:hover,
+.muonsachchitiet:hover {
 	font-size: 25px;
 	transform: scale(1.1);
 }
 
 .chitiet:active,
-.tat:active {
+.tat:active,
+.doimatkhau:active,
+.xacnhanmuon:active,
+#mainActionBtn:active,
+.muonsachchitiet:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }

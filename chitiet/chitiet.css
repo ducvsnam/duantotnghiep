@@ -1,12 +1,17 @@
+h2 {
+	color: white;
+	text-shadow: 1px 1px 0 black;
+	font-weight: bold;
+	margin: 10px;
+}
+
 .sach {
-	height: 400px;
-	width: 300px;
-	box-shadow: 0 0 10px white;
+	margin: 12px;
 }
 
 .khung {
-	width: 82%;
-	height: 400px;
+	margin-top: 120px;
+	width: 100%;
 	display: flex;
 	background-color: #4509ae;
 	border: 2px solid black;
@@ -15,15 +20,11 @@
 	padding: 20px;
 }
 
-.thongtin {
-	margin-top: 9px;
-}
-
-.nutlog .submit {
+.muonsachchitiet {
 	display: inline-block;
 	background-color: #4509ae;
 	color: white;
-	padding: 20px;
+	padding: 10px 20px;
 	width: 180px;
 	border-radius: 5px;
 	text-decoration: none;
@@ -34,15 +35,6 @@
 	transition: 0.1s;
 	font-weight: bold;
 	font-size: 20px;
-	margin: 20px 10px;
-}
-
-.submit:hover {
-	font-size: 25px;
-	transform: scale(1.1);
-}
-
-.submit:active {
-	transform: scale(1.1) translate(3px, 3px);
-	box-shadow: 0 0 black;
+	margin-top: 20px;
+	margin-bottom: 100px;
 }

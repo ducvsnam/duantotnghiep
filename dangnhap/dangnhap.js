@@ -46,17 +46,19 @@ const btn = document.getElementById("mainActionBtn");
 function switchForm(target) {
 	const flipCard = document.getElementById("flipCard");
 	const btn = document.getElementById("mainActionBtn");
+	const registerForm = document.getElementById("registerForm");
 
 	if (target === "register") {
 		flipCard.classList.add("flipped", "expanded-height");
 		btn.textContent = "Đăng ký";
 		btn.setAttribute("onclick", "handleRegister()");
-		btn.style.marginTop = "145px";
+		btn.style.marginTop = "210px";
+		registerForm.style.marginTop = "65px";
 	} else {
 		flipCard.classList.remove("flipped", "expanded-height");
 		btn.textContent = "Đăng nhập";
 		btn.setAttribute("onclick", "handleLogin()");
-		btn.style.marginTop = "75px";
+		btn.style.marginTop = "230px";
 	}
 }
 

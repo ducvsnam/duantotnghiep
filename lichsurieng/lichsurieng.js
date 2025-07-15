@@ -68,11 +68,6 @@ function returnBookConfirmed(borrowId) {
 function renderBorrowCards() {
 	container.innerHTML = "";
 
-	if (!currentUser) {
-		container.innerHTML = "<p>Bạn chưa đăng nhập</p>";
-		return;
-	}
-
 	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
 	const userBorrows = borrowList.filter(
 		(b) => b.email === currentUser.email && !b.isReturned
