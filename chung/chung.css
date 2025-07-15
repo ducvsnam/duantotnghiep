@@ -67,7 +67,8 @@ select option {
 }
 
 .up,
-.down {
+.down,
+.back {
 	font-weight: bold;
 	cursor: pointer;
 	transition: 0.2s;
@@ -81,23 +82,27 @@ select option {
 	z-index: 1000;
 	position: fixed;
 	padding: 0 10px;
-
+	left: 6px;
 	padding-bottom: 1px;
 	overflow: hidden;
 }
 
 .up {
 	bottom: 60px;
-	left: 6px;
 }
 
 .down {
 	bottom: 11px;
-	left: 6px;
+}
+
+.back {
+	bottom: 610px;
+	height: 40px;
 }
 
 .up::before,
-.down::before {
+.down::before,
+.back::before {
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 100%);
@@ -114,8 +119,15 @@ select option {
 	content: "⬇";
 }
 
+.back::before {
+	content: "⬅ Quay lại trang trước";
+	transform: translateX(100%);
+	width: 100%;
+}
+
 .up span,
-.down span {
+.down span,
+.back span {
 	display: inline-block;
 	transition: transform 0.3s ease;
 }
@@ -128,21 +140,35 @@ select option {
 	transform: translateY(100%);
 }
 
+.back:hover span {
+	transform: translateX(-200%);
+}
+
 .up:hover,
-.down:hover {
+.down:hover,
+.back:hover {
 	font-size: 25px;
 	transform: scale(1.1);
 	padding: 0 12px;
 }
 
+.back:hover {
+	left: 21.5px;
+	bottom: 607px;
+	font-size: 20px;
+	padding-bottom: 5px;
+}
+
 .up:hover::before,
-.down:hover::before {
+.down:hover::before,
+.back:hover::before {
 	transform: translate(-50%, 0%);
 	opacity: 1;
 }
 
 .up:active,
-.down:active {
+.down:active,
+.back:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }
@@ -692,6 +718,7 @@ footer::before {
 
 .footer-contact p {
 	margin-bottom: 10px;
+	margin-left: 0;
 	color: white;
 	text-shadow: 1px 1px 0 black;
 	display: flex;

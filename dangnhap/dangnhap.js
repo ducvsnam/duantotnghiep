@@ -8,6 +8,38 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
+// function handleRegister() {
+// 	const username = document.getElementById("registerUsername").value;
+// 	const email = document.getElementById("registerEmail").value;
+// 	const password = document.getElementById("registerPassword").value;
+// 	const confirm = document.getElementById("registerConfirm").value;
+
+// 	if (!username || !email || !password || !confirm) {
+// 		showPopup("Vui lòng điền đầy đủ thông tin");
+// 		return;
+// 	}
+
+// 	if (password !== confirm) {
+// 		showPopup("Mật khẩu không khớp");
+// 		return;
+// 	}
+
+// 	const users = JSON.parse(localStorage.getItem("users") || "[]");
+// 	const exists = users.find(
+// 		(u) => u.username === username || u.email === email
+// 	);
+
+// 	if (exists) {
+// 		showPopup("Tên đăng nhập hoặc email đã tồn tại");
+// 		return;
+// 	}
+
+// 	users.push({ username, email, password });
+// 	localStorage.setItem("users", JSON.stringify(users));
+// 	showPopup("Đăng ký thành công, vui lòng đăng nhập");
+// 	switchForm("login");
+// }
+//
 function handleRegister() {
 	const username = document.getElementById("registerUsername").value;
 	const email = document.getElementById("registerEmail").value;
@@ -16,6 +48,28 @@ function handleRegister() {
 
 	if (!username || !email || !password || !confirm) {
 		showPopup("Vui lòng điền đầy đủ thông tin");
+		return;
+	}
+
+	if (username.length > 20) {
+		showPopup("Tên đăng nhập không được vượt quá 20 ký tự");
+		return;
+	}
+
+	if (email.length > 100) {
+		showPopup("Email không được vượt quá 100 ký tự");
+		return;
+	}
+
+	if (password.length > 30) {
+		showPopup("Mật khẩu không được vượt quá 30 ký tự");
+		return;
+	}
+
+	if (!validatePassword(password)) {
+		showPopup(
+			"Mật khẩu phải có ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt"
+		);
 		return;
 	}
 
@@ -39,7 +93,13 @@ function handleRegister() {
 	showPopup("Đăng ký thành công, vui lòng đăng nhập");
 	switchForm("login");
 }
-
+//
+function validatePassword(password) {
+	const regex =
+		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+	return regex.test(password);
+}
+//
 const flip = document.getElementById("flipCard");
 const btn = document.getElementById("mainActionBtn");
 
@@ -114,7 +174,7 @@ function handleLogin() {
 		document.body.classList.add("fade-out");
 
 		setTimeout(() => {
-			window.location.href = "giaodiennguoidung.html";
+			window.location.href = "../nguoidung/nguoidung.html";
 		}, 800);
 	} else {
 		showPopup("Sai tên đăng nhập hoặc mật khẩu");

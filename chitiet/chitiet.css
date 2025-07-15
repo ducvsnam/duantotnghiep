@@ -1,3 +1,7 @@
+.form-wrapper h1 {
+	margin-top: 90px;
+}
+
 h2 {
 	color: white;
 	text-shadow: 1px 1px 0 black;
@@ -10,14 +14,13 @@ h2 {
 }
 
 .khung {
-	margin-top: 120px;
-	width: 100%;
 	display: flex;
 	background-color: #4509ae;
 	border: 2px solid black;
 	box-shadow: 4px 4px black;
 	border-radius: 5px;
 	padding: 20px;
+	margin-top: 10px;
 }
 
 .muonsachchitiet {
@@ -36,5 +39,5 @@ h2 {
 	font-weight: bold;
 	font-size: 20px;
 	margin-top: 20px;
-	margin-bottom: 100px;
+	margin-bottom: 84px;
 }

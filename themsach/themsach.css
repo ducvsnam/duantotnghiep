@@ -214,15 +214,17 @@ p {
 }
 
 #suggestionsinfo {
-	top: 235px;
-	width: 360px;
-	left: 693px;
+	top: 314px;
+	width: 381px;
+	left: 683.5px;
+	max-height: 197px;
 }
 
 #suggestionssearch {
-	top: 529px;
-	width: 217px;
-	left: 781px;
+	top: 613px;
+	width: 690px;
+	left: 773px;
+	max-height: 215px;
 }
 
 #suggestionssearch,
@@ -235,7 +237,6 @@ p {
 	border: 2px solid black;
 	border-radius: 5px;
 	box-shadow: 4px 4px 0px black;
-	max-height: 193px;
 	overflow-y: auto;
 	z-index: 999999;
 }

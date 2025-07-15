@@ -79,7 +79,17 @@ saveBtn.addEventListener("click", () => {
 		showPopup("Vui lòng điền đầy đủ thông tin và chọn ảnh bìa");
 		return;
 	}
+	//
+	if (isNaN(quantity) || Number(quantity) < 0) {
+		showPopup("Số lượng sách phải là số dương");
+		return;
+	}
 
+	if (!/^\d{4}$/.test(year)) {
+		showPopup("Năm xuất bản phải là số có 4 chữ số");
+		return;
+	}
+	//
 	const books = getBooks();
 
 	if (editingIndex === null) {
