@@ -38,6 +38,11 @@ h1 {
 	text-shadow: 1px 1px 0 black;
 }
 
+p {
+	color: white;
+	text-shadow: 1px 1px 0 black;
+}
+
 input,
 select {
 	padding: 10px;
@@ -509,6 +514,16 @@ ul {
 
 .logo h1 {
 	color: white;
+	transition: 0.2s;
+}
+
+.logo h1:hover {
+	text-shadow: 2px 2px 0 black;
+}
+
+.logo h1:active {
+	transform: translate(1px, 1px);
+	text-shadow: 1px 1px 0 black;
 }
 
 .logo-img {
@@ -518,6 +533,19 @@ ul {
 	border-radius: 50%;
 	box-shadow: 1px 1px 0 black;
 	border: 1px solid black;
+	transition: 0.1s;
+}
+
+.logo-img:hover {
+	width: 43px;
+	height: 43px;
+	border: 2px solid black;
+	box-shadow: 2px 2px 0 black;
+}
+
+.logo-img:active {
+	transform: translate(1px, 1px);
+	box-shadow: 0 0 black;
 }
 
 header {
@@ -533,7 +561,7 @@ header .container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 0;
+	padding: 15px 0;
 	max-width: 1500px;
 	margin: 0 auto;
 }
@@ -710,7 +738,7 @@ footer::before {
 	border-radius: 5px;
 	border: 2px solid black;
 	box-shadow: 4px 4px black;
-	margin: 20px;
+	margin: 15px;
 	padding: 10px;
 }
 
@@ -724,30 +752,7 @@ h4 {
 	padding-top: 10px;
 }
 
-.chitiet {
-	width: 210px;
-	padding: 10px;
-	color: white;
-	text-shadow: 2px 2px 0 black;
-	background-color: #4509ae;
-	border: 2px solid black;
-	box-shadow: 4px 4px black;
-	border-radius: 5px;
-	font-size: 20px;
-	font-weight: bold;
-	transition: 0.1s;
-}
-
-.chitiet:hover {
-	font-size: 25px;
-	transform: scale(1.1);
-}
-
-.chitiet:active {
-	transform: scale(1.1) translate(3px, 3px);
-	box-shadow: 0 0 black;
-}
-
+.chitiet,
 .tat {
 	width: 210px;
 	padding: 10px;
@@ -762,11 +767,13 @@ h4 {
 	transition: 0.1s;
 }
 
+.chitiet:hover,
 .tat:hover {
 	font-size: 25px;
 	transform: scale(1.1);
 }
 
+.chitiet:active,
 .tat:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;

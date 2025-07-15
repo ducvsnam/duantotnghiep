@@ -1,12 +1,4 @@
-body {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-
-.container {
+#loginForm {
 	background: #4509ae;
 	box-shadow: 4px 4px 0 black;
 	border: 2px solid black;
