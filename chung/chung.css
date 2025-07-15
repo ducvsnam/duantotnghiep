@@ -667,6 +667,7 @@ footer::before {
 }
 
 .footer-links h3,
+.footer-human h3,
 .footer-contact h3 {
 	font-size: 1.3rem;
 	margin-bottom: 20px;
@@ -676,6 +677,7 @@ footer::before {
 }
 
 .footer-links h3::after,
+.footer-human h3::after,
 .footer-contact h3::after {
 	content: "";
 	position: absolute;
@@ -686,13 +688,23 @@ footer::before {
 	background: linear-gradient(to right, azure, #00bfff);
 }
 
-.footer-links ul li {
+.footer-human h3::after {
+	width: 190px;
+}
+
+.footer-contact h3::after {
+	width: 90px;
+}
+
+.footer-links ul li,
+.footer-human ul li {
 	margin-bottom: 10px;
 	position: relative;
 	padding-left: 15px;
 }
 
-.footer-links ul li::before {
+.footer-links ul li::before,
+.footer-human ul li::before {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -704,7 +716,8 @@ footer::before {
 	background-color: azure;
 }
 
-.footer-links ul li a {
+.footer-links ul li a,
+.footer-human ul li a {
 	color: white;
 	text-shadow: 1px 1px 0 black;
 	transition: all 0.3s ease;
