@@ -1,17 +1,6 @@
 document.querySelector(".tat").addEventListener("click", () => {
-	window.location.href = "../tatca/tatca.html";
+	window.location.href = "../thuvien/thuvien.html";
 });
-
-function toggleScrollButton() {
-	const btn = document.querySelector(".btn");
-	if (window.scrollY === 0) {
-		btn.classList.add("hidden");
-	} else {
-		btn.classList.remove("hidden");
-	}
-}
-window.addEventListener("load", toggleScrollButton);
-window.addEventListener("scroll", toggleScrollButton);
 
 document.querySelectorAll(".chitiet").forEach((btn) => {
 	btn.addEventListener("click", () => {
@@ -43,25 +32,42 @@ document.querySelectorAll(".chitiet").forEach((btn) => {
 		window.location.href = url.href;
 	});
 });
+//
+//
+//
+// function toggleScrollButton() {
+// 	const btn = document.querySelector(".btn");
+// 	if (window.scrollY === 0) {
+// 		btn.classList.add("hidden");
+// 	} else {
+// 		btn.classList.remove("hidden");
+// 	}
+// }
+// window.addEventListener("load", toggleScrollButton);
+// window.addEventListener("scroll", toggleScrollButton);
 
-function revealOnScroll() {
-	const reveals = document.querySelectorAll(".reveal");
-	for (let i = 0; i < reveals.length; i++) {
-		const windowHeight = window.innerHeight;
-		const revealTop = reveals[i].getBoundingClientRect().top;
-		const revealPoint = 100;
+// function revealOnScroll() {
+// 	const reveals = document.querySelectorAll(".reveal");
+// 	for (let i = 0; i < reveals.length; i++) {
+// 		const windowHeight = window.innerHeight;
+// 		const revealTop = reveals[i].getBoundingClientRect().top;
+// 		const revealPoint = 100;
 
-		if (revealTop < windowHeight - revealPoint) {
-			reveals[i].classList.add("active");
-		} else {
-			reveals[i].classList.remove("active");
-		}
-	}
-}
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
+// 		if (revealTop < windowHeight - revealPoint) {
+// 			reveals[i].classList.add("active");
+// 		} else {
+// 			reveals[i].classList.remove("active");
+// 		}
+// 	}
+// }
+// window.addEventListener("scroll", revealOnScroll);
+// window.addEventListener("load", revealOnScroll);
+//
+//
 //
 // thêm đoạn chuyển trang có fade out
+//
+//
 //
 // document.addEventListener("DOMContentLoaded", () => {
 // 	document.body.classList.add("fade-in");

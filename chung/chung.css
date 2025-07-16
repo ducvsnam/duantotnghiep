@@ -66,6 +66,22 @@ select option {
 	font-weight: bold;
 }
 
+#timkiem {
+	display: none;
+	margin-top: 30px;
+	margin-bottom: 150px;
+	font-weight: bold;
+	font-size: 40px;
+	color: #4509ae;
+	text-shadow: 1px 1px 0 black;
+}
+
+.thongtin {
+	margin: 10px;
+	margin-right: 0;
+	margin-top: 17px;
+}
+
 .up,
 .down,
 .back {
@@ -120,7 +136,7 @@ select option {
 }
 
 .back::before {
-	content: "⬅ Quay lại trang trước";
+	content: "⬅ Quay lại trang chủ";
 	transform: translateX(100%);
 	width: 100%;
 }
@@ -798,6 +814,7 @@ h4 {
 .chitiet,
 .tat {
 	width: 210px;
+	margin-bottom: 15px;
 	padding: 10px;
 	color: white;
 	text-shadow: 2px 2px 0 black;

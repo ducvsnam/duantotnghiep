@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			.map(
 				(book) => `
 				<div class="book book-card reveal">
-					<img src="${book.image}">
+					<img src="/${book.image}">
 					<div class="book-title">${book.title}</div>
 				</div>`
 			)

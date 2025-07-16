@@ -19,7 +19,7 @@ function calculateDaysLeft(dateStr) {
 }
 
 function returnBook(borrowId) {
-	showConfirm("Bạn có chắc chắn muốn trả cuốn sách này không?", (confirm) => {
+	showConfirm("Bạn có chắc chắn muốn trả cuốn sách này không", (confirm) => {
 		if (!confirm) return;
 
 		const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
@@ -106,7 +106,7 @@ function renderBorrowCards() {
 		const card = document.createElement("div");
 		card.className = "book-item";
 		card.innerHTML = `
-			<img src="${imgSrc}" alt="${borrow.bookTitle}" />
+			<img src="/${imgSrc}" alt="${borrow.bookTitle}" />
 			<div class="book-info">
 				<p><b>Tên sách:</b> ${borrow.bookTitle}</p>
 				<p><b>Ngày mượn:</b> ${borrow.borrowDate || "—"}</p>

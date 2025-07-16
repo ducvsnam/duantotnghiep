@@ -1,4 +1,4 @@
-document.querySelectorAll(".submit").forEach((btn) =>
+document.querySelectorAll(".muonsachchitiet").forEach((btn) =>
 	btn.addEventListener("click", () => {
 		window.location.href = "../muon/muon.html";
 	})

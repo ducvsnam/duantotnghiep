@@ -10,7 +10,7 @@ p {
 	gap: 20px;
 	width: 572px;
 	padding: 15px;
-	margin-bottom: 20px;
+	margin: 25px;
 	display: flex;
 	align-items: flex-start;
 	flex-shrink: 0;
@@ -67,4 +67,8 @@ p {
 .book-item button:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
+}
+
+footer {
+	margin-top: 131px;
 }

@@ -111,7 +111,7 @@ function renderBorrowCards() {
 		const card = document.createElement("div");
 		card.className = "book-item";
 		card.innerHTML = `
-			<img src="${imgSrc}" alt="${borrow.bookTitle}" />
+			<img src="/${imgSrc}" alt="${borrow.bookTitle}" />
 			<div class="book-info">
 				<p><b>Họ tên người mượn:</b> ${borrow.name}</p>
 				<p><b>Email người mượn:</b> ${borrow.email}</p>
