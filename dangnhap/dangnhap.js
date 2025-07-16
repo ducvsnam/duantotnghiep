@@ -8,38 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-// function handleRegister() {
-// 	const username = document.getElementById("registerUsername").value;
-// 	const email = document.getElementById("registerEmail").value;
-// 	const password = document.getElementById("registerPassword").value;
-// 	const confirm = document.getElementById("registerConfirm").value;
-
-// 	if (!username || !email || !password || !confirm) {
-// 		showPopup("Vui lòng điền đầy đủ thông tin");
-// 		return;
-// 	}
-
-// 	if (password !== confirm) {
-// 		showPopup("Mật khẩu không khớp");
-// 		return;
-// 	}
-
-// 	const users = JSON.parse(localStorage.getItem("users") || "[]");
-// 	const exists = users.find(
-// 		(u) => u.username === username || u.email === email
-// 	);
-
-// 	if (exists) {
-// 		showPopup("Tên đăng nhập hoặc email đã tồn tại");
-// 		return;
-// 	}
-
-// 	users.push({ username, email, password });
-// 	localStorage.setItem("users", JSON.stringify(users));
-// 	showPopup("Đăng ký thành công, vui lòng đăng nhập");
-// 	switchForm("login");
-// }
-//
 function handleRegister() {
 	const username = document.getElementById("registerUsername").value;
 	const email = document.getElementById("registerEmail").value;
@@ -93,13 +61,13 @@ function handleRegister() {
 	showPopup("Đăng ký thành công, vui lòng đăng nhập");
 	switchForm("login");
 }
-//
+
 function validatePassword(password) {
 	const regex =
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 	return regex.test(password);
 }
-//
+
 const flip = document.getElementById("flipCard");
 const btn = document.getElementById("mainActionBtn");
 

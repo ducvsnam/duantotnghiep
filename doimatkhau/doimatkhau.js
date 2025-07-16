@@ -1,9 +1,3 @@
-// function validatePassword(password) {
-// 	const regex =
-// 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-// 	return regex.test(password);
-// }
-
 function changePassword() {
 	const oldPass = document.getElementById("oldPassword").value;
 	const newPass = document.getElementById("newPassword").value;

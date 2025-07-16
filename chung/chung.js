@@ -1,16 +1,3 @@
-// document.addEventListener("DOMContentLoaded", () => {
-// 	const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-// 	const chungPages = ["nguoidung.html"];
-
-// 	const currentPage = window.location.pathname.split("/").pop();
-
-// 	if (chungPages.includes(currentPage)) return;
-
-// 	if (!currentUser) {
-// 		window.location.href = "nguoidung.html";
-// 	}
-// });
-
 function revealOnScroll() {
 	const reveals = document.querySelectorAll(".reveal");
 	for (let i = 0; i < reveals.length; i++) {
