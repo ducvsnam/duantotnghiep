@@ -1,5 +1,5 @@
 .form-wrapper h1 {
-	margin-top: 90px;
+	margin-top: 80px;
 }
 
 h2 {
@@ -10,7 +10,11 @@ h2 {
 }
 
 .sach {
+	height: 210px;
+	width: 160px;
 	margin: 12px;
+	margin-top: 40px;
+	margin-left: 34px;
 }
 
 .khung {
@@ -19,7 +23,6 @@ h2 {
 	border: 2px solid black;
 	box-shadow: 4px 4px black;
 	border-radius: 5px;
-	padding: 20px;
 	margin-top: 10px;
 }
 
@@ -39,5 +42,5 @@ h2 {
 	font-weight: bold;
 	font-size: 20px;
 	margin-top: 20px;
-	margin-bottom: 84px;
+	margin-bottom: 80px;
 }

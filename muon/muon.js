@@ -63,7 +63,6 @@ document.addEventListener("click", (e) => {
 });
 
 function borrowBook() {
-	const phone = document.getElementById("phone").value.trim();
 	const bookTitle = input.value.trim();
 	const borrowedDate = document.getElementById("borrowedDate").value.trim();
 	const returnDate = document.getElementById("returnDate").value.trim();
@@ -73,13 +72,8 @@ function borrowBook() {
 		return;
 	}
 
-	if (!phone || !bookTitle || !borrowedDate || !returnDate) {
+	if (!bookTitle || !borrowedDate || !returnDate) {
 		showPopup("Vui lòng nhập đầy đủ thông tin");
-		return;
-	}
-
-	if (!/^0\d{9}$/.test(phone)) {
-		showPopup("Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0");
 		return;
 	}
 
@@ -137,7 +131,6 @@ function borrowBook() {
 		id: Date.now(),
 		name: currentUser.name || currentUser.username || "Không rõ",
 		email: currentUser.email,
-		phone,
 		bookTitle,
 		borrowDate: borrowedDate,
 		returnDate,

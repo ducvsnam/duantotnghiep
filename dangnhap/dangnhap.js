@@ -13,6 +13,7 @@ function handleRegister() {
 	const email = document.getElementById("registerEmail").value;
 	const password = document.getElementById("registerPassword").value;
 	const confirm = document.getElementById("registerConfirm").value;
+	const phone = document.getElementById("registerPhone").value;
 
 	if (!username || !email || !password || !confirm) {
 		showPopup("Vui lòng điền đầy đủ thông tin");
@@ -24,8 +25,8 @@ function handleRegister() {
 		return;
 	}
 
-	if (email.length > 100) {
-		showPopup("Email không được vượt quá 100 ký tự");
+	if (email.length > 30) {
+		showPopup("Email không được vượt quá 30 ký tự");
 		return;
 	}
 
@@ -56,7 +57,17 @@ function handleRegister() {
 		return;
 	}
 
-	users.push({ username, email, password });
+	if (!phone) {
+		showPopup("Vui lòng nhập số điện thoại");
+		return;
+	}
+
+	if (!/^0\d{9}$/.test(phone)) {
+		showPopup("Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0");
+		return;
+	}
+
+	users.push({ username, email, password, phone });
 	localStorage.setItem("users", JSON.stringify(users));
 	showPopup("Đăng ký thành công, vui lòng đăng nhập");
 	switchForm("login");
@@ -80,8 +91,8 @@ function switchForm(target) {
 		flipCard.classList.add("flipped", "expanded-height");
 		btn.textContent = "Đăng ký";
 		btn.setAttribute("onclick", "handleRegister()");
-		btn.style.marginTop = "210px";
-		registerForm.style.marginTop = "65px";
+		btn.style.marginTop = "260px";
+		registerForm.style.marginTop = "20px";
 	} else {
 		flipCard.classList.remove("flipped", "expanded-height");
 		btn.textContent = "Đăng nhập";
