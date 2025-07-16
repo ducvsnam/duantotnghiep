@@ -1,0 +1,106 @@
+.khung-danhgia {
+	display: block;
+	margin-top: 100px;
+}
+
+.khung-danhgia h2 {
+	margin-bottom: 0;
+}
+
+textarea {
+	resize: none;
+	padding: 10px;
+	margin-top: 10px;
+	color: black;
+	border: 2px solid black;
+	box-shadow: 4px 4px 0 black;
+	border-radius: 5px;
+	box-sizing: border-box;
+	font-weight: bold;
+	width: 100%;
+	height: 100px;
+}
+
+textarea:focus {
+	border: 2px solid #5d00ff;
+	outline: none;
+}
+
+textarea::-webkit-scrollbar {
+	display: none;
+}
+
+.nut-danhgia {
+	width: 250px;
+	margin-bottom: 98px;
+}
+
+.rating {
+	display: flex;
+	flex-direction: row-reverse;
+	margin-right: 190px;
+	gap: 10px;
+	--xam: white;
+	--vang: gold;
+}
+
+.rating input {
+	display: none;
+}
+
+.rating label {
+	cursor: pointer;
+	width: 32px;
+	height: 32px;
+	position: relative;
+}
+
+.rating label::before,
+.rating label::after {
+	content: "★";
+	font-size: 32px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.rating label::before {
+	color: black;
+	transform: translate(2px, 2px);
+	z-index: 1;
+}
+
+.rating label::after {
+	color: white;
+	z-index: 2;
+	transition: color 0.3s;
+	transform: scale(1);
+}
+
+.rating label:hover::after,
+.rating label:hover ~ label::after {
+	color: yellow;
+}
+
+.rating input:checked ~ label::after {
+	color: yellow;
+}
+
+.rating input:checked + label::after {
+	animation: yippee 0.5s ease;
+}
+
+@keyframes yippee {
+	0% {
+		transform: scale(1);
+		opacity: 0;
+	}
+	50% {
+		transform: scale(1.6);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}

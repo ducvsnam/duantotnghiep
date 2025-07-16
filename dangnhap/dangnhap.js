@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
+function validatePassword(password) {
+	const regex =
+		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+	return regex.test(password);
+}
+
 function handleRegister() {
 	const username = document.getElementById("registerUsername").value;
 	const email = document.getElementById("registerEmail").value;
@@ -25,8 +31,18 @@ function handleRegister() {
 		return;
 	}
 
+	if (username.length < 3) {
+		showPopup("Tên đăng nhập không được ít hơn 3 ký tự");
+		return;
+	}
+
 	if (email.length > 30) {
 		showPopup("Email không được vượt quá 30 ký tự");
+		return;
+	}
+
+	if (email.length < 6) {
+		showPopup("Email không được ít hơn 6 ký tự");
 		return;
 	}
 
@@ -71,12 +87,6 @@ function handleRegister() {
 	localStorage.setItem("users", JSON.stringify(users));
 	showPopup("Đăng ký thành công, vui lòng đăng nhập");
 	switchForm("login");
-}
-
-function validatePassword(password) {
-	const regex =
-		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-	return regex.test(password);
 }
 
 const flip = document.getElementById("flipCard");

@@ -671,7 +671,8 @@ header .container {
 	display: flex;
 }
 
-.khung-info {
+.khung-info,
+.khung-danhgia {
 	display: flex;
 	background-color: #4509ae;
 	border: 2px solid black;
@@ -909,7 +910,8 @@ h4 {
 .nut-dangnhap,
 .nut-dangxuat,
 .nut-doimatkhau,
-.nut-thayanh {
+.nut-thayanh,
+.nut-danhgia {
 	background-color: #4509ae;
 	color: white;
 	border-radius: 5px;
@@ -942,7 +944,8 @@ h4 {
 .nut-dangnhap:hover,
 .nut-dangxuat:hover,
 .nut-doimatkhau:hover,
-.nut-thayanh:hover {
+.nut-thayanh:hover,
+.nut-danhgia:hover {
 	font-size: 25px;
 	transform: scale(1.1);
 }
@@ -956,7 +959,8 @@ h4 {
 .nut-dangnhap:active,
 .nut-dangxuat:active,
 .nut-doimatkhau:active,
-.nut-thayanh:active {
+.nut-thayanh:active,
+.nut-danhgia:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }

@@ -23,10 +23,12 @@
 				</div>
 				<nav>
 					<ul class="menu">
-						<li><a href="../chinh/chinh.html" class="active">Trang Chủ</a></li>
+						<li><a href="../chinh/chinh.html">Trang Chủ</a></li>
 						<li><a href="../muon/muon.html">Mượn Sách</a></li>
 						<li><a href="../lichsurieng/lichsurieng.html">Lịch Sử</a></li>
-						<li><a href="../danhgia/danhgia.html">Đánh Giá</a></li>
+						<li>
+							<a href="../danhgia/danhgia.html" class="active">Đánh Giá</a>
+						</li>
 					</ul>
 				</nav>
 				<div class="avatar">
@@ -36,6 +38,36 @@
 				</div>
 			</div>
 		</header>
+
+		<div class="reveal">
+			<div class="form-wrapper">
+				<div class="khung-danhgia">
+					<h2>Chất lượng:</h2>
+					<div class="rating">
+						<input type="radio" name="star" id="star-5" value="5" />
+						<label for="star-5"></label>
+						<input type="radio" name="star" id="star-4" value="4" />
+						<label for="star-4"></label>
+						<input type="radio" name="star" id="star-3" value="3" />
+						<label for="star-3"></label>
+						<input type="radio" name="star" id="star-2" value="2" />
+						<label for="star-2"></label>
+						<input type="radio" name="star" id="star-1" value="1" />
+						<label for="star-1"></label>
+					</div>
+
+					<h2>Nhận xét:</h2>
+					<textarea
+						type="text"
+						id="registerComment"
+						placeholder="Nhập nhận xét..."
+					></textarea>
+				</div>
+			</div>
+			<div class="nut">
+				<button class="nut-danhgia">Gửi đánh giá</button>
+			</div>
+		</div>
 
 		<footer>
 			<div class="container">
