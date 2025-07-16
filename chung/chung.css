@@ -84,7 +84,8 @@ select option {
 
 .up,
 .down,
-.back {
+.back,
+.back-thongtin {
 	font-weight: bold;
 	cursor: pointer;
 	transition: 0.2s;
@@ -111,14 +112,16 @@ select option {
 	bottom: 11px;
 }
 
-.back {
+.back,
+.back-thongtin {
 	bottom: 610px;
 	height: 40px;
 }
 
 .up::before,
 .down::before,
-.back::before {
+.back::before,
+.back-thongtin::before {
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 100%);
@@ -141,9 +144,16 @@ select option {
 	width: 100%;
 }
 
+.back-thongtin::before {
+	content: "⬅ Quay lại trang thông tin";
+	transform: translateX(100%);
+	width: 100%;
+}
+
 .up span,
 .down span,
-.back span {
+.back span,
+.back-thongtin span {
 	display: inline-block;
 	transition: transform 0.3s ease;
 }
@@ -156,19 +166,22 @@ select option {
 	transform: translateY(100%);
 }
 
-.back:hover span {
+.back:hover span,
+.back-thongtin:hover span {
 	transform: translateX(-200%);
 }
 
 .up:hover,
 .down:hover,
-.back:hover {
+.back:hover,
+.back-thongtin:hover {
 	font-size: 25px;
 	transform: scale(1.1);
 	padding: 0 12px;
 }
 
-.back:hover {
+.back:hover,
+.back-thongtin:hover {
 	left: 21.5px;
 	bottom: 607px;
 	font-size: 20px;
@@ -177,14 +190,16 @@ select option {
 
 .up:hover::before,
 .down:hover::before,
-.back:hover::before {
+.back:hover::before,
+.back-thongtin:hover::before {
 	transform: translate(-50%, 0%);
 	opacity: 1;
 }
 
 .up:active,
 .down:active,
-.back:active {
+.back:active,
+.back-thongtin:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }
@@ -552,7 +567,8 @@ ul {
 	list-style: none;
 }
 
-.logo a {
+.logo a,
+.avatar a {
 	display: flex;
 	align-items: center;
 }
@@ -571,7 +587,16 @@ ul {
 	text-shadow: 1px 1px 0 black;
 }
 
-.logo-img {
+#ava-page {
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	border: 3px solid #00bfff;
+	margin-right: 0;
+}
+
+.logo-img,
+.ava-img {
 	width: 40px;
 	height: 40px;
 	margin-right: 10px;
@@ -581,14 +606,20 @@ ul {
 	transition: 0.1s;
 }
 
-.logo-img:hover {
+.ava-img {
+	margin-right: 0;
+}
+
+.logo-img:hover,
+.ava-img:hover {
 	width: 43px;
 	height: 43px;
 	border: 2px solid black;
 	box-shadow: 2px 2px 0 black;
 }
 
-.logo-img:active {
+.logo-img:active,
+.ava-img:active {
 	transform: translate(1px, 1px);
 	box-shadow: 0 0 black;
 }
@@ -604,16 +635,23 @@ header {
 
 header .container {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 	padding: 15px 0;
 	max-width: 1500px;
 	margin: 0 auto;
+	margin-left: 25px;
+	margin-right: 0;
+}
+
+.avatar {
+	margin-left: 25px;
+	display: flex;
 }
 
 .menu {
 	display: flex;
 	gap: 30px;
+	margin-left: 690px;
 }
 
 .menu a {

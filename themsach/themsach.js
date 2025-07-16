@@ -174,14 +174,14 @@ function renderBooks() {
 			? book.image
 			: book.image?.trim()
 			? "/" + book.image.trim()
-			: "/anh/theme/img2.jpg";
+			: "/anh/theme/nenday.jpg";
 
 		const bookDiv = document.createElement("div");
 		bookDiv.classList.add("reveal");
 
 		bookDiv.innerHTML = `
 		<div class="book-item">
-			<img src="${imgSrc}" alt="${book.title}" onerror="this.src='/anh/theme/img1.jpg'" />
+			<img src="${imgSrc}" alt="${book.title}" onerror="this.src='/anh/theme/nenrong.jpg'" />
 			<div class="book-info">
 				<p><b>Tên sách:</b> ${book.title}</p>
 				<p><b>Tác giả:</b> ${book.author}</p>
