@@ -43,7 +43,16 @@ function editBook(index) {
 	document.getElementById("genre").value = book.genre;
 	document.getElementById("year").value = book.year;
 	document.getElementById("quantity").value = book.quantity;
-	preview.src = book.image;
+
+	const image = book.image?.trim() || "";
+	const imgSrc = image.startsWith("data:image/")
+		? image
+		: image.startsWith("/")
+		? image
+		: "/" + image;
+
+	preview.src = imgSrc;
+	//
 	preview.classList.add("show");
 	document.getElementById("uploadIcon").style.display = "none";
 	document.getElementById("uploadText").style.display = "none";
@@ -56,6 +65,23 @@ document.addEventListener("DOMContentLoaded", () => {
 		saveBooks(defaultBooks);
 	}
 	renderBooks();
+
+	const fileInput = document.getElementById("imageUpload");
+	const preview = document.getElementById("preview");
+
+	fileInput.addEventListener("change", function () {
+		const file = this.files[0];
+		if (!file) return;
+
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			preview.src = e.target.result;
+			preview.classList.add("show");
+			document.getElementById("uploadIcon").style.display = "none";
+			document.getElementById("uploadText").style.display = "none";
+		};
+		reader.readAsDataURL(file);
+	});
 });
 
 searchInput.addEventListener("input", renderBooks);
@@ -66,7 +92,14 @@ saveBtn.addEventListener("click", () => {
 	const genre = document.getElementById("genre").value.trim();
 	const year = document.getElementById("year").value.trim();
 	const quantity = document.getElementById("quantity").value.trim();
-	const imageSrc = preview.src;
+
+	let imageSrc = preview.src;
+
+	if (!imageSrc.startsWith("data:image/")) {
+		if (imageSrc.startsWith(window.location.origin)) {
+			imageSrc = imageSrc.replace(window.location.origin, "");
+		}
+	}
 
 	if (
 		!title ||
@@ -79,7 +112,7 @@ saveBtn.addEventListener("click", () => {
 		showPopup("Vui lòng điền đầy đủ thông tin và chọn ảnh bìa");
 		return;
 	}
-	//
+
 	if (isNaN(quantity) || Number(quantity) < 0) {
 		showPopup("Số lượng sách phải là số dương");
 		return;
@@ -89,7 +122,7 @@ saveBtn.addEventListener("click", () => {
 		showPopup("Năm xuất bản phải là số có 4 chữ số");
 		return;
 	}
-	//
+
 	const books = getBooks();
 
 	if (editingIndex === null) {
@@ -165,23 +198,18 @@ function renderBooks() {
 	}
 
 	filtered.forEach((book, index) => {
-		const isBase64 = book.image?.startsWith("data:image/");
-		const isAbsolutePath = book.image?.startsWith("/");
-
-		const imgSrc = isBase64
+		const imgSrc = book.image?.startsWith("data:image/")
 			? book.image
-			: isAbsolutePath
+			: book.image?.startsWith("/")
 			? book.image
-			: book.image?.trim()
-			? "/" + book.image.trim()
-			: "/anh/theme/nenday.jpg";
+			: "/" + book.image;
 
 		const bookDiv = document.createElement("div");
 		bookDiv.classList.add("reveal");
 
 		bookDiv.innerHTML = `
 		<div class="book-item">
-			<img src="${imgSrc}" alt="${book.title}" onerror="this.src='/anh/theme/nenrong.jpg'" />
+			<img src="${imgSrc}"/>
 			<div class="book-info">
 				<p><b>Tên sách:</b> ${book.title}</p>
 				<p><b>Tác giả:</b> ${book.author}</p>
