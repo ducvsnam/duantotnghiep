@@ -79,7 +79,7 @@ textarea::-webkit-scrollbar {
 
 .rating label:hover::after,
 .rating label:hover ~ label::after {
-	color: yellow;
+	color: rgb(255, 255, 139);
 }
 
 .rating input:checked ~ label::after {

@@ -87,12 +87,6 @@ select option {
 	text-shadow: 1px 1px 0 black;
 }
 
-.thongtin {
-	margin: 10px;
-	margin-right: 20px;
-	margin-top: 17px;
-}
-
 .thongtin-info {
 	margin: 0 10px;
 }
@@ -608,6 +602,19 @@ ul {
 	border-radius: 50%;
 	border: 3px solid #00bfff;
 	margin-right: 0;
+	transition: 0.2s;
+}
+
+#ava-page:hover {
+	border: 3.5px solid rgb(154, 238, 255);
+	width: 35px;
+	height: 35px;
+}
+
+#ava-page:active {
+	border: 2px solid #00bfff;
+	width: 38px;
+	height: 38px;
 }
 
 #ava-info {
@@ -672,7 +679,8 @@ header .container {
 }
 
 .khung-info,
-.khung-danhgia {
+.khung-danhgia,
+.khung-thongke {
 	display: flex;
 	background-color: #4509ae;
 	border: 2px solid black;
@@ -701,6 +709,10 @@ header .container {
 .menu a:hover,
 .menu a.active {
 	font-weight: bold;
+}
+
+.menu a.active:hover {
+	text-shadow: 2px 2px 0 black;
 }
 
 .menu a::after {
@@ -749,10 +761,13 @@ footer::before {
 .footer-content {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	gap: 40px;
 	margin-bottom: 20px;
 	position: relative;
 	z-index: 1;
+}
+
+.footer-contact {
+	margin-left: 60px;
 }
 
 .footer-links h3,
@@ -763,6 +778,7 @@ footer::before {
 	position: relative;
 	display: inline-block;
 	text-shadow: 1px 1px 0 black;
+	transition: 0.2s;
 }
 
 .footer-links h3::after,
@@ -825,6 +841,7 @@ footer::before {
 	text-shadow: 1px 1px 0 black;
 	display: flex;
 	align-items: center;
+	transition: 0.2s;
 }
 
 .footer-contact i {
@@ -832,6 +849,17 @@ footer::before {
 	color: white;
 	width: 20px;
 	text-align: center;
+	transition: 0.2s;
+}
+
+.footer-links h3:hover,
+.footer-human h3:hover,
+.footer-contact h3:hover,
+.footer-human p:hover,
+.footer-contact i:hover,
+.footer-contact p:hover {
+	text-shadow: 2px 2px 0 black;
+	font-weight: bold;
 }
 
 .footer-bottom {
@@ -860,7 +888,7 @@ footer::before {
 	height: 200px;
 	width: 150px;
 	box-shadow: 0 0 5px white;
-	margin-top: 10px;
+	margin-top: 15px;
 }
 
 .the {
@@ -911,7 +939,8 @@ h4 {
 .nut-dangxuat,
 .nut-doimatkhau,
 .nut-thayanh,
-.nut-danhgia {
+.nut-danhgia,
+#clearStorageBtn {
 	background-color: #4509ae;
 	color: white;
 	border-radius: 5px;
@@ -939,13 +968,14 @@ h4 {
 .tat:hover,
 .doimatkhau:hover,
 .xacnhanmuon:hover,
-#mainActionBtn:hover,
 .muonsachchitiet:hover,
 .nut-dangnhap:hover,
 .nut-dangxuat:hover,
 .nut-doimatkhau:hover,
 .nut-thayanh:hover,
-.nut-danhgia:hover {
+.nut-danhgia:hover,
+#mainActionBtn:hover,
+#clearStorageBtn:hover {
 	font-size: 25px;
 	transform: scale(1.1);
 }
@@ -954,13 +984,14 @@ h4 {
 .tat:active,
 .doimatkhau:active,
 .xacnhanmuon:active,
-#mainActionBtn:active,
 .muonsachchitiet:active,
 .nut-dangnhap:active,
 .nut-dangxuat:active,
 .nut-doimatkhau:active,
 .nut-thayanh:active,
-.nut-danhgia:active {
+.nut-danhgia:active,
+#mainActionBtn:active,
+#clearStorageBtn:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }
