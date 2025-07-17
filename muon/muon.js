@@ -175,4 +175,12 @@ document.addEventListener("DOMContentLoaded", () => {
 			},
 		});
 	}
+
+	const urlParams = new URLSearchParams(window.location.search);
+	const bookFromDetail = urlParams.get("book");
+	if (bookFromDetail) {
+		input.value = bookFromDetail;
+		selectedBookTitle = bookFromDetail;
+		updateSuggestions();
+	}
 });

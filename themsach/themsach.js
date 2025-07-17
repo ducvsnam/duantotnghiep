@@ -52,7 +52,7 @@ function editBook(index) {
 		: "/" + image;
 
 	preview.src = imgSrc;
-	//
+
 	preview.classList.add("show");
 	document.getElementById("uploadIcon").style.display = "none";
 	document.getElementById("uploadText").style.display = "none";

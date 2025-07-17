@@ -1,6 +1,9 @@
 document.querySelectorAll(".muonsachchitiet").forEach((btn) =>
 	btn.addEventListener("click", () => {
-		window.location.href = "../muon/muon.html";
+		const bookName = params.get("name") || "";
+		const url = new URL("../muon/muon.html", window.location.origin);
+		url.searchParams.set("book", bookName);
+		window.location.href = url.href;
 	})
 );
 
@@ -14,9 +17,7 @@ document.getElementById("tenSach").textContent = params.get("name") || "...";
 document.getElementById("tacGia").textContent = params.get("author") || "...";
 document.getElementById("theLoai").textContent = params.get("genre") || "...";
 document.getElementById("namXuatBan").textContent = params.get("year") || "...";
-// document.getElementById("soLuong").textContent =
-// 	params.get("quantity") || "...";
-//
+
 const bookName = params.get("name");
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 const book = bookList.find((b) => b.title === bookName);

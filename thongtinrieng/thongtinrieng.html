@@ -43,7 +43,15 @@
 				<div class="khung-info">
 					<div class="anh-info">
 						<img src="../anh/theme/noava.jpg" id="ava-info" />
-						<button class="nut-thayanh">Thay đổi ảnh</button>
+						<input
+							type="file"
+							id="imageUploadUser"
+							accept="image/*"
+							style="display: none"
+						/>
+						<button class="nut-thayanh" onclick="chonAnhNguoiDung()">
+							Thay đổi ảnh
+						</button>
 					</div>
 					<div class="thongtin-info">
 						<h2>Tên đăng nhập: <span id="ten-dangnhap">...</span></h2>

@@ -92,6 +92,48 @@ function closePopup() {
 	document.getElementById("overlay")?.classList.remove("show");
 }
 
+function chonAnhQuanLy() {
+	const input = document.getElementById("imageUploadAdmin");
+	if (!input) return;
+	input.click();
+
+	input.onchange = function (e) {
+		const file = e.target.files[0];
+		if (!file) return;
+
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			const img = document.getElementById("ava-admin");
+			if (img) {
+				img.src = e.target.result;
+				localStorage.setItem("avatarQuanLy", e.target.result);
+			}
+		};
+		reader.readAsDataURL(file);
+	};
+}
+
+function chonAnhNguoiDung() {
+	const input = document.getElementById("imageUploadUser");
+	if (!input) return;
+	input.click();
+
+	input.onchange = function (e) {
+		const file = e.target.files[0];
+		if (!file) return;
+
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			const img = document.getElementById("ava-info");
+			if (img) {
+				img.src = e.target.result;
+				localStorage.setItem("avatarNguoiDung", e.target.result);
+			}
+		};
+		reader.readAsDataURL(file);
+	};
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 	document.body.classList.add("fade-in");
 
@@ -126,6 +168,18 @@ document.addEventListener("DOMContentLoaded", () => {
 		tatBtn.addEventListener("click", () => {
 			window.location.href = "../thuvien/thuvien.html";
 		});
+	}
+
+	const avaAdmin = document.getElementById("ava-admin");
+	const savedAdmin = localStorage.getItem("avatarQuanLy");
+	if (avaAdmin && savedAdmin) {
+		avaAdmin.src = savedAdmin;
+	}
+
+	const avaUser = document.getElementById("ava-info");
+	const savedUser = localStorage.getItem("avatarNguoiDung");
+	if (avaUser && savedUser) {
+		avaUser.src = savedUser;
 	}
 });
 

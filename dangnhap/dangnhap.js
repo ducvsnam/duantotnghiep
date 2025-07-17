@@ -141,39 +141,6 @@ document.querySelectorAll("a[href]").forEach((link) => {
 	}
 });
 
-// function handleLogin() {
-// 	const username = document.getElementById("loginUsername").value;
-// 	const password = document.getElementById("loginPassword").value;
-
-// 	const users = JSON.parse(localStorage.getItem("users") || "[]");
-// 	const found = users.find(
-// 		(u) => u.username === username && u.password === password
-// 	);
-
-// 	if (found) {
-// 		localStorage.setItem(
-// 			"currentUser",
-// 			JSON.stringify({
-// 				username: found.username,
-// 				email: found.email,
-// 			})
-// 		);
-
-// 		document.body.classList.remove("fade-in");
-// 		document.body.classList.add("fade-out");
-
-// 		setTimeout(() => {
-// 			window.location.href = "../nguoidung/nguoidung.html";
-// 		}, 800);
-// 	} else {
-// 		showPopup("Sai tên đăng nhập hoặc mật khẩu");
-// 	}
-// }
-//
-//
-//
-//
-//
 function handleLogin() {
 	const username = document.getElementById("loginUsername").value;
 	const password = document.getElementById("loginPassword").value;
