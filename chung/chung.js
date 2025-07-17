@@ -42,37 +42,58 @@ function toggleScrollButton() {
 window.addEventListener("load", toggleScrollButton);
 window.addEventListener("scroll", toggleScrollButton);
 
+function initChiTietButtons() {
+	document.querySelectorAll(".chitiet").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const theDiv = btn.parentElement.querySelector(".the");
+			if (!theDiv) return;
+
+			const img = theDiv.querySelector("img")?.getAttribute("src") || "";
+			const name = theDiv.getAttribute("data-name") || "";
+			const author = theDiv.getAttribute("data-author") || "";
+			const genre = theDiv.getAttribute("data-genre") || "";
+			const year = theDiv.getAttribute("data-year") || "";
+			const quantity = theDiv.getAttribute("data-quantity") || "";
+
+			const url = new URL("../chitiet/chitiet.html", window.location.origin);
+			url.searchParams.set("img", img);
+			url.searchParams.set("name", name);
+			url.searchParams.set("author", author);
+			url.searchParams.set("genre", genre);
+			url.searchParams.set("year", year);
+			url.searchParams.set("quantity", quantity);
+
+			window.location.href = url.href;
+		});
+	});
+}
+
+function showPopup(message) {
+	const overlay = document.getElementById("overlay");
+	const messageElement = document.getElementById("message");
+	const closeBtn = document.getElementById("popup-close-btn");
+	const yesBtn = document.getElementById("confirm-yes-btn");
+	const noBtn = document.getElementById("confirm-no-btn");
+
+	messageElement.innerText = message;
+	overlay.classList.add("show");
+
+	closeBtn.style.display = "inline-block";
+	yesBtn.style.display = "none";
+	noBtn.style.display = "none";
+
+	closeBtn.onclick = () => overlay.classList.remove("show");
+	overlay.onclick = (e) => {
+		if (e.target === overlay) overlay.classList.remove("show");
+	};
+}
+
+function closePopup() {
+	document.getElementById("overlay")?.classList.remove("show");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 	document.body.classList.add("fade-in");
-
-	function showPopup(message) {
-		const overlay = document.getElementById("overlay");
-		const messageElement = document.getElementById("message");
-		const closeBtn = document.getElementById("popup-close-btn");
-		const yesBtn = document.getElementById("confirm-yes-btn");
-		const noBtn = document.getElementById("confirm-no-btn");
-
-		if (!overlay || !messageElement) {
-			console.error("Thiếu phần tử overlay hoặc message trong HTML");
-			return;
-		}
-
-		messageElement.innerText = message;
-		overlay.classList.add("show");
-
-		closeBtn.style.display = "inline-block";
-		yesBtn.style.display = "none";
-		noBtn.style.display = "none";
-
-		closeBtn.onclick = () => overlay.classList.remove("show");
-		overlay.onclick = (e) => {
-			if (e.target === overlay) overlay.classList.remove("show");
-		};
-	}
-
-	function closePopup() {
-		document.getElementById("overlay")?.classList.remove("show");
-	}
 
 	const overlay = document.getElementById("overlay");
 	if (overlay) {
@@ -97,6 +118,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	window.showPopup = showPopup;
+
+	initChiTietButtons();
+
+	const tatBtn = document.querySelector(".tat");
+	if (tatBtn) {
+		tatBtn.addEventListener("click", () => {
+			window.location.href = "../thuvien/thuvien.html";
+		});
+	}
 });
 
 document.querySelectorAll("button[data-href]").forEach((btn) => {
