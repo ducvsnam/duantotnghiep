@@ -21,6 +21,7 @@ document.querySelectorAll(".chitiet").forEach((btn) => {
 		const author = theDiv.getAttribute("data-author");
 		const genre = theDiv.getAttribute("data-genre");
 		const year = theDiv.getAttribute("data-year");
+		const quantity = theDiv.getAttribute("data-quantity");
 
 		const url = new URL("../chitiet/chitiet.html", window.location.origin);
 		url.searchParams.set("img", img);
@@ -28,6 +29,7 @@ document.querySelectorAll(".chitiet").forEach((btn) => {
 		url.searchParams.set("author", author);
 		url.searchParams.set("genre", genre);
 		url.searchParams.set("year", year);
+		url.searchParams.set("quantity", quantity);
 
 		window.location.href = url.href;
 	});

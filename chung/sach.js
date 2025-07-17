@@ -5,7 +5,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "2011",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/top/sach1.jpg",
+		image: "/anh/sach/tamlyhoc/top/sach1.jpg",
 	},
 	{
 		title: "Influence",
@@ -13,7 +13,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "1984",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/top/sach2.jpg",
+		image: "/anh/sach/tamlyhoc/top/sach2.jpg",
 	},
 	{
 		title: "The Power of Habit",
@@ -21,7 +21,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "2012",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/top/sach3.jpg",
+		image: "/anh/sach/tamlyhoc/top/sach3.jpg",
 	},
 	{
 		title: "Emotional Intelligence",
@@ -29,7 +29,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "1995",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/top/sach4.jpg",
+		image: "/anh/sach/tamlyhoc/top/sach4.jpg",
 	},
 	{
 		title: "The Psychology of Money",
@@ -37,7 +37,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "2020",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/top/sach5.jpg",
+		image: "/anh/sach/tamlyhoc/top/sach5.jpg",
 	},
 	{
 		title: "Thao túng tâm lý",
@@ -45,7 +45,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "2011",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/yeuthich/sach1.jpg",
+		image: "/anh/sach/tamlyhoc/yeuthich/sach1.jpg",
 	},
 	{
 		title: "Man’s Search for Meaning",
@@ -53,7 +53,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "1946",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/thuong/sach1.jpg",
+		image: "/anh/sach/tamlyhoc/thuong/sach1.jpg",
 	},
 	{
 		title: "Flow",
@@ -61,7 +61,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "1990",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/thuong/sach2.jpg",
+		image: "/anh/sach/tamlyhoc/thuong/sach2.jpg",
 	},
 	{
 		title: "Games People Play",
@@ -69,7 +69,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "1964",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/thuong/sach3.jpg",
+		image: "/anh/sach/tamlyhoc/thuong/sach3.jpg",
 	},
 	{
 		title: "The Art of Thinking Clearly",
@@ -77,7 +77,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "2011",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/thuong/sach4.jpg",
+		image: "/anh/sach/tamlyhoc/thuong/sach4.jpg",
 	},
 	{
 		title: "Đắc Nhân Tâm",
@@ -85,7 +85,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "1936",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/thuong/sach5.jpg",
+		image: "/anh/sach/tamlyhoc/thuong/sach5.jpg",
 	},
 	{
 		title: "How Psychology Works",
@@ -93,7 +93,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "2018",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/thuong/sach6.jpg",
+		image: "/anh/sach/tamlyhoc/thuong/sach6.jpg",
 	},
 	{
 		title: "Sức mạnh của hiện tại",
@@ -101,7 +101,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "1997",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/thuong/sach7.jpg",
+		image: "/anh/sach/tamlyhoc/thuong/sach7.jpg",
 	},
 	{
 		title: "Đọc vị bất kỳ ai",
@@ -109,7 +109,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "2006",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/thuong/sach8.jpg",
+		image: "/anh/sach/tamlyhoc/thuong/sach8.jpg",
 	},
 	{
 		title: "Bạn không thông minh lắm đâu",
@@ -117,7 +117,7 @@ const defaultBooks = [
 		genre: "Tâm lý học",
 		year: "2011",
 		quantity: 1000,
-		image: "anh/sach/tamlyhoc/thuong/sach9.jpg",
+		image: "/anh/sach/tamlyhoc/thuong/sach9.jpg",
 	},
 	{
 		title: "Don Quixote",
@@ -125,7 +125,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1605",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/top/sach1.jpg",
+		image: "/anh/sach/tieuthuyet/top/sach1.jpg",
 	},
 	{
 		title: "A Tale Of Two Cities",
@@ -133,7 +133,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1859",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/top/sach2.jpg",
+		image: "/anh/sach/tieuthuyet/top/sach2.jpg",
 	},
 	{
 		title: "One Hundred Years of Solitude",
@@ -141,7 +141,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1967",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/top/sach3.jpg",
+		image: "/anh/sach/tieuthuyet/top/sach3.jpg",
 	},
 	{
 		title: "The Catcher in the Rye",
@@ -149,7 +149,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1951",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/top/sach4.jpg",
+		image: "/anh/sach/tieuthuyet/top/sach4.jpg",
 	},
 	{
 		title: "To Kill a Mockingbird",
@@ -157,7 +157,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1960",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/top/sach5.jpg",
+		image: "/anh/sach/tieuthuyet/top/sach5.jpg",
 	},
 	{
 		title: "Nanh Trắng",
@@ -165,7 +165,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1906",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/yeuthich/sach1.jpg",
+		image: "/anh/sach/tieuthuyet/yeuthich/sach1.jpg",
 	},
 	{
 		title: "Tiếng gọi nơi hoang dã",
@@ -173,7 +173,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1903",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/yeuthich/sach2.jpg",
+		image: "/anh/sach/tieuthuyet/yeuthich/sach2.jpg",
 	},
 	{
 		title: "Crime and Punishment",
@@ -181,7 +181,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1866",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/thuong/sach1.jpg",
+		image: "/anh/sach/tieuthuyet/thuong/sach1.jpg",
 	},
 	{
 		title: "The Great Gatsby",
@@ -189,7 +189,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1925",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/thuong/sach2.jpg",
+		image: "/anh/sach/tieuthuyet/thuong/sach2.jpg",
 	},
 	{
 		title: "Les Misérables",
@@ -197,7 +197,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1862",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/thuong/sach3.jpg",
+		image: "/anh/sach/tieuthuyet/thuong/sach3.jpg",
 	},
 	{
 		title: "Không gia đình",
@@ -205,7 +205,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1878",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/thuong/sach4.jpg",
+		image: "/anh/sach/tieuthuyet/thuong/sach4.jpg",
 	},
 	{
 		title: "Miếng Da Lừa",
@@ -213,7 +213,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1831",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/thuong/sach5.jpg",
+		image: "/anh/sach/tieuthuyet/thuong/sach5.jpg",
 	},
 	{
 		title: "Bố già",
@@ -221,7 +221,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1969",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/thuong/sach6.jpg",
+		image: "/anh/sach/tieuthuyet/thuong/sach6.jpg",
 	},
 	{
 		title: "Số đỏ",
@@ -229,7 +229,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1936",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/thuong/sach7.jpg",
+		image: "/anh/sach/tieuthuyet/thuong/sach7.jpg",
 	},
 	{
 		title: "Vụ án",
@@ -237,7 +237,7 @@ const defaultBooks = [
 		genre: "Tiểu thuyết các loại",
 		year: "1925",
 		quantity: 1000,
-		image: "anh/sach/tieuthuyet/thuong/sach8.jpg",
+		image: "/anh/sach/tieuthuyet/thuong/sach8.jpg",
 	},
 	{
 		title: "The Da Vinci Code",
@@ -245,7 +245,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2003",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/top/sach1.jpg",
+		image: "/anh/sach/trinhtham/top/sach1.jpg",
 	},
 	{
 		title: "The Caves of Steel",
@@ -253,7 +253,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "1954",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/top/sach2.jpg",
+		image: "/anh/sach/trinhtham/top/sach2.jpg",
 	},
 	{
 		title: "Where the Crawdads Sing",
@@ -261,7 +261,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2018",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/top/sach3.jpg",
+		image: "/anh/sach/trinhtham/top/sach3.jpg",
 	},
 	{
 		title: "All the Light We Cannot See",
@@ -269,7 +269,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2014",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/top/sach4.jpg",
+		image: "/anh/sach/trinhtham/top/sach4.jpg",
 	},
 	{
 		title: "The Book Thief",
@@ -277,7 +277,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2005",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/top/sach5.jpg",
+		image: "/anh/sach/trinhtham/top/sach5.jpg",
 	},
 	{
 		title: "Hỏa Ngục",
@@ -285,7 +285,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2013",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/yeuthich/sach1.jpg",
+		image: "/anh/sach/trinhtham/yeuthich/sach1.jpg",
 	},
 	{
 		title: "Murder on the Orient Express",
@@ -293,7 +293,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "1934",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/thuong/sach1.jpg",
+		image: "/anh/sach/trinhtham/thuong/sach1.jpg",
 	},
 	{
 		title: "The Hound of the Baskervilles",
@@ -301,7 +301,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "1902",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/thuong/sach2.jpg",
+		image: "/anh/sach/trinhtham/thuong/sach2.jpg",
 	},
 	{
 		title: "Big Little Lies",
@@ -309,7 +309,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2014",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/thuong/sach3.jpg",
+		image: "/anh/sach/trinhtham/thuong/sach3.jpg",
 	},
 	{
 		title: "In the Woods",
@@ -317,7 +317,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2007",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/thuong/sach4.jpg",
+		image: "/anh/sach/trinhtham/thuong/sach4.jpg",
 	},
 	{
 		title: "Sherlock Holmes",
@@ -325,7 +325,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "1892",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/thuong/sach5.jpg",
+		image: "/anh/sach/trinhtham/thuong/sach5.jpg",
 	},
 	{
 		title: "Kỳ án ánh trăng",
@@ -333,7 +333,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2005",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/thuong/sach6.jpg",
+		image: "/anh/sach/trinhtham/thuong/sach6.jpg",
 	},
 	{
 		title: "Phía sau Nghi can X",
@@ -341,7 +341,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2005",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/thuong/sach7.jpg",
+		image: "/anh/sach/trinhtham/thuong/sach7.jpg",
 	},
 	{
 		title: "Cô gái có hình xăm rồng",
@@ -349,7 +349,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2005",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/thuong/sach8.jpg",
+		image: "/anh/sach/trinhtham/thuong/sach8.jpg",
 	},
 	{
 		title: "Vòng tròn máu",
@@ -357,7 +357,7 @@ const defaultBooks = [
 		genre: "Trinh thám",
 		year: "2019",
 		quantity: 1000,
-		image: "anh/sach/trinhtham/thuong/sach9.jpg",
+		image: "/anh/sach/trinhtham/thuong/sach9.jpg",
 	},
 	{
 		title: "Fifty Shades of Grey",
@@ -365,7 +365,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2011",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/top/sach1.jpg",
+		image: "/anh/sach/ngontinh/top/sach1.jpg",
 	},
 	{
 		title: "Pride and Prejudice",
@@ -373,7 +373,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "1813",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/top/sach2.jpg",
+		image: "/anh/sach/ngontinh/top/sach2.jpg",
 	},
 	{
 		title: "The Notebook",
@@ -381,7 +381,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "1996",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/top/sach3.jpg",
+		image: "/anh/sach/ngontinh/top/sach3.jpg",
 	},
 	{
 		title: "Outlander",
@@ -389,7 +389,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "1991",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/top/sach4.jpg",
+		image: "/anh/sach/ngontinh/top/sach4.jpg",
 	},
 	{
 		title: "Me Before You",
@@ -397,7 +397,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2012",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/top/sach5.jpg",
+		image: "/anh/sach/ngontinh/top/sach5.jpg",
 	},
 	{
 		title: "Hồ Điệp Kình Ngư",
@@ -405,7 +405,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2024",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/yeuthich/sach1.jpg",
+		image: "/anh/sach/ngontinh/yeuthich/sach1.jpg",
 	},
 	{
 		title: "Twilight",
@@ -413,7 +413,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2005",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/most/sach1.jpg",
+		image: "/anh/sach/ngontinh/most/sach1.jpg",
 	},
 	{
 		title: "Beautiful Disaster",
@@ -421,7 +421,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2011",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/thuong/sach1.jpg",
+		image: "/anh/sach/ngontinh/thuong/sach1.jpg",
 	},
 	{
 		title: "Eleanor & Park",
@@ -429,7 +429,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2013",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/thuong/sach2.jpg",
+		image: "/anh/sach/ngontinh/thuong/sach2.jpg",
 	},
 	{
 		title: "It Ends with Us",
@@ -437,7 +437,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2016",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/thuong/sach3.jpg",
+		image: "/anh/sach/ngontinh/thuong/sach3.jpg",
 	},
 	{
 		title: " Boss là nữ phụ",
@@ -445,7 +445,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2019",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/thuong/sach4.jpg",
+		image: "/anh/sach/ngontinh/thuong/sach4.jpg",
 	},
 	{
 		title: "Chọc tức vợ yêu",
@@ -453,7 +453,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2017",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/thuong/sach5.jpg",
+		image: "/anh/sach/ngontinh/thuong/sach5.jpg",
 	},
 	{
 		title: "Mãi mãi là bao xa",
@@ -461,7 +461,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2013",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/thuong/sach6.jpg",
+		image: "/anh/sach/ngontinh/thuong/sach6.jpg",
 	},
 	{
 		title: "All in love",
@@ -469,7 +469,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2020",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/thuong/sach7.jpg",
+		image: "/anh/sach/ngontinh/thuong/sach7.jpg",
 	},
 	{
 		title: "Hồ ly biết yêu",
@@ -477,7 +477,7 @@ const defaultBooks = [
 		genre: "Ngôn tình",
 		year: "2018",
 		quantity: 1000,
-		image: "anh/sach/ngontinh/thuong/sach8.jpg",
+		image: "/anh/sach/ngontinh/thuong/sach8.jpg",
 	},
 	{
 		title: "Frankenstein",
@@ -485,7 +485,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "1818",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/top/sach1.jpg",
+		image: "/anh/sach/kinhdi/top/sach1.jpg",
 	},
 	{
 		title: "Dracula",
@@ -493,7 +493,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "1897",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/top/sach2.jpg",
+		image: "/anh/sach/kinhdi/top/sach2.jpg",
 	},
 	{
 		title: "Interview with the Vampire",
@@ -501,7 +501,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "1976",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/top/sach3.jpg",
+		image: "/anh/sach/kinhdi/top/sach3.jpg",
 	},
 	{
 		title: "The Exorcist",
@@ -509,7 +509,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "1971",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/top/sach4.jpg",
+		image: "/anh/sach/kinhdi/top/sach4.jpg",
 	},
 	{
 		title: "It",
@@ -517,7 +517,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "1986",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/top/sach5.jpg",
+		image: "/anh/sach/kinhdi/top/sach5.jpg",
 	},
 	{
 		title: "The Silence of the Lambs",
@@ -525,7 +525,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "1988",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/most/sach1.jpg",
+		image: "/anh/sach/kinhdi/most/sach1.jpg",
 	},
 	{
 		title: "Pet Sematary",
@@ -533,7 +533,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "1983",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/thuong/sach1.jpg",
+		image: "/anh/sach/kinhdi/thuong/sach1.jpg",
 	},
 	{
 		title: "The Haunting of Hill House",
@@ -541,7 +541,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "1959",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/thuong/sach2.jpg",
+		image: "/anh/sach/kinhdi/thuong/sach2.jpg",
 	},
 	{
 		title: "Bird Box",
@@ -549,7 +549,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "2014",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/thuong/sach3.jpg",
+		image: "/anh/sach/kinhdi/thuong/sach3.jpg",
 	},
 	{
 		title: "House of Leaves",
@@ -557,7 +557,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "2000",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/thuong/sach4.jpg",
+		image: "/anh/sach/kinhdi/thuong/sach4.jpg",
 	},
 	{
 		title: "Tết ở làng Địa Ngục",
@@ -565,7 +565,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "2022",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/thuong/sach5.jpg",
+		image: "/anh/sach/kinhdi/thuong/sach5.jpg",
 	},
 	{
 		title: "Lý triều dị truyện",
@@ -573,7 +573,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "2017",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/thuong/sach6.jpg",
+		image: "/anh/sach/kinhdi/thuong/sach6.jpg",
 	},
 	{
 		title: "Cầu thang gào thét",
@@ -581,7 +581,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "2013",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/thuong/sach7.jpg",
+		image: "/anh/sach/kinhdi/thuong/sach7.jpg",
 	},
 	{
 		title: "Ngôi làng cổ mộ",
@@ -589,7 +589,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "2020",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/thuong/sach8.jpg",
+		image: "/anh/sach/kinhdi/thuong/sach8.jpg",
 	},
 	{
 		title: "Đại Nam dị truyện",
@@ -597,7 +597,7 @@ const defaultBooks = [
 		genre: "Kinh dị",
 		year: "2016",
 		quantity: 1000,
-		image: "anh/sach/kinhdi/thuong/sach9.jpg",
+		image: "/anh/sach/kinhdi/thuong/sach9.jpg",
 	},
 	{
 		title: "Dune",
@@ -605,7 +605,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1965",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/top/sach1.jpg",
+		image: "/anh/sach/khoahocvientuong/top/sach1.jpg",
 	},
 	{
 		title: "Ender's Game",
@@ -613,7 +613,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1985",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/top/sach2.jpg",
+		image: "/anh/sach/khoahocvientuong/top/sach2.jpg",
 	},
 	{
 		title: "Foundation",
@@ -621,7 +621,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1951",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/top/sach3.jpg",
+		image: "/anh/sach/khoahocvientuong/top/sach3.jpg",
 	},
 	{
 		title: "The Hunger Games",
@@ -629,7 +629,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "2008",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/top/sach4.jpg",
+		image: "/anh/sach/khoahocvientuong/top/sach4.jpg",
 	},
 	{
 		title: "1984",
@@ -637,7 +637,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1949",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/top/sach5.jpg",
+		image: "/anh/sach/khoahocvientuong/top/sach5.jpg",
 	},
 	{
 		title: "Brave New World",
@@ -645,7 +645,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1932",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/most/sach1.jpg",
+		image: "/anh/sach/khoahocvientuong/most/sach1.jpg",
 	},
 	{
 		title: "The Martian",
@@ -653,7 +653,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "2011",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/most/sach2.jpg",
+		image: "/anh/sach/khoahocvientuong/most/sach2.jpg",
 	},
 	{
 		title: "Neuromancer",
@@ -661,7 +661,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1984",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/thuong/sach1.jpg",
+		image: "/anh/sach/khoahocvientuong/thuong/sach1.jpg",
 	},
 	{
 		title: "Snow Crash",
@@ -669,7 +669,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1992",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/thuong/sach2.jpg",
+		image: "/anh/sach/khoahocvientuong/thuong/sach2.jpg",
 	},
 	{
 		title: "Ready Player One",
@@ -677,7 +677,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "2011",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/thuong/sach3.jpg",
+		image: "/anh/sach/khoahocvientuong/thuong/sach3.jpg",
 	},
 	{
 		title: "Tam Thể",
@@ -685,7 +685,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "2006",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/thuong/sach4.jpg",
+		image: "/anh/sach/khoahocvientuong/thuong/sach4.jpg",
 	},
 	{
 		title: "Cỗ máy thời gian",
@@ -693,7 +693,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1895",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/thuong/sach5.jpg",
+		image: "/anh/sach/khoahocvientuong/thuong/sach5.jpg",
 	},
 	{
 		title: "Người về từ sao Hỏa",
@@ -701,7 +701,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "2011",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/thuong/sach6.jpg",
+		image: "/anh/sach/khoahocvientuong/thuong/sach6.jpg",
 	},
 	{
 		title: "Do Androids Dream of Electric Sheep",
@@ -709,7 +709,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1968",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/thuong/sach7.jpg",
+		image: "/anh/sach/khoahocvientuong/thuong/sach7.jpg",
 	},
 	{
 		title: "Cuộc xâm lược",
@@ -717,7 +717,7 @@ const defaultBooks = [
 		genre: "Khoa học viễn tưởng",
 		year: "1996",
 		quantity: 1000,
-		image: "anh/sach/khoahocvientuong/thuong/sach8.jpg",
+		image: "/anh/sach/khoahocvientuong/thuong/sach8.jpg",
 	},
 	{
 		title: "The Little Prince",
@@ -725,7 +725,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1943",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/top/sach1.jpg",
+		image: "/anh/sach/ngungontrietly/top/sach1.jpg",
 	},
 	{
 		title: "The Alchemist",
@@ -733,7 +733,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1988",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/top/sach2.jpg",
+		image: "/anh/sach/ngungontrietly/top/sach2.jpg",
 	},
 	{
 		title: "Animal Farm",
@@ -741,7 +741,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1945",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/top/sach3.jpg",
+		image: "/anh/sach/ngungontrietly/top/sach3.jpg",
 	},
 	{
 		title: "Tuesdays with Morrie",
@@ -749,7 +749,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1997",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/top/sach4.jpg",
+		image: "/anh/sach/ngungontrietly/top/sach4.jpg",
 	},
 	{
 		title: "Jonathan Livingston Seagull",
@@ -757,7 +757,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1970",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/top/sach5.jpg",
+		image: "/anh/sach/ngungontrietly/top/sach5.jpg",
 	},
 	{
 		title: "Life of Pi",
@@ -765,7 +765,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "2001",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/most/sach1.jpg",
+		image: "/anh/sach/ngungontrietly/most/sach1.jpg",
 	},
 	{
 		title: "The Prophet",
@@ -773,7 +773,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1923",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/thuong/sach1.jpg",
+		image: "/anh/sach/ngungontrietly/thuong/sach1.jpg",
 	},
 	{
 		title: "The Giving Tree",
@@ -781,7 +781,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1964",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/thuong/sach2.jpg",
+		image: "/anh/sach/ngungontrietly/thuong/sach2.jpg",
 	},
 	{
 		title: "Zen and the Art of Motorcycle Maintenance",
@@ -789,7 +789,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1974",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/thuong/sach3.jpg",
+		image: "/anh/sach/ngungontrietly/thuong/sach3.jpg",
 	},
 	{
 		title: "Siddhartha",
@@ -797,7 +797,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1922",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/thuong/sach4.jpg",
+		image: "/anh/sach/ngungontrietly/thuong/sach4.jpg",
 	},
 	{
 		title: "Người đua diều",
@@ -805,7 +805,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "2003",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/thuong/sach5.jpg",
+		image: "/anh/sach/ngungontrietly/thuong/sach5.jpg",
 	},
 	{
 		title: "Tên của đóa hồng",
@@ -813,7 +813,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1980",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/thuong/sach6.jpg",
+		image: "/anh/sach/ngungontrietly/thuong/sach6.jpg",
 	},
 	{
 		title: "451 độ F",
@@ -821,7 +821,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1953",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/thuong/sach7.jpg",
+		image: "/anh/sach/ngungontrietly/thuong/sach7.jpg",
 	},
 	{
 		title: "Suối nguồn",
@@ -829,7 +829,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1943",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/thuong/sach8.jpg",
+		image: "/anh/sach/ngungontrietly/thuong/sach8.jpg",
 	},
 	{
 		title: "Infinite Jest",
@@ -837,7 +837,7 @@ const defaultBooks = [
 		genre: "Ngụ ngôn triết lý",
 		year: "1996",
 		quantity: 1000,
-		image: "anh/sach/ngungontrietly/thuong/sach9.jpg",
+		image: "/anh/sach/ngungontrietly/thuong/sach9.jpg",
 	},
 	{
 		title: "Harry Potter and the Philosopher's Stone",
@@ -845,7 +845,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "1997",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/top/sach1.jpg",
+		image: "/anh/sach/giatuongkyao/top/sach1.jpg",
 	},
 	{
 		title: "The Fellowship of the Ring",
@@ -853,7 +853,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "1954",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/top/sach2.jpg",
+		image: "/anh/sach/giatuongkyao/top/sach2.jpg",
 	},
 	{
 		title: "The Hobbit",
@@ -861,7 +861,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "1937",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/top/sach3.jpg",
+		image: "/anh/sach/giatuongkyao/top/sach3.jpg",
 	},
 	{
 		title: "A Game of Thrones",
@@ -869,7 +869,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "1996",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/top/sach4.jpg",
+		image: "/anh/sach/giatuongkyao/top/sach4.jpg",
 	},
 	{
 		title: "The Chronicles of Narnia",
@@ -877,7 +877,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "1950",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/top/sach5.jpg",
+		image: "/anh/sach/giatuongkyao/top/sach5.jpg",
 	},
 	{
 		title: "Eragon",
@@ -885,7 +885,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "2002",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach1.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach1.jpg",
 	},
 	{
 		title: "Mistborn",
@@ -893,7 +893,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "2006",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach2.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach2.jpg",
 	},
 	{
 		title: "The Wheel of Time",
@@ -901,7 +901,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "1990",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach3.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach3.jpg",
 	},
 	{
 		title: "A Wizard of Earthsea",
@@ -909,7 +909,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "1968",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach4.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach4.jpg",
 	},
 	{
 		title: "The Name of the Wind",
@@ -917,7 +917,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "2007",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach5.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach5.jpg",
 	},
 	{
 		title: "The Way of Kings",
@@ -925,7 +925,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "2010",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach6.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach6.jpg",
 	},
 	{
 		title: "Magnus Chase",
@@ -933,7 +933,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "2015",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach7.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach7.jpg",
 	},
 	{
 		title: "The Trials of Apollo",
@@ -941,7 +941,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "2016",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach8.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach8.jpg",
 	},
 	{
 		title: "The Colour of Magic",
@@ -949,7 +949,7 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "1983",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach9.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach9.jpg",
 	},
 	{
 		title: "The Gunslinger",
@@ -957,6 +957,28 @@ const defaultBooks = [
 		genre: "Giả tưởng kỳ ảo",
 		year: "1982",
 		quantity: 1000,
-		image: "anh/sach/giatuongkyao/thuong/sach10.jpg",
+		image: "/anh/sach/giatuongkyao/thuong/sach10.jpg",
 	},
 ];
+
+const bookBlocks = document.querySelectorAll(".book-box");
+const order = [
+	5, 20, 21, 35, 50, 51, 65, 80, 81, 95, 0, 1, 2, 3, 4, 15, 16, 17, 18, 19, 30,
+	31, 32, 33, 34, 45, 46, 47, 48, 49, 60, 61, 62, 63, 64, 75, 76, 77, 78, 79,
+	90, 91, 92, 93, 94, 105, 106, 107, 108, 109,
+];
+
+bookBlocks.forEach((block, i) => {
+	const book = defaultBooks[order[i]];
+	if (!book) return;
+
+	const bookDiv = block.querySelector(".the");
+	bookDiv.dataset.name = book.title;
+	bookDiv.dataset.author = book.author;
+	bookDiv.dataset.genre = book.genre;
+	bookDiv.dataset.year = book.year;
+	bookDiv.dataset.quantity = book.quantity;
+
+	block.querySelector(".sach").src = book.image;
+	block.querySelector("h4").textContent = book.title;
+});
