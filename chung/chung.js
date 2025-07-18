@@ -108,8 +108,13 @@ function chonAnhQuanLy() {
 			const infoImg = document.getElementById("ava-admin");
 			if (infoImg) infoImg.src = newSrc;
 
-			const pageImg = document.getElementById("ava-page-admin");
-			if (pageImg) pageImg.src = newSrc;
+			const pageImgNoi = document.getElementById("ava-page-admin");
+			if (pageImgNoi) pageImgNoi.src = newSrc;
+
+			const pageImgNgoai = document.getElementsByClassName("ava-img-admin");
+			for (let i = 0; i < pageImgNgoai.length; i++) {
+				pageImgNgoai[i].src = newSrc;
+			}
 
 			localStorage.setItem("avatarQuanLy", newSrc);
 		};
@@ -133,8 +138,13 @@ function chonAnhNguoiDung() {
 			const infoImg = document.getElementById("ava-info");
 			if (infoImg) infoImg.src = newSrc;
 
-			const pageImg = document.getElementById("ava-page-user");
-			if (pageImg) pageImg.src = newSrc;
+			const pageImgNoi = document.getElementById("ava-page-user");
+			if (pageImgNoi) pageImgNoi.src = newSrc;
+
+			const pageImgNgoai = document.getElementsByClassName("ava-img-user");
+			for (let i = 0; i < pageImgNgoai.length; i++) {
+				pageImgNgoai[i].src = newSrc;
+			}
 
 			localStorage.setItem("avatarNguoiDung", newSrc);
 		};
@@ -181,17 +191,27 @@ document.addEventListener("DOMContentLoaded", () => {
 	const savedAdmin = localStorage.getItem("avatarQuanLy");
 	if (savedAdmin) {
 		const adminInfoImg = document.getElementById("ava-admin");
-		const adminPageImg = document.getElementById("ava-page-admin");
+		const adminpageImgNoi = document.getElementById("ava-page-admin");
+		const adminpageImgNgoai = document.getElementsByClassName("ava-img-admin");
+
 		if (adminInfoImg) adminInfoImg.src = savedAdmin;
-		if (adminPageImg) adminPageImg.src = savedAdmin;
+		if (adminpageImgNoi) adminpageImgNoi.src = savedAdmin;
+		for (let i = 0; i < adminpageImgNgoai.length; i++) {
+			adminpageImgNgoai[i].src = savedAdmin;
+		}
 	}
 
 	const savedUser = localStorage.getItem("avatarNguoiDung");
 	if (savedUser) {
 		const userInfoImg = document.getElementById("ava-info");
-		const userPageImg = document.getElementById("ava-page-user");
+		const userpageImgNoi = document.getElementById("ava-page-user");
+		const userpageImgNgoai = document.getElementsByClassName("ava-img-user");
+
 		if (userInfoImg) userInfoImg.src = savedUser;
-		if (userPageImg) userPageImg.src = savedUser;
+		if (userpageImgNoi) userpageImgNoi.src = savedUser;
+		for (let i = 0; i < userpageImgNgoai.length; i++) {
+			userpageImgNgoai[i].src = savedUser;
+		}
 	}
 });
 

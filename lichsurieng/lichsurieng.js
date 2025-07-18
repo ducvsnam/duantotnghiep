@@ -106,7 +106,7 @@ function renderBorrowCards() {
 		const card = document.createElement("div");
 		card.className = "book-item";
 		card.innerHTML = `
-			<img src="${imgSrc}" alt="${borrow.bookTitle}" />
+			<img src="${imgSrc}"/>
 			<div class="book-info">
 				<p><b>Tên sách:</b> ${borrow.bookTitle}</p>
 				<p><b>Ngày mượn:</b> ${borrow.borrowDate || "—"}</p>

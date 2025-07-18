@@ -1,3 +1,4 @@
+/* khởi đầu thương hiệu */
 * {
 	margin: 0;
 	padding: 0;
@@ -17,7 +18,7 @@ body::-webkit-scrollbar {
 html {
 	scroll-behavior: smooth;
 }
-
+/* body + hiệu ứng */
 body {
 	background: azure;
 	opacity: 0;
@@ -31,10 +32,15 @@ body.fade-out {
 body.fade-in {
 	opacity: 1;
 }
-
+/* văn bản */
 h1 {
 	text-align: center;
 	color: #4509ae;
+	text-shadow: 1px 1px 0 black;
+}
+
+p {
+	color: white;
 	text-shadow: 1px 1px 0 black;
 }
 
@@ -49,11 +55,41 @@ h1 {
 	margin: 20px 10px;
 }
 
-p {
-	color: white;
+.thuonghieu,
+.loichao {
+	top: 38%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	text-align: center;
+	white-space: nowrap;
+	color: #4509ae;
 	text-shadow: 1px 1px 0 black;
 }
 
+.thuonghieu {
+	font-size: 100px;
+	padding-top: 200px;
+}
+
+.loichao {
+	font-size: 30px;
+}
+
+.logo h1 {
+	color: white;
+	transition: 0.2s;
+}
+
+.logo h1:hover {
+	text-shadow: 2px 2px 0 black;
+}
+
+.logo h1:active {
+	transform: translate(1px, 1px);
+	text-shadow: 1px 1px 0 black;
+}
+/* ô nhập + chọn + hiệu ứng */
 input,
 select {
 	padding: 10px;
@@ -90,7 +126,74 @@ select option {
 .thongtin-info {
 	margin: 0 10px;
 }
+/* đẩy sách lên */
+.book-item {
+	background-color: #4509ae;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	border-radius: 5px;
+	gap: 20px;
+	display: flex;
+	align-items: flex-start;
+	flex-shrink: 0;
+}
 
+.book-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.book-item img {
+	object-fit: cover;
+	box-shadow: 0 0 10px white;
+	flex-shrink: 0;
+	margin: 10px;
+}
+
+.book-item button {
+	margin-right: 10px;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.book-buttons {
+	display: flex;
+	gap: 20px;
+}
+
+.book-item button,
+.book-item button:first-of-type,
+.book-item button:last-of-type {
+	background-color: white;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	color: #4509ae;
+	text-shadow: 1px 1px 0 black;
+	font-weight: bold;
+	font-size: 20px;
+	transition: 0.1s;
+	width: 380px;
+	margin-left: 15px;
+}
+
+.book-item button:hover,
+.book-item button:first-of-type:hover,
+.book-item button:last-of-type:hover {
+	font-size: 23px;
+	transform: scale(1.1);
+}
+
+.book-item button:active,
+.book-item button:first-of-type:active,
+.book-item button:last-of-type:active {
+	transform: scale(1.1) translate(3px, 3px);
+	box-shadow: 0 0 black;
+}
+/* nút kéo lên, kéo xuống và quay lại */
 .up,
 .down,
 .back,
@@ -222,7 +325,7 @@ select option {
 	opacity: 0;
 	pointer-events: none;
 }
-
+/* hiệu ứng hiện thị */
 .reveal {
 	opacity: 0;
 	transform: translateY(50px);
@@ -260,7 +363,7 @@ select option {
 	opacity: 1;
 	visibility: visible;
 }
-
+/* giao diện thông báo alert */
 .popup {
 	text-align: center;
 	font-weight: bold;
@@ -316,7 +419,7 @@ select option {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }
-
+/* khung gợi ý */
 #suggestions {
 	border: 2px solid black;
 	box-shadow: 4px 4px 0 black;
@@ -351,7 +454,7 @@ select option {
 #suggestions::-webkit-scrollbar {
 	display: none;
 }
-
+/* giao diện bảng chọn ngày */
 .flatpickr-current-month .flatpickr-monthDropdown-months,
 .flatpickr-current-month input.cur-year {
 	box-shadow: 0 0 0 black;
@@ -530,7 +633,7 @@ span.flatpickr-weekday {
 .flatpickr-calendar.arrowBottom::after {
 	display: none;
 }
-
+/* khối ko tìm thấy */
 .khongcogi {
 	text-shadow: 2px 2px 0 black;
 	background-color: #4509ae;
@@ -543,26 +646,9 @@ span.flatpickr-weekday {
 	margin-bottom: 203px;
 	margin-top: 235px;
 }
-
-.thuonghieu,
-.loichao {
-	top: 38%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	position: absolute;
-	text-align: center;
-	white-space: nowrap;
-	color: #4509ae;
-	text-shadow: 1px 1px 0 black;
-}
-
-.thuonghieu {
-	font-size: 100px;
-	padding-top: 200px;
-}
-
-.loichao {
-	font-size: 30px;
+/* hình ảnh */
+img {
+	object-fit: cover;
 }
 
 .anhchaomung {
@@ -570,7 +656,7 @@ span.flatpickr-weekday {
 	box-shadow: 0 0 5px black;
 	position: relative;
 }
-
+/* link */
 a {
 	text-decoration: none;
 	color: inherit;
@@ -586,20 +672,7 @@ ul {
 	align-items: center;
 }
 
-.logo h1 {
-	color: white;
-	transition: 0.2s;
-}
-
-.logo h1:hover {
-	text-shadow: 2px 2px 0 black;
-}
-
-.logo h1:active {
-	transform: translate(1px, 1px);
-	text-shadow: 1px 1px 0 black;
-}
-
+/* ảnh đại diện */
 #ava-page-admin,
 #ava-page-user,
 #ava-page {
@@ -639,7 +712,9 @@ ul {
 }
 
 .logo-img,
-.ava-img {
+.ava-img,
+.ava-img-user,
+.ava-img-admin {
 	width: 40px;
 	height: 40px;
 	margin-right: 10px;
@@ -649,12 +724,16 @@ ul {
 	transition: 0.1s;
 }
 
-.ava-img {
+.ava-img,
+.ava-img-user,
+.ava-img-admin {
 	margin-right: 0;
 }
 
 .logo-img:hover,
-.ava-img:hover {
+.ava-img:hover,
+.ava-img-user:hover,
+.ava-img-admin:hover {
 	width: 43px;
 	height: 43px;
 	border: 2px solid black;
@@ -662,11 +741,13 @@ ul {
 }
 
 .logo-img:active,
-.ava-img:active {
+.ava-img:active,
+.ava-img-user:active,
+.ava-img-admin:active {
 	transform: translate(1px, 1px);
 	box-shadow: 0 0 black;
 }
-
+/* thanh menu */
 header {
 	background-color: #4509ae;
 	box-shadow: 0 0 5px black;
@@ -743,7 +824,7 @@ header .container {
 .menu a.active::after {
 	width: 100%;
 }
-
+/* cuối trang */
 footer .container {
 	max-width: 1200px;
 	margin: 0 auto;
@@ -885,7 +966,7 @@ footer::before {
 	position: relative;
 	z-index: 1;
 }
-
+/* giao diện trang chủ */
 .muc {
 	color: #4509ae;
 	padding-top: 50px;
@@ -948,6 +1029,19 @@ h4 {
 	height: 200px;
 }
 
+.nut-thayanh {
+	background-color: white;
+	color: #4509ae;
+	width: auto;
+}
+
+.form-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 50px;
+}
+/* hiệu ứng + định dạng nút thương hiệu*/
 .nut-dangnhap,
 .nut-dangxuat,
 .nut-doimatkhau,
@@ -969,12 +1063,6 @@ h4 {
 	margin: 30px 20px;
 	margin-bottom: 104px;
 	width: 450px;
-}
-
-.nut-thayanh {
-	background-color: white;
-	color: #4509ae;
-	width: auto;
 }
 
 .chitiet:hover,
@@ -1007,11 +1095,4 @@ h4 {
 #clearStorageBtn:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
-}
-
-.form-wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 50px;
 }
