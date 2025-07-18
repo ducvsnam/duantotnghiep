@@ -83,8 +83,11 @@ function handleRegister() {
 		return;
 	}
 
-	users.push({ username, email, password, phone });
+	const newUser = { username, email, password, phone };
+	users.push(newUser);
 	localStorage.setItem("users", JSON.stringify(users));
+	localStorage.setItem("currentUser", JSON.stringify(newUser));
+
 	showPopup("Đăng ký thành công, vui lòng đăng nhập");
 	switchForm("login");
 }
@@ -171,6 +174,8 @@ function handleLogin() {
 			JSON.stringify({
 				username: found.username,
 				email: found.email,
+				password: found.password,
+				phone: found.phone,
 			})
 		);
 

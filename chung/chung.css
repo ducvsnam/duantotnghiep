@@ -600,6 +600,8 @@ ul {
 	text-shadow: 1px 1px 0 black;
 }
 
+#ava-page-admin,
+#ava-page-user,
 #ava-page {
 	width: 37px;
 	height: 37px;
@@ -609,12 +611,16 @@ ul {
 	transition: 0.2s;
 }
 
+#ava-page-admin:hover,
+#ava-page-user:hover,
 #ava-page:hover {
 	border: 3.5px solid rgb(154, 238, 255);
 	width: 35px;
 	height: 35px;
 }
 
+#ava-page-admin:active,
+#ava-page-user:active,
 #ava-page:active {
 	border: 2px solid #00bfff;
 	width: 38px;

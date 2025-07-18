@@ -103,11 +103,15 @@ function chonAnhQuanLy() {
 
 		const reader = new FileReader();
 		reader.onload = function (e) {
-			const img = document.getElementById("ava-admin");
-			if (img) {
-				img.src = e.target.result;
-				localStorage.setItem("avatarQuanLy", e.target.result);
-			}
+			const newSrc = e.target.result;
+
+			const infoImg = document.getElementById("ava-admin");
+			if (infoImg) infoImg.src = newSrc;
+
+			const pageImg = document.getElementById("ava-page-admin");
+			if (pageImg) pageImg.src = newSrc;
+
+			localStorage.setItem("avatarQuanLy", newSrc);
 		};
 		reader.readAsDataURL(file);
 	};
@@ -124,11 +128,15 @@ function chonAnhNguoiDung() {
 
 		const reader = new FileReader();
 		reader.onload = function (e) {
-			const img = document.getElementById("ava-info");
-			if (img) {
-				img.src = e.target.result;
-				localStorage.setItem("avatarNguoiDung", e.target.result);
-			}
+			const newSrc = e.target.result;
+
+			const infoImg = document.getElementById("ava-info");
+			if (infoImg) infoImg.src = newSrc;
+
+			const pageImg = document.getElementById("ava-page-user");
+			if (pageImg) pageImg.src = newSrc;
+
+			localStorage.setItem("avatarNguoiDung", newSrc);
 		};
 		reader.readAsDataURL(file);
 	};
@@ -170,16 +178,20 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
-	const avaAdmin = document.getElementById("ava-admin");
 	const savedAdmin = localStorage.getItem("avatarQuanLy");
-	if (avaAdmin && savedAdmin) {
-		avaAdmin.src = savedAdmin;
+	if (savedAdmin) {
+		const adminInfoImg = document.getElementById("ava-admin");
+		const adminPageImg = document.getElementById("ava-page-admin");
+		if (adminInfoImg) adminInfoImg.src = savedAdmin;
+		if (adminPageImg) adminPageImg.src = savedAdmin;
 	}
 
-	const avaUser = document.getElementById("ava-info");
 	const savedUser = localStorage.getItem("avatarNguoiDung");
-	if (avaUser && savedUser) {
-		avaUser.src = savedUser;
+	if (savedUser) {
+		const userInfoImg = document.getElementById("ava-info");
+		const userPageImg = document.getElementById("ava-page-user");
+		if (userInfoImg) userInfoImg.src = savedUser;
+		if (userPageImg) userPageImg.src = savedUser;
 	}
 });
 
