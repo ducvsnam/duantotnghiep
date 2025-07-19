@@ -91,32 +91,37 @@ let editingIndex = null;
 function editBook(index) {
 	window.scrollTo({ top: 0, behavior: "smooth" });
 
-	const books = getBooks();
-	const book = books[index];
-	document.getElementById("bookTitle").value = book.title;
-	document.getElementById("author").value = book.author;
-	document.getElementById("genre").value = book.genre;
-	document.getElementById("year").value = book.year;
-	document.getElementById("quantity").value = book.quantity;
+	const bookItem = document.querySelectorAll(".book-item")[index];
+	const bookInfo = bookItem.querySelector(".book-info");
+	const img = bookItem.querySelector("img");
 
-	const image = book.image?.trim() || "";
-	const imgSrc = image.startsWith("data:image/")
-		? image
-		: image.startsWith("/")
-		? image
-		: "/" + image;
+	const getValue = (label) => {
+		const line = [...bookInfo.querySelectorAll("p")].find((p) =>
+			p.textContent.startsWith(label)
+		);
+		return line ? line.textContent.replace(label, "").trim() : "";
+	};
 
+	document.getElementById("bookTitle").value = getValue("Tên sách:");
+	document.getElementById("author").value = getValue("Tác giả:");
+	document.getElementById("genre").value = getValue("Thể loại:");
+	document.getElementById("year").value = getValue("Năm xuất bản:");
+	document.getElementById("quantity").value = getValue("Số lượng:");
+
+	const imgSrc = img.src;
 	preview.src = imgSrc;
-
 	preview.classList.add("show");
 	document.getElementById("uploadIcon").style.display = "none";
 	document.getElementById("uploadText").style.display = "none";
 
 	editingIndex = index;
-
 	saveBtn.textContent = "Lưu thông tin";
 }
-
+//
+//
+//
+//
+//
 document.addEventListener("DOMContentLoaded", () => {
 	if (!localStorage.getItem("bookList")) {
 		saveBooks(defaultBooks);

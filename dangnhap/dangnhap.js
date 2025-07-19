@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const shouldShowPopup = localStorage.getItem("showLoginPopup");
 	if (shouldShowPopup === "true") {
-		showPopup("Bạn chưa đăng nhập, vui lòng đăng nhập lại");
+		showPopup("Bạn chưa đăng nhập");
 		localStorage.removeItem("showLoginPopup");
 	}
 });
@@ -36,6 +36,11 @@ function handleRegister() {
 		return;
 	}
 
+	if (username.trim().toLowerCase() === "cat boss".toLowerCase()) {
+		showPopup("Tên đăng nhập này đã được quản trị viên sử dụng");
+		return;
+	}
+
 	if (email.length > 30) {
 		showPopup("Email không được vượt quá 30 ký tự");
 		return;
@@ -53,7 +58,7 @@ function handleRegister() {
 
 	if (!validatePassword(password)) {
 		showPopup(
-			"Mật khẩu phải có ít nhất 8 ký tự, gồm chữ hoa, chữ thường, số và ký tự đặc biệt"
+			"Mật khẩu phải có ít nhất 8 ký tự gồm 1 chữ hoa 1 chữ thường 1 số và 1 ký tự đặc biệt"
 		);
 		return;
 	}
@@ -88,7 +93,7 @@ function handleRegister() {
 	localStorage.setItem("users", JSON.stringify(users));
 	localStorage.setItem("currentUser", JSON.stringify(newUser));
 
-	showPopup("Đăng ký thành công, vui lòng đăng nhập");
+	showPopup("Đăng ký thành công");
 	switchForm("login");
 }
 

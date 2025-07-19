@@ -86,7 +86,6 @@ function renderBorrowCards() {
 	today.setHours(0, 0, 0, 0);
 
 	userBorrows.forEach((borrow) => {
-		const daysLeft = calculateDaysLeft(borrow.returnDate);
 		const book = bookList.find((b) => b.title === borrow.bookTitle);
 		const imgSrc = book?.image || "";
 
@@ -98,7 +97,23 @@ function renderBorrowCards() {
 			? normalizeDate(borrow.returnDate)
 			: null;
 
-		if (borrow.isReturned) {
+		// if (borrow.isReturned) {
+		// 	status = "Đã trả";
+		// } else if (!borrowDateObj || borrowDateObj > today) {
+		// 	status = "Đặt trước";
+		// } else if (returnDateObj && today > returnDateObj) {
+		// 	status = "Quá hạn";
+		// } else {
+		// 	status = "Đang mượn";
+		// }
+		//
+		//
+		//
+		//
+		//
+		if (borrow.isCancelled) {
+			status = "Đã huỷ đặt trước";
+		} else if (borrow.isReturned) {
 			status = "Đã trả";
 		} else if (!borrowDateObj || borrowDateObj > today) {
 			status = "Đặt trước";
@@ -107,7 +122,11 @@ function renderBorrowCards() {
 		} else {
 			status = "Đang mượn";
 		}
-
+		//
+		//
+		//
+		//
+		//
 		const card = document.createElement("div");
 		card.className = "book-item";
 		card.innerHTML = `

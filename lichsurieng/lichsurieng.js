@@ -2,7 +2,11 @@ const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const container = document.getElementById("borrowHistoryList");
-
+//
+const userBorrows = borrowList.filter(
+	(b) => b.email === currentUser.email && !b.isReturned && !b.isCancelled
+);
+//
 function normalizeDate(dateStr) {
 	const [d, m, y] = dateStr.split("/");
 	const date = new Date(y, m - 1, d);
@@ -42,7 +46,6 @@ function returnBook(borrowId) {
 		renderBorrowCards();
 	});
 }
-//
 
 function returnBookConfirmed(borrowId) {
 	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
@@ -65,13 +68,120 @@ function returnBookConfirmed(borrowId) {
 	renderBorrowCards();
 }
 
+// function cancelReservation(id) {
+// 	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không?", (xacNhan) => {
+// 		if (!xacNhan) return;
+
+// 		const index = borrowList.findIndex((b) => b.id === id);
+// 		if (index !== -1) {
+// 			const bookTitle = borrowList[index].bookTitle;
+// 			const book = bookList.find((b) => b.title === bookTitle);
+// 			if (book) book.quantity++;
+
+// 			borrowList.splice(index, 1);
+// 			localStorage.setItem("borrowList", JSON.stringify(borrowList));
+// 			localStorage.setItem("bookList", JSON.stringify(bookList));
+// 			location.reload();
+// 		}
+// 	});
+// }
+//
+//
+//
+//
+//
+// function cancelReservation(id) {
+// 	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không?", (xacNhan) => {
+// 		if (!xacNhan) return;
+
+// 		const index = borrowList.findIndex((b) => b.id === id);
+// 		if (index !== -1) {
+// 			const borrow = borrowList[index];
+// 			const book = bookList.find((b) => b.title === borrow.bookTitle);
+// 			if (book) book.quantity++;
+
+// 			borrow.isCancelled = true;
+// 			localStorage.setItem("borrowList", JSON.stringify(borrowList));
+// 			localStorage.setItem("bookList", JSON.stringify(bookList));
+// 			location.reload();
+// 		}
+// 	});
+// }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// function cancelReservation(id) {
+// 	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không?", (xacNhan) => {
+// 		if (!xacNhan) return;
+
+// 		const index = borrowList.findIndex((b) => b.id === id);
+// 		if (index !== -1) {
+// 			const borrow = borrowList[index];
+// 			const book = bookList.find((b) => b.title === borrow.bookTitle);
+// 			if (book) book.quantity++;
+
+// 			borrow.isCancelled = true;
+
+// 			localStorage.setItem("borrowList", JSON.stringify(borrowList));
+// 			localStorage.setItem("bookList", JSON.stringify(bookList));
+// 			location.reload();
+// 		}
+// 	});
+// }
+//
+//
+//
+//
+//
+function cancelReservation(id) {
+	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không?", (xacNhan) => {
+		if (!xacNhan) return;
+
+		const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+		const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
+
+		const index = borrowList.findIndex((b) => b.id === id);
+		if (index !== -1) {
+			const borrow = borrowList[index];
+			const book = bookList.find((b) => b.title === borrow.bookTitle);
+			if (book) book.quantity++;
+
+			borrow.isCancelled = true;
+
+			localStorage.setItem("borrowList", JSON.stringify(borrowList));
+			localStorage.setItem("bookList", JSON.stringify(bookList));
+
+			renderBorrowCards();
+		}
+	});
+}
+//
+//
+//
+//
+//
 function renderBorrowCards() {
 	container.innerHTML = "";
-
+	//
+	const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
+	//
 	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+	//
+	// const userBorrows = borrowList.filter(
+	// 	(b) => b.email === currentUser.email && !b.isReturned
+	// );
+	//
 	const userBorrows = borrowList.filter(
-		(b) => b.email === currentUser.email && !b.isReturned
+		(b) => b.email === currentUser.email && !b.isReturned && !b.isCancelled
 	);
+	//
 	if (userBorrows.length === 0) {
 		container.innerHTML = `
 		<div class="khongcogi">
@@ -103,20 +213,30 @@ function renderBorrowCards() {
 			status = `Đang mượn (còn ${daysLeft} ngày)`;
 		}
 
+		let actionButton = "";
+		if (!borrow.isReturned) {
+			if (!borrowDateObj || borrowDateObj > today) {
+				actionButton = `<button onclick="cancelReservation(${borrow.id})">Huỷ đặt trước</button>`;
+			} else {
+				actionButton = `<button onclick="returnBook(${borrow.id})">Trả sách</button>`;
+			}
+		}
+
 		const card = document.createElement("div");
 		card.className = "book-item";
 		card.innerHTML = `
 			<img src="${imgSrc}"/>
 			<div class="book-info">
-				<p><b>Tên sách:</b> ${borrow.bookTitle}</p>
-				<p><b>Ngày mượn:</b> ${borrow.borrowDate || "—"}</p>
+				<p><b>Tên sách đã mượn:</b> ${borrow.bookTitle}</p>
+				<p><b>Ngày mượn:</b> ${borrow.borrowDate}</p>
 				<p><b>Ngày trả:</b> ${borrow.returnDate}</p>
 				<p><b>Trạng thái:</b> ${status}</p>
 				<div class="book-buttons">
-					<button onclick="returnBook(${borrow.id})">Trả sách</button>
+					${actionButton}
 				</div>
 			</div>
 		`;
+
 		container.appendChild(card);
 	});
 }

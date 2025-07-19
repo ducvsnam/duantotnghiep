@@ -375,3 +375,9 @@ window.showConfirm = function (message, callback) {
 		}
 	};
 };
+
+window.addEventListener("load", () => {
+	if (!location.hash) {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}
+});

@@ -62,6 +62,11 @@ document.addEventListener("click", (e) => {
 	}
 });
 
+function normalizeDate(dateStr) {
+	const [d, m, y] = dateStr.split("/");
+	return new Date(y, m - 1, d);
+}
+
 function borrowBook() {
 	const bookTitle = input.value.trim();
 	const borrowedDate = document.getElementById("borrowedDate").value.trim();
@@ -116,9 +121,28 @@ function borrowBook() {
 		return;
 	}
 
+	const hasOverdueBook = borrowList.some((b) => {
+		const sameUser = b.email === currentUser.email;
+		if (!sameUser || b.isReturned) return false;
+
+		const borrowDateObj = normalizeDate(b.borrowDate);
+		const returnDateObj = normalizeDate(b.returnDate);
+
+		const today = new Date();
+		today.setHours(0, 0, 0, 0);
+
+		return borrowDateObj <= today && returnDateObj < today;
+	});
+
+	if (hasOverdueBook) {
+		showPopup("Bạn đang có sách quá hạn nên không thể mượn thêm sách");
+		return;
+	}
+
 	const currentBorrowedCount = borrowList.filter(
 		(b) => b.email === currentUser.email
 	).length;
+
 	if (currentBorrowedCount >= 3) {
 		showPopup("Bạn chỉ được mượn tối đa 3 cuốn sách cùng lúc");
 		return;
@@ -131,6 +155,7 @@ function borrowBook() {
 		id: Date.now(),
 		name: currentUser.name || currentUser.username || "Không rõ",
 		email: currentUser.email,
+		phone: currentUser.phone || "—",
 		bookTitle,
 		borrowDate: borrowedDate,
 		returnDate,
@@ -150,7 +175,7 @@ function borrowBook() {
 	if (borrowPicker) borrowPicker.clear();
 	if (returnPicker) returnPicker.clear();
 }
-//
+
 document.addEventListener("DOMContentLoaded", () => {
 	const borrowedDisplay = document.getElementById("borrowedDateDisplay");
 	const borrowedHidden = document.getElementById("borrowedDate");
