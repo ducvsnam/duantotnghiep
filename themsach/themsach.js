@@ -31,6 +31,61 @@ function deleteBook(index) {
 	});
 }
 
+function renderBooks() {
+	const books = getBooks();
+	const keyword = searchInput.value.trim().toLowerCase();
+	const selectedGenre = searchBox.dataset.genre || "";
+
+	const filtered = books.filter((book) => {
+		const matchTitle = book.title.toLowerCase().includes(keyword);
+		const matchGenre = selectedGenre === "" || book.genre === selectedGenre;
+		return matchTitle && matchGenre;
+	});
+
+	result.innerHTML = "";
+
+	const timkiem = document.getElementById("timkiem");
+	if (filtered.length === 0) {
+		timkiem.textContent = "Không tìm thấy sách phù hợp";
+		timkiem.style.display = "block";
+		return;
+	} else {
+		timkiem.textContent = "";
+		timkiem.style.display = "none";
+	}
+
+	filtered.forEach((book, index) => {
+		const imgSrc = book.image?.startsWith("data:image/")
+			? book.image
+			: book.image?.startsWith("/")
+			? book.image
+			: "/" + book.image;
+
+		const bookDiv = document.createElement("div");
+		bookDiv.classList.add("reveal");
+
+		bookDiv.innerHTML = `
+			<div class="book-item">
+				<img src="${imgSrc}"/>
+				<div class="book-info">
+					<p><b>Tên sách:</b> ${book.title}</p>
+					<p><b>Tác giả:</b> ${book.author}</p>
+					<p><b>Thể loại:</b> ${book.genre}</p>
+					<p><b>Năm xuất bản:</b> ${book.year}</p>
+					<p><b>Số lượng:</b> ${book.quantity}</p>
+					<div class="book-buttons">
+						<button onclick="editBook(${index})">Sửa</button>
+						<button onclick="deleteBook(${index})">Xoá</button>
+					</div>
+				</div>
+			</div>
+		`;
+		result.appendChild(bookDiv);
+	});
+
+	revealOnScroll();
+}
+
 let editingIndex = null;
 
 function editBook(index) {
@@ -58,6 +113,8 @@ function editBook(index) {
 	document.getElementById("uploadText").style.display = "none";
 
 	editingIndex = index;
+
+	saveBtn.textContent = "Lưu thông tin";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -130,12 +187,24 @@ saveBtn.addEventListener("click", () => {
 			(b) => b.title.toLowerCase() === title.toLowerCase()
 		);
 		if (isDuplicate) {
-			showPopup("Sách này đã tồn tại, không thể thêm trùng");
+			showPopup("Sách này đã tồn tại nên không thể thêm trùng");
 			return;
 		}
 		books.push({ title, author, genre, year, quantity, image: imageSrc });
+		saveBtn.textContent = "Thêm sách";
 	} else {
+		const isDuplicate = books.some(
+			(b, i) =>
+				i !== editingIndex && b.title.toLowerCase() === title.toLowerCase()
+		);
+		if (isDuplicate) {
+			showPopup("Tên sách này đã trùng với một sách khác");
+			return;
+		}
+
+		const oldBook = books[editingIndex];
 		books[editingIndex] = {
+			...oldBook,
 			title,
 			author,
 			genre,
@@ -143,7 +212,9 @@ saveBtn.addEventListener("click", () => {
 			quantity,
 			image: imageSrc,
 		};
+
 		editingIndex = null;
+		saveBtn.textContent = "Thêm sách";
 	}
 
 	saveBooks(books);
@@ -173,62 +244,6 @@ imageUpload.addEventListener("change", function (e) {
 		reader.readAsDataURL(file);
 	}
 });
-
-function renderBooks() {
-	const books = getBooks();
-	const keyword = searchInput.value.trim().toLowerCase();
-	const selectedGenre = searchBox.dataset.genre || "";
-
-	const filtered = books.filter((book) => {
-		const matchTitle = book.title.toLowerCase().includes(keyword);
-		const matchGenre = selectedGenre === "" || book.genre === selectedGenre;
-		return matchTitle && matchGenre;
-	});
-
-	result.innerHTML = "";
-
-	const timkiem = document.getElementById("timkiem");
-	if (filtered.length === 0) {
-		timkiem.textContent = "Không tìm thấy sách phù hợp";
-		timkiem.style.display = "block";
-		return;
-	} else {
-		timkiem.textContent = "";
-		timkiem.style.display = "none";
-	}
-
-	filtered.forEach((book, index) => {
-		const imgSrc = book.image?.startsWith("data:image/")
-			? book.image
-			: book.image?.startsWith("/")
-			? book.image
-			: "/" + book.image;
-
-		const bookDiv = document.createElement("div");
-		bookDiv.classList.add("reveal");
-
-		bookDiv.innerHTML = `
-		<div class="book-item">
-			<img src="${imgSrc}"/>
-			<div class="book-info">
-				<p><b>Tên sách:</b> ${book.title}</p>
-				<p><b>Tác giả:</b> ${book.author}</p>
-				<p><b>Thể loại:</b> ${book.genre}</p>
-				<p><b>Năm xuất bản:</b> ${book.year}</p>
-				<p><b>Số lượng:</b> ${book.quantity}</p>
-				<div class="book-buttons">
-					<button onclick="editBook(${index})">Sửa</button>
-					<button onclick="deleteBook(${index})">Xoá</button>
-				</div>
-			</div>
-		</div>
-	`;
-
-		result.appendChild(bookDiv);
-	});
-
-	revealOnScroll();
-}
 
 const genreOptions = [
 	"Tất cả thể loại",

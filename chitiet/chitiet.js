@@ -1,3 +1,8 @@
+function getBooks() {
+	const saved = localStorage.getItem("bookList");
+	return saved ? JSON.parse(saved) : [];
+}
+
 document.querySelectorAll(".muonsachchitiet").forEach((btn) =>
 	btn.addEventListener("click", () => {
 		const bookName = params.get("name") || "";
@@ -8,18 +13,25 @@ document.querySelectorAll(".muonsachchitiet").forEach((btn) =>
 );
 
 const params = new URLSearchParams(window.location.search);
-const imgPath = params.get("img");
-if (imgPath) {
-	document.getElementById("anhChiTiet").src = imgPath;
-}
+const bookName = params.get("name") || "...";
 
-document.getElementById("tenSach").textContent = params.get("name") || "...";
-document.getElementById("tacGia").textContent = params.get("author") || "...";
-document.getElementById("theLoai").textContent = params.get("genre") || "...";
-document.getElementById("namXuatBan").textContent = params.get("year") || "...";
-
-const bookName = params.get("name");
-const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
+const bookList = getBooks();
 const book = bookList.find((b) => b.title === bookName);
 
-document.getElementById("soLuong").textContent = book?.quantity ?? "...";
+if (book) {
+	const imgSrc = book.image?.startsWith("data:image/")
+		? book.image
+		: book.image?.startsWith("/")
+		? book.image
+		: "/" + book.image;
+
+	document.getElementById("anhChiTiet").src = imgSrc;
+	document.getElementById("tenSach").textContent = book.title;
+	document.getElementById("tacGia").textContent = book.author;
+	document.getElementById("theLoai").textContent = book.genre;
+	document.getElementById("namXuatBan").textContent = book.year;
+	document.getElementById("soLuong").textContent = book.quantity;
+} else {
+	document.getElementById("tenSach").textContent = bookName;
+	document.getElementById("soLuong").textContent = "...";
+}

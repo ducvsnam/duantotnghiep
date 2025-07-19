@@ -1,9 +1,19 @@
+.book-info {
+	margin-top: 0;
+}
+
+.book-item {
+	width: 660px;
+	padding: 15px;
+}
+
+.book-item img {
+	width: 135px;
+	height: 185px;
+	margin: 0;
+}
+
 #khung {
-	background: #4509ae;
-	box-shadow: 4px 4px 0 black;
-	border: 2px solid black;
-	padding: 30px;
-	border-radius: 5px;
 	width: 100%;
 	max-width: 600px;
 	margin-top: 30px;
@@ -66,38 +76,6 @@ p {
 	gap: 20px;
 }
 
-.info-fields input,
-.info-fields select {
-	padding: 10px;
-}
-
-#saveBtn {
-	color: white;
-	text-shadow: 1px 1px 0 black;
-	background-color: #4509ae;
-	box-shadow: 4px 4px 0 black;
-	border: 2px solid black;
-	border-radius: 5px;
-	padding: 5px;
-	text-align: center;
-	font-size: 20px;
-	font-weight: bold;
-	cursor: pointer;
-	transition: 0.1s;
-	margin-top: 30px;
-	width: 300px;
-}
-
-#saveBtn:hover {
-	font-size: 23px;
-	transform: scale(1.1);
-}
-
-#saveBtn:active {
-	transform: scale(1.1) translate(3px, 3px);
-	box-shadow: 0 0 black;
-}
-
 #result {
 	margin-top: 30px;
 	margin-right: 10px;
@@ -107,26 +85,11 @@ p {
 	justify-content: center;
 }
 
-.book-item {
-	width: 660px;
-	padding: 15px;
-}
-
-.book-item img {
-	width: 135px;
-	height: 185px;
-	margin: 0;
-}
-
 .book-item button:first-of-type,
 .book-item button:last-of-type {
 	margin-left: 10px;
 	margin-right: 0;
 	width: 100px;
-}
-
-.book-info {
-	margin-top: 0;
 }
 
 .input-wrapper {
@@ -203,4 +166,31 @@ p {
 	background: #4509ae;
 	color: white;
 	text-shadow: 1px 1px 0 black;
+}
+
+#saveBtn {
+	color: white;
+	text-shadow: 1px 1px 0 black;
+	background-color: #4509ae;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.1s;
+	margin-top: 30px;
+	width: 300px;
+}
+
+#saveBtn:hover {
+	font-size: 23px;
+	transform: scale(1.1);
+}
+
+#saveBtn:active {
+	transform: scale(1.1) translate(3px, 3px);
+	box-shadow: 0 0 black;
 }

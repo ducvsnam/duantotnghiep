@@ -5,10 +5,18 @@
 	margin-top: 85px;
 }
 
+.input-wrapper {
+	position: relative;
+}
+
 #searchInput,
 .input-wrapper,
 #searchBox {
 	width: 700px;
+}
+
+#searchBox {
+	cursor: pointer;
 }
 
 input,
@@ -72,17 +80,9 @@ select {
 	transition: all 0.6s ease;
 }
 
-.book-card.visible {
+.book-card.active {
 	opacity: 1;
 	transform: translateY(0);
-}
-
-.input-wrapper {
-	position: relative;
-}
-
-#searchBox {
-	cursor: pointer;
 }
 
 #suggestions {

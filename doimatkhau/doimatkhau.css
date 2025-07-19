@@ -7,11 +7,6 @@ label {
 }
 
 #khung {
-	background: #4509ae;
-	box-shadow: 4px 4px 0 black;
-	border: 2px solid black;
-	padding: 30px;
-	border-radius: 10px;
 	width: 350px;
 	margin-top: 130px;
 }

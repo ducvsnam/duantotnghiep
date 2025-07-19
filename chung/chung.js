@@ -152,6 +152,55 @@ function chonAnhNguoiDung() {
 	};
 }
 
+function renderBooksToBlocks() {
+	const storedBooks = typeof getBooks === "function" ? getBooks() : [];
+	const usingDefault = !Array.isArray(storedBooks) || storedBooks.length === 0;
+	const books = usingDefault ? defaultBooks : storedBooks;
+
+	const order = [
+		5, 20, 21, 35, 50, 51, 65, 80, 81, 95, 0, 1, 2, 3, 4, 15, 16, 17, 18, 19,
+		30, 31, 32, 33, 34, 45, 46, 47, 48, 49, 60, 61, 62, 63, 64, 75, 76, 77, 78,
+		79, 90, 91, 92, 93, 94, 105, 106, 107, 108, 109,
+	];
+
+	const bookBlocks = document.querySelectorAll(".book-box");
+
+	bookBlocks.forEach((block, i) => {
+		const index = order[i];
+
+		const book = books[index];
+		if (!book) return;
+
+		const bookDiv = block.querySelector(".the");
+		if (bookDiv) {
+			bookDiv.dataset.name = book.title;
+			bookDiv.dataset.author = book.author;
+			bookDiv.dataset.genre = book.genre;
+			bookDiv.dataset.year = book.year;
+			bookDiv.dataset.quantity = book.quantity;
+		}
+
+		const img = block.querySelector(".sach");
+		if (img) img.src = book.image;
+
+		const title = block.querySelector("h4");
+		if (title) title.textContent = book.title;
+	});
+}
+
+function getBooks() {
+	const saved = localStorage.getItem("bookList");
+	if (saved) {
+		try {
+			return JSON.parse(saved);
+		} catch (e) {
+			console.error("Lỗi khi parse bookList từ localStorage:", e);
+			return [];
+		}
+	}
+	return [];
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 	document.body.classList.add("fade-in");
 
@@ -213,6 +262,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			userpageImgNgoai[i].src = savedUser;
 		}
 	}
+
+	renderBooksToBlocks();
 });
 
 document.querySelectorAll("button[data-href]").forEach((btn) => {

@@ -785,6 +785,14 @@ header .container {
 	min-width: 400px;
 }
 
+#khung {
+	background: #4509ae;
+	box-shadow: 4px 4px 0 black;
+	border: 2px solid black;
+	padding: 30px;
+	border-radius: 5px;
+}
+
 .menu {
 	display: flex;
 	gap: 30px;
@@ -1029,12 +1037,6 @@ h4 {
 	height: 200px;
 }
 
-.nut-thayanh {
-	background-color: white;
-	color: #4509ae;
-	width: auto;
-}
-
 .form-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -1063,6 +1065,12 @@ h4 {
 	margin: 30px 20px;
 	margin-bottom: 104px;
 	width: 450px;
+}
+
+.nut-thayanh {
+	background-color: white;
+	color: #4509ae;
+	width: auto;
 }
 
 .chitiet:hover,

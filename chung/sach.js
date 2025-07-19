@@ -960,25 +960,3 @@ const defaultBooks = [
 		image: "/anh/sach/giatuongkyao/thuong/sach10.jpg",
 	},
 ];
-
-const bookBlocks = document.querySelectorAll(".book-box");
-const order = [
-	5, 20, 21, 35, 50, 51, 65, 80, 81, 95, 0, 1, 2, 3, 4, 15, 16, 17, 18, 19, 30,
-	31, 32, 33, 34, 45, 46, 47, 48, 49, 60, 61, 62, 63, 64, 75, 76, 77, 78, 79,
-	90, 91, 92, 93, 94, 105, 106, 107, 108, 109,
-];
-
-bookBlocks.forEach((block, i) => {
-	const book = defaultBooks[order[i]];
-	if (!book) return;
-
-	const bookDiv = block.querySelector(".the");
-	bookDiv.dataset.name = book.title;
-	bookDiv.dataset.author = book.author;
-	bookDiv.dataset.genre = book.genre;
-	bookDiv.dataset.year = book.year;
-	bookDiv.dataset.quantity = book.quantity;
-
-	block.querySelector(".sach").src = book.image;
-	block.querySelector("h4").textContent = book.title;
-});
