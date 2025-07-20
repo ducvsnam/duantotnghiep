@@ -93,12 +93,56 @@ function editBook(index) {
 	saveBtn.textContent = "Lưu thông tin";
 }
 
+function isValidAuthorName(name) {
+	const value = name.trim();
+
+	if (!value || /^[ .-]+$/.test(value)) return false;
+
+	const baseRegex = /^[\p{L} .-]{2,40}$/u;
+	if (!baseRegex.test(value)) return false;
+
+	if (/[ .-]{2,}/.test(value)) return false;
+
+	if (/^[.-]/.test(value) || /[.-]$/.test(value)) return false;
+
+	if (!/[\p{L}]/u.test(value)) return false;
+
+	return true;
+}
+
+function isValidBookTitle(title) {
+	const value = title.trim();
+
+	if (!value || /^[ .:-]+$/.test(value)) return false;
+
+	const baseRegex = /^[\p{L}0-9 .:-]{2,40}$/u;
+	if (!baseRegex.test(value)) return false;
+
+	if (/[ .:-]{2,}/.test(value)) return false;
+
+	if (/^[.:/-]/.test(value) || /[.:/-]$/.test(value)) return false;
+
+	if (!/[\p{L}0-9]/u.test(value)) return false;
+
+	return true;
+}
+
 function addBook() {
 	const title = document.getElementById("bookTitle").value.trim();
 	const author = document.getElementById("author").value.trim();
 	const genre = document.getElementById("genre").value.trim();
 	const year = document.getElementById("year").value.trim();
 	const quantity = document.getElementById("quantity").value.trim();
+
+	if (!isValidAuthorName(author)) {
+		showPopup("Tên tác giả không hợp lệ");
+		return;
+	}
+
+	if (!isValidBookTitle(title)) {
+		showPopup("Tên sách không hợp lệ");
+		return;
+	}
 
 	let imageSrc = preview.src;
 
@@ -125,8 +169,9 @@ function addBook() {
 		return;
 	}
 
-	if (!/^\d{4}$/.test(year)) {
-		showPopup("Năm xuất bản phải là số có 4 chữ số");
+	const currentYear = new Date().getFullYear();
+	if (!/^\d{4}$/.test(year) || year < 868 || year > currentYear) {
+		showPopup("Năm xuất bản không hợp lệ");
 		return;
 	}
 
@@ -338,4 +383,13 @@ document.addEventListener("click", (e) => {
 	if (!suggestionsDiv.contains(e.target) && e.target !== searchBox) {
 		suggestionsDiv.classList.remove("show");
 	}
+});
+
+const inputsoluong = document.getElementById("quantity");
+const inputnamxuatban = document.getElementById("year");
+inputsoluong.addEventListener("input", () => {
+	inputsoluong.value = inputsoluong.value.replace(/\D/g, "");
+});
+inputnamxuatban.addEventListener("input", () => {
+	inputnamxuatban.value = inputnamxuatban.value.replace(/\D/g, "");
 });

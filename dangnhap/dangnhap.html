@@ -47,12 +47,14 @@
 							type="text"
 							id="loginUsername"
 							placeholder="Nhập tên đăng nhập..."
+							maxlength="40"
 						/>
 						<label>Mật khẩu</label>
 						<input
 							type="password"
 							id="loginPassword"
 							placeholder="Nhập mật khẩu..."
+							maxlength="40"
 						/>
 						<div class="switch-link" onclick="switchForm('register')">
 							Chưa có tài khoản? Đăng ký
@@ -67,30 +69,38 @@
 							type="text"
 							id="registerUsername"
 							placeholder="Nhập tên đăng nhập..."
+							maxlength="40"
+							autocomplete="off"
 						/>
 						<label>Số điện thoại</label>
 						<input
-							type="number"
+							type="text"
 							id="registerPhone"
 							placeholder="Nhập số điện thoại..."
+							maxlength="40"
+							autocomplete="off"
 						/>
 						<label>Email</label>
 						<input
 							type="email"
 							id="registerEmail"
 							placeholder="Nhập email..."
+							maxlength="40"
+							autocomplete="off"
 						/>
 						<label>Mật khẩu</label>
 						<input
 							type="password"
 							id="registerPassword"
 							placeholder="Nhập mật khẩu..."
+							maxlength="40"
 						/>
 						<label>Nhập lại mật khẩu</label>
 						<input
 							type="password"
 							id="registerConfirm"
 							placeholder="Nhập lại mật khẩu..."
+							maxlength="40"
 						/>
 						<div class="switch-link" onclick="switchForm('login')">
 							Đã có tài khoản? Đăng nhập

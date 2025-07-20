@@ -28,9 +28,14 @@ function updateSuggestions() {
 		const div = document.createElement("div");
 		div.textContent = value
 			? `Không có cuốn sách nào tên là "${value}"`
-			: "Không còn sách nào để gợi ý.";
+			: "Không còn sách nào để gợi ý";
 		div.style.padding = "8px";
-		div.style.color = "gray";
+		div.style.overflow = "hidden";
+		div.style.textOverflow = "ellipsis";
+		div.style.whiteSpace = "nowrap";
+		div.style.display = "block";
+		div.style.width = "97%";
+
 		suggestionsBox.appendChild(div);
 		return;
 	}

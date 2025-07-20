@@ -1,12 +1,24 @@
-document.addEventListener("DOMContentLoaded", () => {
-	document.body.classList.add("fade-in");
+const flip = document.getElementById("flipCard");
+const btn = document.getElementById("mainActionBtn");
 
-	const shouldShowPopup = localStorage.getItem("showLoginPopup");
-	if (shouldShowPopup === "true") {
-		showPopup("Bạn chưa đăng nhập");
-		localStorage.removeItem("showLoginPopup");
+function switchForm(target) {
+	const flipCard = document.getElementById("flipCard");
+	const btn = document.getElementById("mainActionBtn");
+	const registerForm = document.getElementById("registerForm");
+
+	if (target === "register") {
+		flipCard.classList.add("flipped", "expanded-height");
+		btn.textContent = "Đăng ký";
+		btn.setAttribute("onclick", "handleRegister()");
+		btn.style.marginTop = "260px";
+		registerForm.style.marginTop = "20px";
+	} else {
+		flipCard.classList.remove("flipped", "expanded-height");
+		btn.textContent = "Đăng nhập";
+		btn.setAttribute("onclick", "handleLogin()");
+		btn.style.marginTop = "230px";
 	}
-});
+}
 
 function validatePassword(password) {
 	const regex =
@@ -97,58 +109,6 @@ function handleRegister() {
 	switchForm("login");
 }
 
-const flip = document.getElementById("flipCard");
-const btn = document.getElementById("mainActionBtn");
-
-function switchForm(target) {
-	const flipCard = document.getElementById("flipCard");
-	const btn = document.getElementById("mainActionBtn");
-	const registerForm = document.getElementById("registerForm");
-
-	if (target === "register") {
-		flipCard.classList.add("flipped", "expanded-height");
-		btn.textContent = "Đăng ký";
-		btn.setAttribute("onclick", "handleRegister()");
-		btn.style.marginTop = "260px";
-		registerForm.style.marginTop = "20px";
-	} else {
-		flipCard.classList.remove("flipped", "expanded-height");
-		btn.textContent = "Đăng nhập";
-		btn.setAttribute("onclick", "handleLogin()");
-		btn.style.marginTop = "230px";
-	}
-}
-
-document.querySelectorAll("button[data-href]").forEach((btn) => {
-	btn.addEventListener("click", function (e) {
-		e.preventDefault();
-		const href = btn.getAttribute("data-href");
-
-		if (href) {
-			document.body.classList.remove("fade-in");
-			document.body.classList.add("fade-out");
-
-			setTimeout(() => {
-				window.location.href = href;
-			}, 800);
-		}
-	});
-});
-
-document.querySelectorAll("a[href]").forEach((link) => {
-	const href = link.getAttribute("href");
-	if (href && !href.startsWith("#") && !link.hasAttribute("target")) {
-		link.addEventListener("click", function (e) {
-			e.preventDefault();
-			document.body.classList.remove("fade-in");
-			document.body.classList.add("fade-out");
-			setTimeout(() => {
-				window.location.href = href;
-			}, 800);
-		});
-	}
-});
-
 function handleLogin() {
 	const username = document.getElementById("loginUsername").value;
 	const password = document.getElementById("loginPassword").value;
@@ -194,3 +154,48 @@ function handleLogin() {
 		showPopup("Sai tên đăng nhập hoặc mật khẩu");
 	}
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+	document.body.classList.add("fade-in");
+
+	const shouldShowPopup = localStorage.getItem("showLoginPopup");
+	if (shouldShowPopup === "true") {
+		showPopup("Bạn chưa đăng nhập");
+		localStorage.removeItem("showLoginPopup");
+	}
+});
+
+document.querySelectorAll("button[data-href]").forEach((btn) => {
+	btn.addEventListener("click", function (e) {
+		e.preventDefault();
+		const href = btn.getAttribute("data-href");
+
+		if (href) {
+			document.body.classList.remove("fade-in");
+			document.body.classList.add("fade-out");
+
+			setTimeout(() => {
+				window.location.href = href;
+			}, 800);
+		}
+	});
+});
+
+document.querySelectorAll("a[href]").forEach((link) => {
+	const href = link.getAttribute("href");
+	if (href && !href.startsWith("#") && !link.hasAttribute("target")) {
+		link.addEventListener("click", function (e) {
+			e.preventDefault();
+			document.body.classList.remove("fade-in");
+			document.body.classList.add("fade-out");
+			setTimeout(() => {
+				window.location.href = href;
+			}, 800);
+		});
+	}
+});
+
+const input = document.getElementById("registerPhone");
+input.addEventListener("input", () => {
+	input.value = input.value.replace(/\D/g, "");
+});

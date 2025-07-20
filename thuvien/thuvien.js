@@ -115,9 +115,6 @@ searchBox.addEventListener("focus", () => {
 			searchBox.value = option;
 			searchBox.dataset.genre = option === "Tất cả thể loại" ? "" : option;
 			suggestionsDiv.classList.remove("show");
-			//
-			// renderBooks();
-			//
 			filterBooks(searchInput, searchBox, bookGrid, timkiem);
 		});
 

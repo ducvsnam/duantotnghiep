@@ -71,14 +71,34 @@
 					/>
 
 					<div class="info-fields">
-						<input type="text" id="bookTitle" placeholder="Nhập tên sách..." />
-						<input type="text" id="author" placeholder="Nhập tên tác giả..." />
-						<input type="text" id="genre" readonly maxlength="30" />
-						<input type="text" id="year" placeholder="Nhập năm xuất bản..." />
 						<input
-							type="number"
+							type="text"
+							id="bookTitle"
+							placeholder="Nhập tên sách..."
+							maxlength="45"
+							autocomplete="off"
+						/>
+						<input
+							type="text"
+							id="author"
+							placeholder="Nhập tên tác giả..."
+							maxlength="45"
+							autocomplete="off"
+						/>
+						<input type="text" id="genre" readonly maxlength="45" />
+						<input
+							type="text"
+							id="year"
+							placeholder="Nhập năm xuất bản..."
+							maxlength="45"
+							autocomplete="off"
+						/>
+						<input
+							type="text"
 							id="quantity"
 							placeholder="Nhập số lượng sách..."
+							maxlength="45"
+							autocomplete="off"
 						/>
 					</div>
 				</div>
@@ -98,6 +118,8 @@
 						type="text"
 						id="searchInput"
 						placeholder="Tìm kiếm theo tên sách..."
+						maxlength="83"
+						autocomplete="off"
 					/>
 					<input type="text" id="searchBox" readonly />
 				</div>
