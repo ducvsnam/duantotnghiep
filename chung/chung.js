@@ -1,3 +1,48 @@
+// chức năng bảo mật web
+const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+
+const allowAnonymous = ["chinh.html", "thuvien.html", "dangnhap.html"];
+const adminOnlyPages = [
+	"lichsutong.html",
+	"quanly.html",
+	"themsach.html",
+	"thongke.html",
+	"thongtinquanly.html",
+];
+const userOnlyPages = [
+	"nguoidung.html",
+	"muon.html",
+	"thongtinrieng.html",
+	"danhgia.html",
+	"doimatkhau.html",
+];
+
+const path = window.location.pathname;
+
+const isAllowed = allowAnonymous.some((page) => path.endsWith(page));
+const isAdminPage = adminOnlyPages.some((page) => path.endsWith(page));
+const isUserPage = userOnlyPages.some((page) => path.endsWith(page));
+
+// không cho bất kỳ ai vào các trang chức năng nếu chưa đăng nhập
+if (!currentUser && !isAllowed) {
+	window.location.href = "../dangnhap/dangnhap.html?unauth=1";
+}
+
+// không cho bất kỳ ai vào các trang chức năng dành cho quản lý nếu không phải quản lý
+if (isAdminPage && (!currentUser || currentUser.username !== "Cat Boss")) {
+	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+}
+
+// không cho bất kỳ ai vào các trang chức năng dành cho người dùng nếu không phải người dùng
+if (isUserPage && currentUser?.username === "Cat Boss") {
+	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+}
+
+function vuilongdangnhap() {
+	showPopup("Vui lòng đăng nhập để dùng chức năng này");
+}
+
+// hiện ứng ẩn hiện và kéo lên kéo xuống trang
 function revealOnScroll() {
 	const reveals = document.querySelectorAll(".reveal");
 	for (let i = 0; i < reveals.length; i++) {
@@ -42,6 +87,7 @@ function toggleScrollButton() {
 window.addEventListener("load", toggleScrollButton);
 window.addEventListener("scroll", toggleScrollButton);
 
+// thông tin trang chi tiết sách cho mọi đối tượng
 function initChiTietButtons() {
 	document.querySelectorAll(".chitiet").forEach((btn) => {
 		btn.addEventListener("click", () => {
@@ -68,6 +114,7 @@ function initChiTietButtons() {
 	});
 }
 
+// hiệu ứng thông báo được chỉnh sửa thay cho alert thường
 function showPopup(message) {
 	const overlay = document.getElementById("overlay");
 	const messageElement = document.getElementById("message");
@@ -92,6 +139,7 @@ function closePopup() {
 	document.getElementById("overlay")?.classList.remove("show");
 }
 
+// chức năng chọn ảnh đại diện
 function chonAnhQuanLy() {
 	const input = document.getElementById("imageUploadAdmin");
 	if (!input) return;
@@ -152,6 +200,7 @@ function chonAnhNguoiDung() {
 	};
 }
 
+// chức năng hiện sách theo danh sách mặc định và cập nhật khi được sửa
 function renderBooksToBlocks() {
 	const storedBooks = typeof getBooks === "function" ? getBooks() : [];
 	const usingDefault = !Array.isArray(storedBooks) || storedBooks.length === 0;
@@ -201,6 +250,7 @@ function getBooks() {
 	return [];
 }
 
+// những chức năng sử lý sau DOM
 document.addEventListener("DOMContentLoaded", () => {
 	document.body.classList.add("fade-in");
 
@@ -266,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	renderBooksToBlocks();
 });
 
+// chức năng chuyển trang mượn mà
 document.querySelectorAll("button[data-href]").forEach((btn) => {
 	btn.addEventListener("click", function (e) {
 		e.preventDefault();
@@ -296,6 +347,7 @@ document.querySelectorAll("a[href]").forEach((link) => {
 	}
 });
 
+// chức năng của bảng chọn ngày
 window.addEventListener("load", function () {
 	const borrowedInput = document.getElementById("borrowedDateDisplay");
 	const returnInput = document.getElementById("returnDateDisplay");
@@ -333,6 +385,7 @@ window.addEventListener("load", function () {
 	}
 });
 
+// hiệu ứng thông báo được chỉnh sửa thay cho alert thường
 window.showPopup = function (message) {
 	const overlay = document.getElementById("overlay");
 	const msg = document.getElementById("message");
@@ -398,6 +451,7 @@ window.showConfirm = function (message, callback) {
 	};
 };
 
+// chức năng chạy mượt lên đầu khi tải lại trang
 window.addEventListener("load", () => {
 	if (!location.hash) {
 		window.scrollTo({ top: 0, behavior: "smooth" });

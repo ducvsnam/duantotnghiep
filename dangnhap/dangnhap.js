@@ -1,3 +1,12 @@
+const params = new URLSearchParams(window.location.search);
+if (params.get("unauth") === "1") {
+	showPopup("Bạn chưa đăng nhập");
+	history.replaceState({}, document.title, window.location.pathname);
+} else if (params.get("noaccess") === "1") {
+	showPopup("Bạn không có quyền truy cập");
+	history.replaceState({}, document.title, window.location.pathname);
+}
+
 const flip = document.getElementById("flipCard");
 const btn = document.getElementById("mainActionBtn");
 
@@ -48,8 +57,13 @@ function handleRegister() {
 		return;
 	}
 
-	if (username.trim().toLowerCase() === "cat boss".toLowerCase()) {
+	if (username.trim().toLowerCase() === "cat boss") {
 		showPopup("Tên đăng nhập này đã được quản trị viên sử dụng");
+		return;
+	}
+
+	if (email.trim().toLowerCase() === "CatsStackBoss@gmail.com") {
+		showPopup("Email này đã được quản trị viên sử dụng");
 		return;
 	}
 
@@ -116,7 +130,7 @@ function handleLogin() {
 	if (username === "Cat Boss" && password === "CatsStackBoss@888") {
 		localStorage.setItem(
 			"currentUser",
-			JSON.stringify({ username: "Cat Boss", email: "admin@cats.com" })
+			JSON.stringify({ username: "Cat Boss", email: "CatsStackBoss@gmail.com" })
 		);
 
 		document.body.classList.remove("fade-in");

@@ -18,6 +18,7 @@ body::-webkit-scrollbar {
 html {
 	scroll-behavior: smooth;
 }
+
 /* body + hiệu ứng */
 body {
 	background: azure;
@@ -32,6 +33,7 @@ body.fade-out {
 body.fade-in {
 	opacity: 1;
 }
+
 /* văn bản */
 h1 {
 	text-align: center;
@@ -89,6 +91,7 @@ p {
 	transform: translate(1px, 1px);
 	text-shadow: 1px 1px 0 black;
 }
+
 /* ô nhập + chọn + hiệu ứng */
 input,
 select {
@@ -126,6 +129,7 @@ select option {
 .thongtin-info {
 	margin: 0 10px;
 }
+
 /* đẩy sách lên */
 .book-item {
 	background-color: #4509ae;
@@ -193,6 +197,7 @@ select option {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }
+
 /* nút kéo lên, kéo xuống và quay lại */
 .up,
 .down,
@@ -325,6 +330,7 @@ select option {
 	opacity: 0;
 	pointer-events: none;
 }
+
 /* hiệu ứng hiện thị */
 .reveal {
 	opacity: 0;
@@ -363,6 +369,7 @@ select option {
 	opacity: 1;
 	visibility: visible;
 }
+
 /* giao diện thông báo alert */
 .popup {
 	text-align: center;
@@ -419,6 +426,7 @@ select option {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }
+
 /* khung gợi ý */
 #suggestions {
 	border: 2px solid black;
@@ -454,6 +462,7 @@ select option {
 #suggestions::-webkit-scrollbar {
 	display: none;
 }
+
 /* giao diện bảng chọn ngày */
 .flatpickr-current-month .flatpickr-monthDropdown-months,
 .flatpickr-current-month input.cur-year {
@@ -633,6 +642,7 @@ span.flatpickr-weekday {
 .flatpickr-calendar.arrowBottom::after {
 	display: none;
 }
+
 /* khối ko tìm thấy */
 .khongcogi {
 	text-shadow: 2px 2px 0 black;
@@ -646,6 +656,7 @@ span.flatpickr-weekday {
 	margin-bottom: 203px;
 	margin-top: 235px;
 }
+
 /* hình ảnh */
 img {
 	object-fit: cover;
@@ -656,6 +667,7 @@ img {
 	box-shadow: 0 0 5px black;
 	position: relative;
 }
+
 /* link */
 a {
 	text-decoration: none;
@@ -747,6 +759,7 @@ ul {
 	transform: translate(1px, 1px);
 	box-shadow: 0 0 black;
 }
+
 /* thanh menu */
 header {
 	background-color: #4509ae;
@@ -832,6 +845,7 @@ header .container {
 .menu a.active::after {
 	width: 100%;
 }
+
 /* cuối trang */
 footer .container {
 	max-width: 1200px;
@@ -974,6 +988,7 @@ footer::before {
 	position: relative;
 	z-index: 1;
 }
+
 /* giao diện trang chủ */
 .muc {
 	color: #4509ae;
@@ -1043,8 +1058,8 @@ h4 {
 	align-items: center;
 	margin-top: 50px;
 }
+
 /* hiệu ứng + định dạng nút thương hiệu*/
-.nut-dangnhap,
 .nut-dangxuat,
 .nut-doimatkhau,
 .nut-thayanh,
@@ -1078,7 +1093,6 @@ h4 {
 .doimatkhau:hover,
 .xacnhanmuon:hover,
 .muonsachchitiet:hover,
-.nut-dangnhap:hover,
 .nut-dangxuat:hover,
 .nut-doimatkhau:hover,
 .nut-thayanh:hover,
@@ -1094,7 +1108,6 @@ h4 {
 .doimatkhau:active,
 .xacnhanmuon:active,
 .muonsachchitiet:active,
-.nut-dangnhap:active,
 .nut-dangxuat:active,
 .nut-doimatkhau:active,
 .nut-thayanh:active,

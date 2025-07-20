@@ -25,16 +25,13 @@
 				<nav>
 					<ul class="menu">
 						<li><a href="../quanly/quanly.html">Trang Chủ</a></li>
-						<li><a href="../themsach/themsach.html">Thêm Sách</a></li>
-						<li><a href="../lichsutong/lichsutong.html">Lịch Sử</a></li>
-						<li><a href="../thongke/thongke.html">Thống Kê</a></li>
+						<li><a onclick="vuilongdangnhap()">Mượn Sách</a></li>
+						<li><a onclick="vuilongdangnhap()">Lịch Sử</a></li>
+						<li><a onclick="vuilongdangnhap()">Đánh Giá</a></li>
+						<li><a href="../dangnhap/dangnhap.html">Đăng Nhập</a></li>
+						<li><a href="../dangnhap/dangnhap.html">Đăng Ký</a></li>
 					</ul>
 				</nav>
-				<div class="avatar">
-					<a href="../thongtinrieng/thongtinrieng.html">
-						<img src="../anh/theme/noava.jpg" id="ava-page" />
-					</a>
-				</div>
 			</div>
 		</header>
 
@@ -48,6 +45,7 @@
 							id="loginUsername"
 							placeholder="Nhập tên đăng nhập..."
 							maxlength="40"
+							autocomplete="off"
 						/>
 						<label>Mật khẩu</label>
 						<input
@@ -119,10 +117,12 @@
 					<div class="footer-links">
 						<h3>Liên Kết</h3>
 						<ul>
-							<li><a href="../quanly/quanly.html">Trang Chủ</a></li>
-							<li><a href="../themsach/themsach.html">Thêm Sách</a></li>
-							<li><a href="../lichsutong/lichsutong.html">Lịch Sử</a></li>
-							<li><a href="../thongke/thongke.html">Thống Kê</a></li>
+							<li><a href="../chinh/chinh.html">Trang Chủ</a></li>
+							<li><a onclick="vuilongdangnhap()">Mượn Sách</a></li>
+							<li><a onclick="vuilongdangnhap()">Lịch Sử</a></li>
+							<li><a onclick="vuilongdangnhap()">Đánh Giá</a></li>
+							<li><a href="../dangnhap/dangnhap.html">Đăng Nhập</a></li>
+							<li><a href="../dangnhap/dangnhap.html">Đăng Ký</a></li>
 						</ul>
 					</div>
 					<div class="footer-human">
@@ -151,10 +151,6 @@
 				</div>
 			</div>
 		</footer>
-
-		<button class="back-thongtin">
-			<span>⬅ Quay lại trang thông tin</span>
-		</button>
 
 		<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="up">
 			<span>⬆</span>
