@@ -2,11 +2,11 @@ const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const container = document.getElementById("borrowHistoryList");
-//
+
 const userBorrows = borrowList.filter(
 	(b) => b.email === currentUser.email && !b.isReturned && !b.isCancelled
 );
-//
+
 function normalizeDate(dateStr) {
 	const [d, m, y] = dateStr.split("/");
 	const date = new Date(y, m - 1, d);
@@ -68,78 +68,6 @@ function returnBookConfirmed(borrowId) {
 	renderBorrowCards();
 }
 
-// function cancelReservation(id) {
-// 	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không?", (xacNhan) => {
-// 		if (!xacNhan) return;
-
-// 		const index = borrowList.findIndex((b) => b.id === id);
-// 		if (index !== -1) {
-// 			const bookTitle = borrowList[index].bookTitle;
-// 			const book = bookList.find((b) => b.title === bookTitle);
-// 			if (book) book.quantity++;
-
-// 			borrowList.splice(index, 1);
-// 			localStorage.setItem("borrowList", JSON.stringify(borrowList));
-// 			localStorage.setItem("bookList", JSON.stringify(bookList));
-// 			location.reload();
-// 		}
-// 	});
-// }
-//
-//
-//
-//
-//
-// function cancelReservation(id) {
-// 	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không?", (xacNhan) => {
-// 		if (!xacNhan) return;
-
-// 		const index = borrowList.findIndex((b) => b.id === id);
-// 		if (index !== -1) {
-// 			const borrow = borrowList[index];
-// 			const book = bookList.find((b) => b.title === borrow.bookTitle);
-// 			if (book) book.quantity++;
-
-// 			borrow.isCancelled = true;
-// 			localStorage.setItem("borrowList", JSON.stringify(borrowList));
-// 			localStorage.setItem("bookList", JSON.stringify(bookList));
-// 			location.reload();
-// 		}
-// 	});
-// }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// function cancelReservation(id) {
-// 	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không?", (xacNhan) => {
-// 		if (!xacNhan) return;
-
-// 		const index = borrowList.findIndex((b) => b.id === id);
-// 		if (index !== -1) {
-// 			const borrow = borrowList[index];
-// 			const book = bookList.find((b) => b.title === borrow.bookTitle);
-// 			if (book) book.quantity++;
-
-// 			borrow.isCancelled = true;
-
-// 			localStorage.setItem("borrowList", JSON.stringify(borrowList));
-// 			localStorage.setItem("bookList", JSON.stringify(bookList));
-// 			location.reload();
-// 		}
-// 	});
-// }
-//
-//
-//
-//
-//
 function cancelReservation(id) {
 	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không?", (xacNhan) => {
 		if (!xacNhan) return;
@@ -162,26 +90,17 @@ function cancelReservation(id) {
 		}
 	});
 }
-//
-//
-//
-//
-//
+
 function renderBorrowCards() {
 	container.innerHTML = "";
-	//
+
 	const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-	//
 	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-	//
-	// const userBorrows = borrowList.filter(
-	// 	(b) => b.email === currentUser.email && !b.isReturned
-	// );
-	//
+
 	const userBorrows = borrowList.filter(
 		(b) => b.email === currentUser.email && !b.isReturned && !b.isCancelled
 	);
-	//
+
 	if (userBorrows.length === 0) {
 		container.innerHTML = `
 		<div class="khongcogi">

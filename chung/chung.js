@@ -333,6 +333,28 @@ window.addEventListener("load", function () {
 	}
 });
 
+window.showPopup = function (message) {
+	const overlay = document.getElementById("overlay");
+	const msg = document.getElementById("message");
+	const closeBtn = document.getElementById("popup-close-btn");
+	const yesBtn = document.getElementById("confirm-yes-btn");
+	const noBtn = document.getElementById("confirm-no-btn");
+
+	if (!overlay || !msg) return;
+
+	msg.innerText = message;
+	overlay.classList.add("show");
+
+	closeBtn.style.display = "inline-block";
+	yesBtn.style.display = "none";
+	noBtn.style.display = "none";
+
+	closeBtn.onclick = () => overlay.classList.remove("show");
+	overlay.onclick = (e) => {
+		if (e.target === overlay) overlay.classList.remove("show");
+	};
+};
+
 window.showConfirm = function (message, callback) {
 	const overlay = document.getElementById("overlay");
 	const msg = document.getElementById("message");

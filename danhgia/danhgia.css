@@ -5,6 +5,7 @@
 
 .khung-danhgia h2 {
 	margin-bottom: 0;
+	margin-top: 5px;
 }
 
 textarea {
@@ -39,6 +40,7 @@ textarea::-webkit-scrollbar {
 	display: flex;
 	flex-direction: row-reverse;
 	margin-right: 190px;
+	margin-bottom: 30px;
 	gap: 10px;
 	--xam: white;
 	--vang: gold;

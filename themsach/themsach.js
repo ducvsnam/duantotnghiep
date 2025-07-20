@@ -3,33 +3,8 @@ const preview = document.getElementById("preview");
 const saveBtn = document.getElementById("saveBtn");
 const result = document.getElementById("result");
 const searchInput = document.getElementById("searchInput");
-const searchBox = document.getElementById("searchBox");
-const suggestionsDiv = document.getElementById("suggestionssearch");
 
-function getBooks() {
-	const saved = localStorage.getItem("bookList");
-	if (saved) {
-		return JSON.parse(saved);
-	} else {
-		localStorage.setItem("bookList", JSON.stringify(defaultBooks));
-		return defaultBooks;
-	}
-}
-
-function saveBooks(books) {
-	localStorage.setItem("bookList", JSON.stringify(books));
-}
-
-function deleteBook(index) {
-	const books = getBooks();
-	showConfirm("Bạn có chắc chắn muốn xoá sách này không", function (xacNhan) {
-		if (xacNhan) {
-			books.splice(index, 1);
-			saveBooks(books);
-			renderBooks();
-		}
-	});
-}
+searchInput.addEventListener("input", renderBooks);
 
 function renderBooks() {
 	const books = getBooks();
@@ -117,38 +92,8 @@ function editBook(index) {
 	editingIndex = index;
 	saveBtn.textContent = "Lưu thông tin";
 }
-//
-//
-//
-//
-//
-document.addEventListener("DOMContentLoaded", () => {
-	if (!localStorage.getItem("bookList")) {
-		saveBooks(defaultBooks);
-	}
-	renderBooks();
 
-	const fileInput = document.getElementById("imageUpload");
-	const preview = document.getElementById("preview");
-
-	fileInput.addEventListener("change", function () {
-		const file = this.files[0];
-		if (!file) return;
-
-		const reader = new FileReader();
-		reader.onload = function (e) {
-			preview.src = e.target.result;
-			preview.classList.add("show");
-			document.getElementById("uploadIcon").style.display = "none";
-			document.getElementById("uploadText").style.display = "none";
-		};
-		reader.readAsDataURL(file);
-	});
-});
-
-searchInput.addEventListener("input", renderBooks);
-
-saveBtn.addEventListener("click", () => {
+function addBook() {
 	const title = document.getElementById("bookTitle").value.trim();
 	const author = document.getElementById("author").value.trim();
 	const genre = document.getElementById("genre").value.trim();
@@ -183,6 +128,18 @@ saveBtn.addEventListener("click", () => {
 	if (!/^\d{4}$/.test(year)) {
 		showPopup("Năm xuất bản phải là số có 4 chữ số");
 		return;
+	}
+
+	let customGenres = JSON.parse(localStorage.getItem("customGenres") || "[]");
+
+	if (
+		!defaultGenres.includes(genre) &&
+		!customGenres.includes(genre) &&
+		genre.trim() !== "" &&
+		genre.toLowerCase() !== "thể loại khác"
+	) {
+		customGenres.unshift(genre);
+		localStorage.setItem("customGenres", JSON.stringify(customGenres));
 	}
 
 	const books = getBooks();
@@ -234,7 +191,45 @@ saveBtn.addEventListener("click", () => {
 	preview.classList.remove("show");
 	document.getElementById("uploadIcon").style.display = "block";
 	document.getElementById("uploadText").style.display = "block";
-});
+}
+
+function getBooks() {
+	const saved = localStorage.getItem("bookList");
+	if (saved) {
+		return JSON.parse(saved);
+	} else {
+		localStorage.setItem("bookList", JSON.stringify(defaultBooks));
+		return defaultBooks;
+	}
+}
+
+function saveBooks(books) {
+	localStorage.setItem("bookList", JSON.stringify(books));
+}
+
+function deleteBook(index) {
+	const books = getBooks();
+	showConfirm("Bạn có chắc chắn muốn xoá sách này không", function (xacNhan) {
+		if (xacNhan) {
+			books.splice(index, 1);
+			saveBooks(books);
+			renderBooks();
+		}
+	});
+}
+
+function saveNewGenreIfNeeded(genre) {
+	const customGenres = JSON.parse(localStorage.getItem("customGenres") || "[]");
+	if (
+		!defaultGenres.includes(genre) &&
+		!customGenres.includes(genre) &&
+		genre.trim() !== "" &&
+		genre !== "Thể loại khác"
+	) {
+		customGenres.unshift(genre);
+		localStorage.setItem("customGenres", JSON.stringify(customGenres));
+	}
+}
 
 imageUpload.addEventListener("change", function (e) {
 	const file = e.target.files[0];
@@ -250,8 +245,7 @@ imageUpload.addEventListener("change", function (e) {
 	}
 });
 
-const genreOptions = [
-	"Tất cả thể loại",
+const defaultGenres = [
 	"Trinh thám",
 	"Ngôn tình",
 	"Khoa học viễn tưởng",
@@ -261,58 +255,79 @@ const genreOptions = [
 	"Kinh dị",
 	"Tiểu thuyết các loại",
 ];
-
-searchBox.placeholder = "Chọn thể loại...";
-searchBox.value = "";
-
-searchBox.addEventListener("focus", () => {
-	suggestionsSearch.innerHTML = "";
-	genreOptions.forEach((option) => {
-		const item = document.createElement("div");
-		item.textContent = option;
-		item.classList.add("suggestion-item");
-		item.addEventListener("click", () => {
-			searchBox.value = option;
-			searchBox.dataset.genre = option === "Tất cả thể loại" ? "" : option;
-			suggestionsSearch.classList.remove("show");
-			renderBooks();
-		});
-		suggestionsSearch.appendChild(item);
-	});
-	suggestionsSearch.classList.add("show");
-});
 
 const genreInput = document.getElementById("genre");
 const suggestionsInfo = document.getElementById("suggestionsinfo");
-const suggestionsSearch = document.getElementById("suggestionssearch");
-
-const genreOptionstl = [
-	"Trinh thám",
-	"Ngôn tình",
-	"Khoa học viễn tưởng",
-	"Ngụ ngôn triết lý",
-	"Giả tưởng kỳ ảo",
-	"Tâm lý học",
-	"Kinh dị",
-	"Tiểu thuyết các loại",
-];
+const searchBox = document.getElementById("searchBox");
+const suggestionsDiv = document.getElementById("suggestionssearch");
 
 genreInput.placeholder = "Chọn thể loại...";
 genreInput.value = "";
 
 genreInput.addEventListener("focus", () => {
 	suggestionsInfo.innerHTML = "";
-	genreOptionstl.forEach((option) => {
+	genreInput.placeholder = "Chọn thể loại...";
+
+	const customGenres = JSON.parse(localStorage.getItem("customGenres") || "[]");
+	const fullGenres = [...customGenres, ...defaultGenres, "Thể loại khác"];
+
+	fullGenres.forEach((option) => {
 		const item = document.createElement("div");
 		item.textContent = option;
 		item.classList.add("suggestion-item");
+
 		item.addEventListener("click", () => {
-			genreInput.value = option;
+			if (option === "Thể loại khác") {
+				genreInput.readOnly = false;
+				genreInput.value = "";
+				genreInput.focus();
+			} else {
+				genreInput.readOnly = true;
+				genreInput.value = option;
+			}
 			suggestionsInfo.classList.remove("show");
 		});
+
 		suggestionsInfo.appendChild(item);
 	});
+
 	suggestionsInfo.classList.add("show");
+});
+
+searchBox.placeholder = "Tìm kiếm theo thể loại...";
+searchBox.value = "";
+
+searchBox.addEventListener("focus", () => {
+	suggestionsDiv.innerHTML = "";
+
+	const customGenres = JSON.parse(localStorage.getItem("customGenres") || "[]");
+	const fullGenres = ["Tất cả thể loại", ...defaultGenres, ...customGenres];
+
+	fullGenres.forEach((option) => {
+		const item = document.createElement("div");
+		item.textContent = option;
+		item.classList.add("suggestion-item");
+
+		item.addEventListener("click", () => {
+			searchBox.value = option;
+			searchBox.dataset.genre = option === "Tất cả thể loại" ? "" : option;
+			suggestionsDiv.classList.remove("show");
+			renderBooks();
+		});
+
+		suggestionsDiv.appendChild(item);
+	});
+
+	suggestionsDiv.classList.add("show");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+	if (!localStorage.getItem("bookList")) {
+		saveBooks(defaultBooks);
+	}
+	renderBooks();
+
+	saveBtn.addEventListener("click", addBook);
 });
 
 document.addEventListener("click", (e) => {
@@ -320,29 +335,7 @@ document.addEventListener("click", (e) => {
 		suggestionsInfo.classList.remove("show");
 	}
 
-	if (!suggestionsSearch.contains(e.target) && e.target !== searchBox) {
-		suggestionsSearch.classList.remove("show");
+	if (!suggestionsDiv.contains(e.target) && e.target !== searchBox) {
+		suggestionsDiv.classList.remove("show");
 	}
 });
-
-window.showPopup = function (message) {
-	const overlay = document.getElementById("overlay");
-	const msg = document.getElementById("message");
-	const closeBtn = document.getElementById("popup-close-btn");
-	const yesBtn = document.getElementById("confirm-yes-btn");
-	const noBtn = document.getElementById("confirm-no-btn");
-
-	if (!overlay || !msg) return;
-
-	msg.innerText = message;
-	overlay.classList.add("show");
-
-	closeBtn.style.display = "inline-block";
-	yesBtn.style.display = "none";
-	noBtn.style.display = "none";
-
-	closeBtn.onclick = () => overlay.classList.remove("show");
-	overlay.onclick = (e) => {
-		if (e.target === overlay) overlay.classList.remove("show");
-	};
-};
