@@ -57,7 +57,7 @@ function handleRegister() {
 		return;
 	}
 
-	if (username.trim().toLowerCase() === "cat boss") {
+	if (username.trim().toLowerCase() === "CatBoss") {
 		showPopup("Tên đăng nhập này đã được quản trị viên sử dụng");
 		return;
 	}
@@ -127,10 +127,10 @@ function handleLogin() {
 	const username = document.getElementById("loginUsername").value;
 	const password = document.getElementById("loginPassword").value;
 
-	if (username === "Cat Boss" && password === "CatsStackBoss@888") {
+	if (username === "CatBoss" && password === "CatsStackBoss@888") {
 		localStorage.setItem(
 			"currentUser",
-			JSON.stringify({ username: "Cat Boss", email: "CatsStackBoss@gmail.com" })
+			JSON.stringify({ username: "CatBoss", email: "CatsStackBoss@gmail.com" })
 		);
 
 		document.body.classList.remove("fade-in");
@@ -163,7 +163,7 @@ function handleLogin() {
 
 		setTimeout(() => {
 			window.location.href = "../nguoidung/nguoidung.html";
-		}, 800);
+		}, 1500);
 	} else {
 		showPopup("Sai tên đăng nhập hoặc mật khẩu");
 	}

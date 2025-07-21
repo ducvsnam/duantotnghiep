@@ -1,6 +1,6 @@
 const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const container = document.getElementById("borrowHistoryList");
 
 function normalizeDate(dateStr) {
@@ -71,7 +71,11 @@ function renderBorrowCards() {
 	container.innerHTML = "";
 
 	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-	const userBorrows = borrowList.filter((b) => b.email === currentUser.email);
+	//
+	// const userBorrows = borrowList.filter((b) => b.email === currentUser.email);
+	//
+	const userBorrows = borrowList;
+	//
 	if (userBorrows.length === 0) {
 		container.innerHTML = `
 		<div class="khongcogi">

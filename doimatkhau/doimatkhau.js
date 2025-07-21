@@ -3,7 +3,7 @@ function changePassword() {
 	const newPass = document.getElementById("newPassword").value;
 	const confirmPass = document.getElementById("confirmPassword").value;
 
-	const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+	// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 	const users = JSON.parse(localStorage.getItem("users") || "[]");
 
 	if (!currentUser) {
@@ -46,4 +46,10 @@ function changePassword() {
 
 	showPopup("Đổi mật khẩu thành công");
 	window.location.href = "nguoidung.html";
+}
+
+function validatePassword(password) {
+	const regex =
+		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+	return regex.test(password);
 }

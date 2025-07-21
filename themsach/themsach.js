@@ -198,6 +198,7 @@ function addBook() {
 			return;
 		}
 		books.push({ title, author, genre, year, quantity, image: imageSrc });
+		showPopup("Thêm sách thành công");
 		saveBtn.textContent = "Thêm sách";
 	} else {
 		const isDuplicate = books.some(

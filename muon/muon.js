@@ -4,7 +4,11 @@ if (!localStorage.getItem("bookList")) {
 
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+//
+// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+//
+// let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+//
 const input = document.getElementById("bookTitle");
 const suggestionsBox = document.getElementById("suggestions");
 

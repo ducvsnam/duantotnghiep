@@ -202,7 +202,8 @@ select option {
 .up,
 .down,
 .back,
-.back-thongtin {
+.back-thongtin,
+.back-thongke {
 	font-weight: bold;
 	cursor: pointer;
 	transition: 0.2s;
@@ -230,7 +231,8 @@ select option {
 }
 
 .back,
-.back-thongtin {
+.back-thongtin,
+.back-thongke {
 	bottom: 610px;
 	height: 40px;
 }
@@ -238,7 +240,8 @@ select option {
 .up::before,
 .down::before,
 .back::before,
-.back-thongtin::before {
+.back-thongtin::before,
+.back-thongke::before {
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 100%);
@@ -269,10 +272,17 @@ select option {
 	width: 100%;
 }
 
+.back-thongke::before {
+	content: "⬅ Quay lại trang thống kê";
+	transform: translateX(100%);
+	width: 100%;
+}
+
 .up span,
 .down span,
 .back span,
-.back-thongtin span {
+.back-thongtin span,
+.back-thongke span {
 	display: inline-block;
 	transition: transform 0.3s ease;
 	position: relative;
@@ -288,21 +298,24 @@ select option {
 }
 
 .back:hover span,
-.back-thongtin:hover span {
+.back-thongtin:hover span,
+.back-thongke:hover span {
 	transform: translateX(-200%);
 }
 
 .up:hover,
 .down:hover,
 .back:hover,
-.back-thongtin:hover {
+.back-thongtin:hover,
+.back-thongke:hover {
 	font-size: 25px;
 	transform: scale(1.1);
 	padding: 0 12px;
 }
 
 .back:hover,
-.back-thongtin:hover {
+.back-thongtin:hover,
+.back-thongke:hover {
 	left: 21.5px;
 	bottom: 607px;
 	font-size: 20px;
@@ -312,7 +325,8 @@ select option {
 .up:hover::before,
 .down:hover::before,
 .back:hover::before,
-.back-thongtin:hover::before {
+.back-thongtin:hover::before,
+.back-thongke:hover::before {
 	transform: translate(-50%, 0%);
 	opacity: 1;
 }
@@ -320,7 +334,8 @@ select option {
 .up:active,
 .down:active,
 .back:active,
-.back-thongtin:active {
+.back-thongtin:active,
+.back-thongke:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }
@@ -1064,6 +1079,7 @@ h4 {
 .nut-doimatkhau,
 .nut-thayanh,
 .nut-danhgia,
+.nut-xemdanhgia,
 #clearStorageBtn {
 	background-color: #4509ae;
 	color: white;
@@ -1097,6 +1113,7 @@ h4 {
 .nut-doimatkhau:hover,
 .nut-thayanh:hover,
 .nut-danhgia:hover,
+.nut-xemdanhgia:hover,
 #mainActionBtn:hover,
 #clearStorageBtn:hover {
 	font-size: 25px;
@@ -1112,6 +1129,7 @@ h4 {
 .nut-doimatkhau:active,
 .nut-thayanh:active,
 .nut-danhgia:active,
+.nut-xemdanhgia:active,
 #mainActionBtn:active,
 #clearStorageBtn:active {
 	transform: scale(1.1) translate(3px, 3px);

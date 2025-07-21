@@ -1,13 +1,30 @@
 // chức năng bảo mật web
-const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
-
-const allowAnonymous = ["chinh.html", "thuvien.html", "dangnhap.html"];
+// const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+//
+//
+//
+let currentUser = null;
+try {
+	currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+} catch (e) {
+	currentUser = null;
+}
+//
+//
+//
+const allowAnonymous = [
+	"chinh.html",
+	"thuvien.html",
+	"dangnhap.html",
+	"chitiet.html",
+];
 const adminOnlyPages = [
 	"lichsutong.html",
 	"quanly.html",
 	"themsach.html",
 	"thongke.html",
 	"thongtinquanly.html",
+	"xemdanhgia.html",
 ];
 const userOnlyPages = [
 	"nguoidung.html",
@@ -29,18 +46,29 @@ if (!currentUser && !isAllowed) {
 }
 
 // không cho bất kỳ ai vào các trang chức năng dành cho quản lý nếu không phải quản lý
-if (isAdminPage && (!currentUser || currentUser.username !== "Cat Boss")) {
-	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+if (isAdminPage && (!currentUser || currentUser.username !== "CatBoss")) {
+	// window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+	//
+	setTimeout(() => {
+		window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+	}, 200);
 }
 
 // không cho bất kỳ ai vào các trang chức năng dành cho người dùng nếu không phải người dùng
-if (isUserPage && currentUser?.username === "Cat Boss") {
+if (isUserPage && currentUser?.username === "CatBoss") {
 	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
 }
 
 function vuilongdangnhap() {
 	showPopup("Vui lòng đăng nhập để dùng chức năng này");
 }
+
+// chức năng kiểm tra mật khẩu
+// function validatePassword(password) {
+// 	const regex =
+// 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+// 	return regex.test(password);
+// }
 
 // hiện ứng ẩn hiện và kéo lên kéo xuống trang
 function revealOnScroll() {

@@ -1,6 +1,6 @@
 const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const container = document.getElementById("borrowHistoryList");
 
 const userBorrows = borrowList.filter(
