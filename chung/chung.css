@@ -741,7 +741,8 @@ ul {
 .logo-img,
 .ava-img,
 .ava-img-user,
-.ava-img-admin {
+.ava-img-admin,
+.anh-danhgia {
 	width: 40px;
 	height: 40px;
 	margin-right: 10px;
@@ -802,6 +803,7 @@ header .container {
 
 .khung-info,
 .khung-danhgia,
+.khung-xemdanhgia,
 .khung-thongke {
 	display: flex;
 	background-color: #4509ae;
@@ -1080,6 +1082,7 @@ h4 {
 .nut-thayanh,
 .nut-danhgia,
 .nut-xemdanhgia,
+.nut-taidulieu,
 #clearStorageBtn {
 	background-color: #4509ae;
 	color: white;
@@ -1114,6 +1117,7 @@ h4 {
 .nut-thayanh:hover,
 .nut-danhgia:hover,
 .nut-xemdanhgia:hover,
+.nut-taidulieu:hover,
 #mainActionBtn:hover,
 #clearStorageBtn:hover {
 	font-size: 25px;
@@ -1130,6 +1134,7 @@ h4 {
 .nut-thayanh:active,
 .nut-danhgia:active,
 .nut-xemdanhgia:active,
+.nut-taidulieu:active,
 #mainActionBtn:active,
 #clearStorageBtn:active {
 	transform: scale(1.1) translate(3px, 3px);

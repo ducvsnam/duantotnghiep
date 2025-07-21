@@ -10,11 +10,29 @@ if (!reviewList) {
 	danhGiaList.forEach((review) => {
 		const card = document.createElement("div");
 		card.className = "review-card";
+
+		const avatar = review.image || "../anh/theme/noava.jpg";
+		const name = review.name || "Ẩn danh";
+		const email = review.email || "Không rõ";
+		const rating = parseInt(review.rating) || 0;
+		// const stars = "★★★★★☆☆☆☆☆".slice(5 - rating, 10 - rating);
+		//
+		let stars = "";
+		for (let i = 1; i <= 5; i++) {
+			stars += `<span class="star ${i <= rating ? "filled" : ""}">★</span>`;
+		}
+		//
+		const comment = review.comment?.trim() || "Không có bình luận";
+
 		card.innerHTML = `
-			<img src="${review.image}"">
-			<p>${review.name} - ${review.email}</p>
-			<p><b>Chất lượng:</b> ${"★".repeat(review.rating)}</p>
-			<p><b>Bình luận:</b> ${review.comment}</p>
+			<div class="khung-xemdanhgia">
+				<div class="dong-thongtin">
+					<img src="${avatar}" class="anh-danhgia"/>
+					<b>${name}</b> - ${email}
+				</div>
+				<p><b>Chất lượng:</b><br>${stars}</p>
+				<p><b>Bình luận:</b><br>${comment}</p>
+			</div>
 		`;
 		reviewList.appendChild(card);
 	});

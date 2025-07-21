@@ -69,7 +69,7 @@ function returnBookConfirmed(borrowId) {
 }
 
 function cancelReservation(id) {
-	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không?", (xacNhan) => {
+	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không", (xacNhan) => {
 		if (!xacNhan) return;
 
 		const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];

@@ -1,11 +1,11 @@
-const params = new URLSearchParams(window.location.search);
-if (params.get("unauth") === "1") {
-	showPopup("Bạn chưa đăng nhập");
-	history.replaceState({}, document.title, window.location.pathname);
-} else if (params.get("noaccess") === "1") {
-	showPopup("Bạn không có quyền truy cập");
-	history.replaceState({}, document.title, window.location.pathname);
-}
+// const params = new URLSearchParams(window.location.search);
+// if (params.get("unauth") === "1") {
+// 	showPopup("Bạn chưa đăng nhập");
+// 	history.replaceState({}, document.title, window.location.pathname);
+// } else if (params.get("noaccess") === "1") {
+// 	showPopup("Bạn không có quyền truy cập");
+// 	history.replaceState({}, document.title, window.location.pathname);
+// }
 
 const flip = document.getElementById("flipCard");
 const btn = document.getElementById("mainActionBtn");

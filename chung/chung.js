@@ -12,52 +12,52 @@ try {
 //
 //
 //
-const allowAnonymous = [
-	"chinh.html",
-	"thuvien.html",
-	"dangnhap.html",
-	"chitiet.html",
-];
-const adminOnlyPages = [
-	"lichsutong.html",
-	"quanly.html",
-	"themsach.html",
-	"thongke.html",
-	"thongtinquanly.html",
-	"xemdanhgia.html",
-];
-const userOnlyPages = [
-	"nguoidung.html",
-	"muon.html",
-	"thongtinrieng.html",
-	"danhgia.html",
-	"doimatkhau.html",
-];
+// const allowAnonymous = [
+// 	"chinh.html",
+// 	"thuvien.html",
+// 	"dangnhap.html",
+// 	"chitiet.html",
+// ];
+// const adminOnlyPages = [
+// 	"lichsutong.html",
+// 	"quanly.html",
+// 	"themsach.html",
+// 	"thongke.html",
+// 	"thongtinquanly.html",
+// 	"xemdanhgia.html",
+// ];
+// const userOnlyPages = [
+// 	"nguoidung.html",
+// 	"muon.html",
+// 	"thongtinrieng.html",
+// 	"danhgia.html",
+// 	"doimatkhau.html",
+// ];
 
-const path = window.location.pathname;
+// const path = window.location.pathname;
 
-const isAllowed = allowAnonymous.some((page) => path.endsWith(page));
-const isAdminPage = adminOnlyPages.some((page) => path.endsWith(page));
-const isUserPage = userOnlyPages.some((page) => path.endsWith(page));
+// const isAllowed = allowAnonymous.some((page) => path.endsWith(page));
+// const isAdminPage = adminOnlyPages.some((page) => path.endsWith(page));
+// const isUserPage = userOnlyPages.some((page) => path.endsWith(page));
 
-// không cho bất kỳ ai vào các trang chức năng nếu chưa đăng nhập
-if (!currentUser && !isAllowed) {
-	window.location.href = "../dangnhap/dangnhap.html?unauth=1";
-}
+// // không cho bất kỳ ai vào các trang chức năng nếu chưa đăng nhập
+// if (!currentUser && !isAllowed) {
+// 	window.location.href = "../dangnhap/dangnhap.html?unauth=1";
+// }
 
-// không cho bất kỳ ai vào các trang chức năng dành cho quản lý nếu không phải quản lý
-if (isAdminPage && (!currentUser || currentUser.username !== "CatBoss")) {
-	// window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
-	//
-	setTimeout(() => {
-		window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
-	}, 200);
-}
+// // không cho bất kỳ ai vào các trang chức năng dành cho quản lý nếu không phải quản lý
+// if (isAdminPage && (!currentUser || currentUser.username !== "CatBoss")) {
+// 	// window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+// 	//
+// 	setTimeout(() => {
+// 		window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+// 	}, 200);
+// }
 
-// không cho bất kỳ ai vào các trang chức năng dành cho người dùng nếu không phải người dùng
-if (isUserPage && currentUser?.username === "CatBoss") {
-	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
-}
+// // không cho bất kỳ ai vào các trang chức năng dành cho người dùng nếu không phải người dùng
+// if (isUserPage && currentUser?.username === "CatBoss") {
+// 	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+// }
 
 function vuilongdangnhap() {
 	showPopup("Vui lòng đăng nhập để dùng chức năng này");
@@ -232,7 +232,10 @@ function chonAnhNguoiDung() {
 function renderBooksToBlocks() {
 	const storedBooks = typeof getBooks === "function" ? getBooks() : [];
 	const usingDefault = !Array.isArray(storedBooks) || storedBooks.length === 0;
-	const books = usingDefault ? defaultBooks : storedBooks;
+	// const books = usingDefault ? defaultBooks : storedBooks;
+	//
+	const books = JSON.parse(localStorage.getItem("bookList")) || [];
+	//
 
 	const order = [
 		5, 20, 21, 35, 50, 51, 65, 80, 81, 95, 0, 1, 2, 3, 4, 15, 16, 17, 18, 19,

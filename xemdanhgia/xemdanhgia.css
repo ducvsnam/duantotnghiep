@@ -1,0 +1,23 @@
+.khung-xemdanhgia {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 20px;
+}
+
+.dong-thongtin {
+	display: flex;
+	align-items: center;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+}
+
+.star {
+	display: none;
+}
+
+.star.filled {
+	display: inline;
+	color: gold;
+	font-size: 20px;
+}
