@@ -21,95 +21,110 @@ function exportLocalStorage() {
 	URL.revokeObjectURL(url);
 }
 
-// function generateStats() {
-// 	const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-// 	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+// const defaultBooks = [];
 
-// 	const totalBooks = bookList.length;
-
-// 	let mostQuantityBook = "Không có dữ liệu";
-// 	if (bookList.length > 0) {
-// 		const maxQty = Math.max(...bookList.map((b) => Number(b.quantity)));
-// 		const topBooks = bookList.filter((b) => Number(b.quantity) === maxQty);
-// 		mostQuantityBook = topBooks
-// 			.map((b) => `${b.title} (${b.quantity})`)
-// 			.join(", ");
-// 	}
-
-// 	const borrowCount = {};
-// 	borrowList.forEach((b) => {
-// 		borrowCount[b.bookTitle] = (borrowCount[b.bookTitle] || 0) + 1;
-// 	});
-
-// 	let mostBorrowedBook = "Chưa có lượt mượn";
-// 	if (Object.keys(borrowCount).length > 0) {
-// 		const maxCount = Math.max(...Object.values(borrowCount));
-// 		const topBorrowed = Object.keys(borrowCount).filter(
-// 			(title) => borrowCount[title] === maxCount
-// 		);
-// 		mostBorrowedBook = topBorrowed
-// 			.map((title) => `${title} (${borrowCount[title]} lượt)`)
-// 			.join(", ");
-// 	}
-
-// 	document.getElementById("stats").innerHTML = `
-// 		<p><strong>Tổng số sách:</strong> ${totalBooks}</p>
-// 		<p><strong>Sách có số lượng nhiều nhất:</strong> ${mostQuantityBook}</p>
-// 		<p><strong>Sách có lượt mượn nhiều nhất:</strong> ${mostBorrowedBook}</p>
-// 	`;
-// }
-
-// document.addEventListener("DOMContentLoaded", generateStats);
-//
-//
-//
-const defaultBooks = [];
-//
 document.addEventListener("DOMContentLoaded", () => {
 	updateStatistics();
 });
 
+// function getBooks() {
+// 	const saved = localStorage.getItem("bookList");
+// 	return saved ? JSON.parse(saved) : [];
+// }
+//
+//
+//
+// function getBooks() {
+// 	const saved = localStorage.getItem("bookList");
+// 	if (saved) {
+// 		return JSON.parse(saved);
+// 	} else {
+// 		const books = window.defaultBooks || [];
+// 		localStorage.setItem("bookList", JSON.stringify(books));
+// 		return books;
+// 	}
+// }
+//
+//
+//
 function getBooks() {
 	const saved = localStorage.getItem("bookList");
-	return saved ? JSON.parse(saved) : [];
+	if (saved) {
+		const parsed = JSON.parse(saved);
+		if (Array.isArray(parsed) && parsed.length > 0) {
+			return parsed;
+		}
+	}
+	const books = window.defaultBooks || [];
+	localStorage.setItem("bookList", JSON.stringify(books));
+	return books;
 }
-
+//
+//
+//
 function getBorrowList() {
 	const saved = localStorage.getItem("borrowList");
 	return saved ? JSON.parse(saved) : [];
 }
 
 function updateStatistics() {
-	//
 	if (!localStorage.getItem("bookList")) {
 		localStorage.setItem("bookList", "[]");
 	}
-	//
+
 	const books = getBooks();
 	const borrows = getBorrowList();
 
-	// const totalBooks = books.reduce((sum, b) => sum + Number(b.quantity || 0), 0);
-	//
 	const totalBooks = books.reduce((sum, b) => {
 		const qty = parseInt(b.quantity, 10);
 		return sum + (isNaN(qty) ? 0 : qty);
 	}, 0);
-	//
+
 	document.getElementById("tongsoSach").textContent = totalBooks;
 
+	// if (books.length > 0) {
+	// 	const maxQtyBook = books.reduce(
+	// 		(max, b) => (Number(b.quantity) > Number(max.quantity) ? b : max),
+	// 		books[0]
+	// 	);
+	// 	document.getElementById(
+	// 		"sachcosoluongnhieunhat"
+	// 	).textContent = `${maxQtyBook.title} (${maxQtyBook.quantity} cuốn)`;
+	// } else {
+	// 	document.getElementById("sachcosoluongnhieunhat").textContent =
+	// 		"Không có dữ liệu";
+	// }
+	//
+	//
+	//
 	if (books.length > 0) {
-		const maxQtyBook = books.reduce(
-			(max, b) => (Number(b.quantity) > Number(max.quantity) ? b : max),
-			books[0]
-		);
-		document.getElementById(
-			"sachcosoluongnhieunhat"
-		).textContent = `${maxQtyBook.title} (${maxQtyBook.quantity} cuốn)`;
+		const quantities = books.map((b) => Number(b.quantity));
+		const maxQty = Math.max(...quantities);
+		const minQty = Math.min(...quantities);
+
+		if (maxQty === minQty) {
+			document.getElementById(
+				"sachcosoluongnhieunhat"
+			).textContent = `Tất cả đều có số lượng bằng nhau (${maxQty} cuốn)`;
+		} else {
+			const maxBooks = books.filter((b) => Number(b.quantity) === maxQty);
+			if (maxBooks.length === 1) {
+				document.getElementById(
+					"sachcosoluongnhieunhat"
+				).textContent = `${maxBooks[0].title} (${maxQty} cuốn)`;
+			} else {
+				document.getElementById(
+					"sachcosoluongnhieunhat"
+				).textContent = `Có ${maxBooks.length} cuốn có số lượng nhiều nhất (${maxQty} cuốn)`;
+			}
+		}
 	} else {
 		document.getElementById("sachcosoluongnhieunhat").textContent =
 			"Không có dữ liệu";
 	}
-
+	//
+	//
+	//
 	const borrowCountMap = {};
 
 	borrows.forEach((entry) => {

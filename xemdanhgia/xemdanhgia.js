@@ -4,7 +4,7 @@ const reviewList = document.getElementById("reviewList");
 if (!reviewList) {
 	showPopup("Lỗi hiển thị: không tìm thấy phần tử reviewList");
 } else if (danhGiaList.length === 0) {
-	reviewList.innerHTML = "<p>Chưa có đánh giá nào</p>";
+	reviewList.innerHTML = "<p class='khongcogi'>Chưa có đánh giá nào</p>";
 } else {
 	reviewList.innerHTML = "";
 	danhGiaList.forEach((review) => {
@@ -15,13 +15,10 @@ if (!reviewList) {
 		const name = review.name || "Ẩn danh";
 		const email = review.email || "Không rõ";
 		const rating = parseInt(review.rating) || 0;
-		// const stars = "★★★★★☆☆☆☆☆".slice(5 - rating, 10 - rating);
-		//
 		let stars = "";
 		for (let i = 1; i <= 5; i++) {
 			stars += `<span class="star ${i <= rating ? "filled" : ""}">★</span>`;
 		}
-		//
 		const comment = review.comment?.trim() || "Không có bình luận";
 
 		card.innerHTML = `

@@ -16,6 +16,7 @@ try {
 // 	"chinh.html",
 // 	"thuvien.html",
 // 	"dangnhap.html",
+// 	"dangky.html",
 // 	"chitiet.html",
 // ];
 // const adminOnlyPages = [

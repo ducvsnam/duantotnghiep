@@ -1,12 +1,3 @@
-const params = new URLSearchParams(window.location.search);
-if (params.get("unauth") === "1") {
-	showPopup("Bạn chưa đăng nhập");
-	history.replaceState({}, document.title, window.location.pathname);
-} else if (params.get("noaccess") === "1") {
-	showPopup("Bạn không có quyền truy cập");
-	history.replaceState({}, document.title, window.location.pathname);
-}
-
 const flip = document.getElementById("flipCard");
 const btn = document.getElementById("mainActionBtn");
 
@@ -20,26 +11,24 @@ function switchForm(target) {
 	loginLink.classList.remove("active");
 	registerLink.classList.remove("active");
 
-	if (target === "register") {
+	if (target !== "register") {
 		flipCard.classList.add("flipped", "expanded-height");
+		btn.textContent = "Đăng nhập";
+		btn.setAttribute("onclick", "handleLogin()");
+		btn.style.marginTop = "115px";
+
+		loginLink.classList.add("active");
+	} else {
+		flipCard.classList.remove("flipped", "expanded-height");
 		btn.textContent = "Đăng ký";
 		btn.setAttribute("onclick", "handleRegister()");
-		btn.style.marginTop = "260px";
+		btn.style.marginTop = "375px";
 		registerForm.style.marginTop = "20px";
 
 		registerLink.classList.add("active");
-	} else {
-		flipCard.classList.remove("flipped", "expanded-height");
-		btn.textContent = "Đăng nhập";
-		btn.setAttribute("onclick", "handleLogin()");
-		btn.style.marginTop = "230px";
-
-		loginLink.classList.add("active");
 	}
 }
-//
-//
-//
+
 function validatePassword(password) {
 	const regex =
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;

@@ -10,7 +10,7 @@
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 		/>
 		<link rel="stylesheet" href="../chung/chung.css" />
-		<link rel="stylesheet" href="../dangnhap/dangnhap.css" />
+		<link rel="stylesheet" href="../dangky/dangky.css" />
 	</head>
 	<body>
 		<header>
@@ -41,29 +41,6 @@
 		<div class="reveal">
 			<div class="flip-card__inner" id="flipCard">
 				<div class="card-face card-front">
-					<div id="loginForm">
-						<label>Tên đăng nhập</label>
-						<input
-							type="text"
-							id="loginUsername"
-							placeholder="Nhập tên đăng nhập..."
-							maxlength="40"
-							autocomplete="off"
-						/>
-						<label>Mật khẩu</label>
-						<input
-							type="password"
-							id="loginPassword"
-							placeholder="Nhập mật khẩu..."
-							maxlength="40"
-						/>
-						<div class="switch-link" onclick="switchForm('register')">
-							Chưa có tài khoản? Đăng ký
-						</div>
-					</div>
-				</div>
-
-				<div class="card-face card-back">
 					<div class="container" id="registerForm">
 						<label>Tên đăng nhập</label>
 						<input
@@ -105,6 +82,29 @@
 						/>
 						<div class="switch-link" onclick="switchForm('login')">
 							Đã có tài khoản? Đăng nhập
+						</div>
+					</div>
+				</div>
+
+				<div class="card-face card-back">
+					<div id="loginForm">
+						<label>Tên đăng nhập</label>
+						<input
+							type="text"
+							id="loginUsername"
+							placeholder="Nhập tên đăng nhập..."
+							maxlength="40"
+							autocomplete="off"
+						/>
+						<label>Mật khẩu</label>
+						<input
+							type="password"
+							id="loginPassword"
+							placeholder="Nhập mật khẩu..."
+							maxlength="40"
+						/>
+						<div class="switch-link" onclick="switchForm('register')">
+							Chưa có tài khoản? Đăng ký
 						</div>
 					</div>
 				</div>
@@ -181,6 +181,6 @@
 		</div>
 
 		<script src="../chung/chung.js"></script>
-		<script src="../dangnhap/dangnhap.js"></script>
+		<script src="../dangky/dangky.js"></script>
 	</body>
 </html>

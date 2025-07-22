@@ -1,4 +1,4 @@
-const defaultBooks = [
+window.defaultBooks = [
 	{
 		title: "Thinking, Fast and Slow",
 		author: "Daniel Kahneman",
