@@ -1,38 +1,38 @@
-function renderMenu() {
-	const menu = document.getElementById("mainMenu");
-	if (!menu) return;
+// function renderMenu() {
+// 	const menu = document.getElementById("mainMenu");
+// 	if (!menu) return;
 
-	const user = JSON.parse(localStorage.getItem("loggedInUser"));
+// 	const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
-	let html = "";
+// 	let html = "";
 
-	if (!user) {
-		html = `
-			<li><a href="../chinh/chinh.html">Trang Chủ</a></li>
-			<li><a onclick="vuilongdangnhap()">Mượn Sách</a></li>
-			<li><a onclick="vuilongdangnhap()">Lịch Sử</a></li>
-			<li><a onclick="vuilongdangnhap()">Đánh Giá</a></li>
-			<li><a href="../dangnhap/dangnhap.html">Đăng Nhập</a></li>
-			<li><a href="../dangky/dangky.html">Đăng Ký</a></li>
-		`;
-	} else if (user.role === "user") {
-		html = `
-			<li><a href="../nguoidung/nguoidung.html">Trang Chủ</a></li>
-			<li><a href="../muon/muon.html">Mượn Sách</a></li>
-			<li><a href="../lichsurieng/lichsurieng.html">Lịch Sử</a></li>
-			<li><a href="../danhgia/danhgia.html">Đánh Giá</a></li>
-		`;
-	} else if (user.role === "admin") {
-		html = `
-			<li><a href="../quanly/quanly.html">Trang Chủ</a></li>
-			<li><a href="../themsach/themsach.html">Thêm Sách</a></li>
-			<li><a href="../lichsutong/lichsutong.html">Lịch Sử</a></li>
-			<li><a href="../thongke/thongke.html">Thống Kê</a></li>
-		`;
-	}
+// 	if (!user) {
+// 		html = `
+// 			<li><a href="../chinh/chinh.html">Trang Chủ</a></li>
+// 			<li><a onclick="vuilongdangnhap()">Mượn Sách</a></li>
+// 			<li><a onclick="vuilongdangnhap()">Lịch Sử</a></li>
+// 			<li><a onclick="vuilongdangnhap()">Đánh Giá</a></li>
+// 			<li><a href="../dangnhap/dangnhap.html">Đăng Nhập</a></li>
+// 			<li><a href="../dangky/dangky.html">Đăng Ký</a></li>
+// 		`;
+// 	} else if (user.role === "user") {
+// 		html = `
+// 			<li><a href="../nguoidung/nguoidung.html">Trang Chủ</a></li>
+// 			<li><a href="../muon/muon.html">Mượn Sách</a></li>
+// 			<li><a href="../lichsurieng/lichsurieng.html">Lịch Sử</a></li>
+// 			<li><a href="../danhgia/danhgia.html">Đánh Giá</a></li>
+// 		`;
+// 	} else if (user.role === "admin") {
+// 		html = `
+// 			<li><a href="../quanly/quanly.html">Trang Chủ</a></li>
+// 			<li><a href="../themsach/themsach.html">Thêm Sách</a></li>
+// 			<li><a href="../lichsutong/lichsutong.html">Lịch Sử</a></li>
+// 			<li><a href="../thongke/thongke.html">Thống Kê</a></li>
+// 		`;
+// 	}
 
-	menu.innerHTML = html;
-}
+// 	menu.innerHTML = html;
+// }
 //
 //
 //
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	//
 	//
 	//
-	renderMenu();
+	// renderMenu();
 });
 
 document.addEventListener("click", (e) => {

@@ -37,3 +37,12 @@ input {
 	margin-top: 25px;
 	margin-bottom: 83px;
 }
+
+.eye-toggle .eye,
+.eye-toggle .eye-slash {
+	margin-bottom: 3px;
+}
+
+.eye-toggle .eye-cuoi {
+	margin-bottom: 0;
+}

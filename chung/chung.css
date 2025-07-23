@@ -130,6 +130,56 @@ select option {
 	margin: 0 10px;
 }
 
+/* com mắt ẩn hiện mật khẩu */
+.form {
+	max-width: 300px;
+	border-radius: 5px;
+}
+
+.input-container {
+	position: relative;
+}
+
+.input-container input {
+	width: 350px;
+}
+
+.eye-toggle {
+	--color: black;
+	--size: 24px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 330px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: var(--size);
+	cursor: pointer;
+	fill: var(--color);
+}
+
+.eye-toggle .eye,
+.eye-toggle .eye-cuoi,
+.eye-toggle .eye-slash {
+	position: absolute;
+	animation: keyframes-fill 0.5s;
+	margin-bottom: 10px;
+}
+
+.eye-toggle .eye-slash {
+	display: none;
+}
+
+.eye-toggle.active .eye,
+.eye-toggle.active .eye-cuoi {
+	display: none;
+}
+
+.eye-toggle.active .eye-slash {
+	display: block;
+}
+
 /* đẩy sách lên */
 .book-item {
 	background-color: #4509ae;
