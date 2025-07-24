@@ -1,11 +1,6 @@
 const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const container = document.getElementById("borrowHistoryList");
-
-const userBorrows = borrowList.filter(
-	(b) => b.email === currentUser.email && !b.isReturned && !b.isCancelled
-);
 
 function normalizeDate(dateStr) {
 	const [d, m, y] = dateStr.split("/");
@@ -22,59 +17,20 @@ function calculateDaysLeft(dateStr) {
 	return diff;
 }
 
-function returnBook(borrowId) {
-	showConfirm("Bạn có chắc chắn muốn trả cuốn sách này không", (confirm) => {
-		if (!confirm) return;
-
-		const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-		const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-
-		const index = borrowList.findIndex((b) => b.id === borrowId);
-		if (index === -1) return;
-
-		const item = borrowList[index];
-		const bookIndex = bookList.findIndex((b) => b.title === item.bookTitle);
-
-		if (bookIndex !== -1) {
-			bookList[bookIndex].quantity += 1;
-			localStorage.setItem("bookList", JSON.stringify(bookList));
-		}
-
-		borrowList[index].isReturned = true;
-		localStorage.setItem("borrowList", JSON.stringify(borrowList));
-
-		renderBorrowCards();
-	});
-}
-
-function returnBookConfirmed(borrowId) {
-	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-	const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-
-	const index = borrowList.findIndex((b) => b.id === borrowId);
-	if (index === -1) return;
-
-	const item = borrowList[index];
-	const bookIndex = bookList.findIndex((b) => b.title === item.bookTitle);
-
-	if (bookIndex !== -1) {
-		bookList[bookIndex].quantity += 1;
-		localStorage.setItem("bookList", JSON.stringify(bookList));
-	}
-
-	borrowList.splice(index, 1);
-	localStorage.setItem("borrowList", JSON.stringify(borrowList));
-
-	renderBorrowCards();
+function calculateOverdueDays(dateStr) {
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+	const returnDate = normalizeDate(dateStr);
+	const diff = Math.ceil((today - returnDate) / (1000 * 60 * 60 * 24));
+	return diff;
 }
 
 function cancelReservation(id) {
-	showConfirm("Bạn có chắc chắn muốn huỷ đặt trước không", (xacNhan) => {
+	showConfirm("Bạn có chắc chắn muốn huỷ mượn sách không", (xacNhan) => {
 		if (!xacNhan) return;
 
 		const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
 		const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-
 		const index = borrowList.findIndex((b) => b.id === id);
 		if (index !== -1) {
 			const borrow = borrowList[index];
@@ -82,10 +38,8 @@ function cancelReservation(id) {
 			if (book) book.quantity++;
 
 			borrow.isCancelled = true;
-
 			localStorage.setItem("borrowList", JSON.stringify(borrowList));
 			localStorage.setItem("bookList", JSON.stringify(bookList));
-
 			renderBorrowCards();
 		}
 	});
@@ -94,19 +48,11 @@ function cancelReservation(id) {
 function renderBorrowCards() {
 	container.innerHTML = "";
 
-	const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-
-	const userBorrows = borrowList.filter(
-		(b) => b.email === currentUser.email && !b.isReturned && !b.isCancelled
-	);
+	const userBorrows = borrowList.filter((b) => b.email === currentUser.email);
 
 	if (userBorrows.length === 0) {
-		container.innerHTML = `
-		<div class="khongcogi">
-			<p>Bạn chưa mượn sách hoặc đã trả hết</p>
-		</div>
-	`;
+		container.innerHTML = `<div class="khongcogi"><p>Bạn chưa mượn sách hoặc đã trả hết</p></div>`;
 		return;
 	}
 	document.querySelectorAll(".khongcogi").forEach((el) => el.remove());
@@ -115,47 +61,69 @@ function renderBorrowCards() {
 	today.setHours(0, 0, 0, 0);
 
 	userBorrows.forEach((borrow) => {
-		const daysLeft = calculateDaysLeft(borrow.returnDate);
 		const book = bookList.find((b) => b.title === borrow.bookTitle);
 		const imgSrc = book?.image || "";
-
-		let status = "";
-		const borrowDateObj = borrow.borrowDate
+		const borrowDate = borrow.borrowDate
 			? normalizeDate(borrow.borrowDate)
 			: null;
+		const returnDate = borrow.returnDate
+			? normalizeDate(borrow.returnDate)
+			: null;
 
-		if (daysLeft < 0) {
-			status = "Quá hạn";
-		} else if (!borrowDateObj || borrowDateObj > today) {
+		let status = "";
+		if (borrow.isCancelled) {
+			status = "Đã huỷ";
+		} else if (!borrow.isApproved && returnDate && today > returnDate) {
+			status = "Quá hạn duyệt";
+		} else if (!borrow.isApproved) {
+			status = "Chờ duyệt";
+		} else if (returnDate && today > returnDate) {
+			const overdue = calculateOverdueDays(borrow.returnDate);
+			status = `Trả muộn (quá ${overdue} ngày)`;
+		} else if (borrow.isReturned) {
+			status = "Đã trả";
+		} else if (borrowDate > today) {
 			status = "Đặt trước";
 		} else {
+			const daysLeft = calculateDaysLeft(borrow.returnDate);
 			status = `Đang mượn (còn ${daysLeft} ngày)`;
 		}
 
 		let actionButton = "";
-		if (!borrow.isReturned) {
-			if (!borrowDateObj || borrowDateObj > today) {
-				actionButton = `<button onclick="cancelReservation(${borrow.id})">Huỷ đặt trước</button>`;
-			} else {
-				actionButton = `<button onclick="returnBook(${borrow.id})">Trả sách</button>`;
-			}
+		if (status === "Chờ duyệt") {
+			actionButton = `<button onclick="cancelReservation(${borrow.id})">Huỷ yêu cầu</button>`;
+		} else if (
+			status.startsWith("Đang mượn") ||
+			status.startsWith("Trả muộn")
+		) {
+			actionButton = `<button onclick="returnBook(${borrow.id})">Đánh dấu đã trả sách</button>`;
 		}
+
+		const thongTin1 = `<p${
+			!actionButton ? ' class="thongtin-khong"' : ""
+		}><b>Tên sách đã mượn:</b> ${borrow.bookTitle}</p>`;
+		const thongTin2 = `<p${
+			!actionButton ? ' class="thongtin-khong"' : ""
+		}><b>Ngày mượn:</b> ${borrow.borrowDate || "—"}</p>`;
+		const thongTin3 = `<p${
+			!actionButton ? ' class="thongtin-khong"' : ""
+		}><b>Ngày trả:</b> ${borrow.returnDate || "—"}</p>`;
+		const thongTin4 = `<p${
+			!actionButton ? ' class="thongtin-khong-cuoi"' : ""
+		}><b>Trạng thái:</b> ${status}</p>`;
 
 		const card = document.createElement("div");
 		card.className = "book-item";
 		card.innerHTML = `
 			<img src="${imgSrc}"/>
 			<div class="book-info">
-				<p><b>Tên sách đã mượn:</b> ${borrow.bookTitle}</p>
-				<p><b>Ngày mượn:</b> ${borrow.borrowDate}</p>
-				<p><b>Ngày trả:</b> ${borrow.returnDate}</p>
-				<p><b>Trạng thái:</b> ${status}</p>
-				<div class="book-buttons">
-					${actionButton}
-				</div>
+				${thongTin1}
+				${thongTin2}
+				${thongTin3}
+				${thongTin4}
+				<div class="book-buttons">${actionButton}</div>
 			</div>
 		`;
-
 		container.appendChild(card);
 	});
 }

@@ -4,11 +4,6 @@ if (!localStorage.getItem("bookList")) {
 
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-//
-// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-//
-// let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-//
 const input = document.getElementById("bookTitle");
 const suggestionsBox = document.getElementById("suggestions");
 
@@ -39,7 +34,6 @@ function updateSuggestions() {
 		div.style.whiteSpace = "nowrap";
 		div.style.display = "block";
 		div.style.width = "97%";
-
 		suggestionsBox.appendChild(div);
 		return;
 	}
@@ -57,19 +51,6 @@ function updateSuggestions() {
 		suggestionsBox.appendChild(div);
 	});
 }
-
-input.addEventListener("focus", updateSuggestions);
-input.addEventListener("input", () => {
-	selectedBookTitle = "";
-	updateSuggestions();
-});
-
-document.addEventListener("click", (e) => {
-	if (!e.target.closest("#bookTitle") && !e.target.closest("#suggestions")) {
-		suggestionsBox.innerHTML = "";
-		suggestionsBox.classList.remove("show");
-	}
-});
 
 function normalizeDate(dateStr) {
 	const [d, m, y] = dateStr.split("/");
@@ -91,16 +72,14 @@ function borrowBook() {
 		return;
 	}
 
-	const [bDay, bMonth, bYear] = borrowedDate.split("/");
-	const [rDay, rMonth, rYear] = returnDate.split("/");
-	const borrowD = new Date(bYear, bMonth - 1, bDay);
-	const returnD = new Date(rYear, rMonth - 1, rDay);
+	const borrowD = normalizeDate(borrowedDate);
+	const returnD = normalizeDate(returnDate);
 
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);
 
-	if (borrowD < today) {
-		showPopup("Ngày mượn không được trước ngày hôm nay");
+	if (returnD <= today) {
+		showPopup("Không thể mượn sách kết thúc trước hoặc vào hôm nay");
 		return;
 	}
 
@@ -109,8 +88,7 @@ function borrowBook() {
 		return;
 	}
 
-	const diffInMs = returnD - borrowD;
-	const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+	const diffInDays = (returnD - borrowD) / (1000 * 60 * 60 * 24);
 	if (diffInDays > 14) {
 		showPopup("Chỉ được mượn sách tối đa trong 14 ngày");
 		return;
@@ -123,7 +101,11 @@ function borrowBook() {
 	}
 
 	const alreadyBorrowed = borrowList.find(
-		(b) => b.email === currentUser.email && b.bookTitle === bookTitle
+		(b) =>
+			b.email === currentUser.email &&
+			b.bookTitle === bookTitle &&
+			!b.isReturned &&
+			!b.isCancelled
 	);
 	if (alreadyBorrowed) {
 		showPopup("Bạn đã mượn sách này và chưa trả");
@@ -131,14 +113,12 @@ function borrowBook() {
 	}
 
 	const hasOverdueBook = borrowList.some((b) => {
-		const sameUser = b.email === currentUser.email;
-		if (!sameUser || b.isReturned) return false;
+		if (b.email !== currentUser.email || b.isReturned || b.isCancelled)
+			return false;
+		if (!b.borrowDate || !b.returnDate) return false;
 
 		const borrowDateObj = normalizeDate(b.borrowDate);
 		const returnDateObj = normalizeDate(b.returnDate);
-
-		const today = new Date();
-		today.setHours(0, 0, 0, 0);
 
 		return borrowDateObj <= today && returnDateObj < today;
 	});
@@ -149,7 +129,7 @@ function borrowBook() {
 	}
 
 	const currentBorrowedCount = borrowList.filter(
-		(b) => b.email === currentUser.email
+		(b) => b.email === currentUser.email && !b.isReturned && !b.isCancelled
 	).length;
 
 	if (currentBorrowedCount >= 3) {
@@ -168,11 +148,13 @@ function borrowBook() {
 		bookTitle,
 		borrowDate: borrowedDate,
 		returnDate,
+		isReturned: false,
+		isCancelled: false,
+		isApproved: false,
 	});
 	localStorage.setItem("borrowList", JSON.stringify(borrowList));
 
 	showPopup("Mượn sách thành công");
-
 	document.querySelectorAll("input").forEach((i) => (i.value = ""));
 	suggestionsBox.innerHTML = "";
 	selectedBookTitle = "";
@@ -183,12 +165,26 @@ function borrowBook() {
 	const returnPicker = document.getElementById("returnDateDisplay")?._flatpickr;
 	if (borrowPicker) borrowPicker.clear();
 	if (returnPicker) returnPicker.clear();
+
+	updateSuggestions();
 }
+
+input.addEventListener("focus", updateSuggestions);
+input.addEventListener("input", () => {
+	selectedBookTitle = "";
+	updateSuggestions();
+});
+
+document.addEventListener("click", (e) => {
+	if (!e.target.closest("#bookTitle") && !e.target.closest("#suggestions")) {
+		suggestionsBox.innerHTML = "";
+		suggestionsBox.classList.remove("show");
+	}
+});
 
 document.addEventListener("DOMContentLoaded", () => {
 	const borrowedDisplay = document.getElementById("borrowedDateDisplay");
 	const borrowedHidden = document.getElementById("borrowedDate");
-
 	const returnDisplay = document.getElementById("returnDateDisplay");
 	const returnHidden = document.getElementById("returnDate");
 

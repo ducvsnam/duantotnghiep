@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 	const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-	// if (!currentUser) return;
 
 	if (currentUser) {
 		document.getElementById("ten-dangnhap").textContent =

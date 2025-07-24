@@ -21,32 +21,10 @@ function exportLocalStorage() {
 	URL.revokeObjectURL(url);
 }
 
-// const defaultBooks = [];
-
 document.addEventListener("DOMContentLoaded", () => {
 	updateStatistics();
 });
 
-// function getBooks() {
-// 	const saved = localStorage.getItem("bookList");
-// 	return saved ? JSON.parse(saved) : [];
-// }
-//
-//
-//
-// function getBooks() {
-// 	const saved = localStorage.getItem("bookList");
-// 	if (saved) {
-// 		return JSON.parse(saved);
-// 	} else {
-// 		const books = window.defaultBooks || [];
-// 		localStorage.setItem("bookList", JSON.stringify(books));
-// 		return books;
-// 	}
-// }
-//
-//
-//
 function getBooks() {
 	const saved = localStorage.getItem("bookList");
 	if (saved) {
@@ -59,9 +37,7 @@ function getBooks() {
 	localStorage.setItem("bookList", JSON.stringify(books));
 	return books;
 }
-//
-//
-//
+
 function getBorrowList() {
 	const saved = localStorage.getItem("borrowList");
 	return saved ? JSON.parse(saved) : [];
@@ -82,21 +58,6 @@ function updateStatistics() {
 
 	document.getElementById("tongsoSach").textContent = totalBooks;
 
-	// if (books.length > 0) {
-	// 	const maxQtyBook = books.reduce(
-	// 		(max, b) => (Number(b.quantity) > Number(max.quantity) ? b : max),
-	// 		books[0]
-	// 	);
-	// 	document.getElementById(
-	// 		"sachcosoluongnhieunhat"
-	// 	).textContent = `${maxQtyBook.title} (${maxQtyBook.quantity} cuốn)`;
-	// } else {
-	// 	document.getElementById("sachcosoluongnhieunhat").textContent =
-	// 		"Không có dữ liệu";
-	// }
-	//
-	//
-	//
 	if (books.length > 0) {
 		const quantities = books.map((b) => Number(b.quantity));
 		const maxQty = Math.max(...quantities);
@@ -122,9 +83,7 @@ function updateStatistics() {
 		document.getElementById("sachcosoluongnhieunhat").textContent =
 			"Không có dữ liệu";
 	}
-	//
-	//
-	//
+
 	const borrowCountMap = {};
 
 	borrows.forEach((entry) => {

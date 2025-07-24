@@ -2,10 +2,19 @@ p {
 	margin-bottom: 10px;
 }
 
+.thongtin-khong {
+	margin-bottom: 17.5px;
+}
+
+.thongtin-khong-cuoi {
+	margin-bottom: 0;
+}
+
 .book-item {
-	width: 650px;
 	padding: 15px;
+	padding-right: 20px;
 	margin: 50px;
+	gap: 15px;
 }
 
 .book-item img {

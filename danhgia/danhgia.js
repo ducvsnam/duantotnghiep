@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	const commentInput = document.getElementById("registerComment");
 
 	const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-	// commentInput.setAttribute("maxlength", "2000");
 
 	btn.addEventListener("click", function () {
 		const selectedStar = document.querySelector('input[name="star"]:checked');

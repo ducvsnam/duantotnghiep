@@ -197,8 +197,7 @@ function addBook() {
 			showPopup("Sách này đã tồn tại nên không thể thêm trùng");
 			return;
 		}
-		// books.push({ title, author, genre, year, quantity, image: imageSrc });
-		//
+
 		books.push({
 			title,
 			author,
@@ -226,8 +225,6 @@ function addBook() {
 			title,
 			author,
 			genre,
-			// year,
-			// quantity,
 			year: Number(year),
 			quantity: Number(quantity),
 			image: imageSrc,
