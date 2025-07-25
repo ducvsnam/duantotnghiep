@@ -78,8 +78,8 @@ function borrowBook() {
 	const today = new Date();
 	today.setHours(0, 0, 0, 0);
 
-	if (returnD <= today) {
-		showPopup("Không thể mượn sách kết thúc trước hoặc vào hôm nay");
+	if (borrowD < today) {
+		showPopup("Ngày mượn không được trước ngày hôm nay");
 		return;
 	}
 

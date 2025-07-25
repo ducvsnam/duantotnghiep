@@ -16,6 +16,7 @@ function switchForm(target) {
 		btn.textContent = "Đăng nhập";
 		btn.setAttribute("onclick", "handleLogin()");
 		btn.style.marginTop = "115px";
+		btn.style.marginBottom = "112px";
 
 		loginLink.classList.add("active");
 	} else {
@@ -23,6 +24,7 @@ function switchForm(target) {
 		btn.textContent = "Đăng ký";
 		btn.setAttribute("onclick", "handleRegister()");
 		btn.style.marginTop = "375px";
+		btn.style.marginBottom = "0";
 		registerForm.style.marginTop = "20px";
 
 		registerLink.classList.add("active");

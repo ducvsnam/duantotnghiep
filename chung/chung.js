@@ -1,77 +1,65 @@
 // chức năng bảo mật web
-// const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
-//
-//
-//
 let currentUser = null;
 try {
 	currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
 } catch (e) {
 	currentUser = null;
 }
-//
-//
-//
-// const allowAnonymous = [
-// 	"chinh.html",
-// 	"thuvien.html",
-// 	"dangnhap.html",
-// 	"dangky.html",
-// 	"chitiet.html",
-// ];
-// const adminOnlyPages = [
-// 	"lichsutong.html",
-// 	"quanly.html",
-// 	"themsach.html",
-// 	"thongke.html",
-// 	"thongtinquanly.html",
-// 	"xemdanhgia.html",
-// ];
-// const userOnlyPages = [
-// 	"nguoidung.html",
-// 	"muon.html",
-// 	"thongtinrieng.html",
-// 	"danhgia.html",
-// 	"doimatkhau.html",
-// ];
 
-// const path = window.location.pathname;
+const allowAnonymous = [
+	"chinh.html",
+	"dangnhap.html",
+	"dangky.html",
+	"chitietchung.html",
+	"thuvienchung.html",
+];
+const adminOnlyPages = [
+	"lichsutong.html",
+	"quanly.html",
+	"themsach.html",
+	"thongke.html",
+	"thongtinquanly.html",
+	"xemdanhgia.html",
+	"chitietquanly.html",
+	"thuvienquanly.html",
+];
+const userOnlyPages = [
+	"nguoidung.html",
+	"muon.html",
+	"thongtinrieng.html",
+	"danhgia.html",
+	"doimatkhau.html",
+	"chitietnguoidung.html",
+	"thuviennguoidung.html",
+];
 
-// const isAllowed = allowAnonymous.some((page) => path.endsWith(page));
-// const isAdminPage = adminOnlyPages.some((page) => path.endsWith(page));
-// const isUserPage = userOnlyPages.some((page) => path.endsWith(page));
+const pageName = window.location.pathname.split("/").pop();
 
-// // không cho bất kỳ ai vào các trang chức năng nếu chưa đăng nhập
-// if (!currentUser && !isAllowed) {
-// 	window.location.href = "../dangnhap/dangnhap.html?unauth=1";
-// }
+const isAllowed = allowAnonymous.includes(pageName);
+const isAdminPage = adminOnlyPages.includes(pageName);
+const isUserPage = userOnlyPages.includes(pageName);
 
-// // không cho bất kỳ ai vào các trang chức năng dành cho quản lý nếu không phải quản lý
-// if (isAdminPage && (!currentUser || currentUser.username !== "CatBoss")) {
-// 	// window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
-// 	//
-// 	setTimeout(() => {
-// 		window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
-// 	}, 200);
-// }
+// không cho bất kỳ ai vào các trang chức năng nếu chưa đăng nhập
+if (!currentUser && !isAllowed) {
+	window.location.href = "../dangnhap/dangnhap.html?unauth=1";
+}
 
-// // không cho bất kỳ ai vào các trang chức năng dành cho người dùng nếu không phải người dùng
-// if (isUserPage && currentUser?.username === "CatBoss") {
-// 	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
-// }
+// không cho bất kỳ ai vào các trang chức năng dành cho quản lý nếu không phải quản lý
+if (isAdminPage && (!currentUser || currentUser.username !== "CatBoss")) {
+	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+}
+
+// không cho bất kỳ ai vào các trang chức năng dành cho người dùng nếu không phải người dùng
+if (isUserPage && currentUser?.username === "CatBoss") {
+	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+}
 
 function vuilongdangnhap() {
 	showPopup("Vui lòng đăng nhập để dùng chức năng này");
 }
 
-// chức năng kiểm tra mật khẩu
-// function validatePassword(password) {
-// 	const regex =
-// 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-// 	return regex.test(password);
-// }
-
 // hiện ứng ẩn hiện và kéo lên kéo xuống trang
+// chức năng này chưa được kiểm định rõ cho cả 3 loại người dùng
 function revealOnScroll() {
 	const reveals = document.querySelectorAll(".reveal");
 	for (let i = 0; i < reveals.length; i++) {
@@ -118,7 +106,7 @@ window.addEventListener("scroll", toggleScrollButton);
 
 // thông tin trang chi tiết sách cho mọi đối tượng
 function initChiTietButtons() {
-	document.querySelectorAll(".chitiet").forEach((btn) => {
+	document.querySelectorAll(".chitietchung").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			const theDiv = btn.parentElement.querySelector(".the");
 			if (!theDiv) return;
@@ -130,7 +118,64 @@ function initChiTietButtons() {
 			const year = theDiv.getAttribute("data-year") || "";
 			const quantity = theDiv.getAttribute("data-quantity") || "";
 
-			const url = new URL("../chitiet/chitiet.html", window.location.origin);
+			const url = new URL(
+				"../chitietchung/chitietchung.html",
+				window.location.origin
+			);
+			url.searchParams.set("img", img);
+			url.searchParams.set("name", name);
+			url.searchParams.set("author", author);
+			url.searchParams.set("genre", genre);
+			url.searchParams.set("year", year);
+			url.searchParams.set("quantity", quantity);
+
+			window.location.href = url.href;
+		});
+	});
+	//
+	document.querySelectorAll(".chitietnguoidung").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const theDiv = btn.parentElement.querySelector(".the");
+			if (!theDiv) return;
+
+			const img = theDiv.querySelector("img")?.getAttribute("src") || "";
+			const name = theDiv.getAttribute("data-name") || "";
+			const author = theDiv.getAttribute("data-author") || "";
+			const genre = theDiv.getAttribute("data-genre") || "";
+			const year = theDiv.getAttribute("data-year") || "";
+			const quantity = theDiv.getAttribute("data-quantity") || "";
+
+			const url = new URL(
+				"../chitietnguoidung/chitietnguoidung.html",
+				window.location.origin
+			);
+			url.searchParams.set("img", img);
+			url.searchParams.set("name", name);
+			url.searchParams.set("author", author);
+			url.searchParams.set("genre", genre);
+			url.searchParams.set("year", year);
+			url.searchParams.set("quantity", quantity);
+
+			window.location.href = url.href;
+		});
+	});
+	//
+	document.querySelectorAll(".chitietquanly").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const theDiv = btn.parentElement.querySelector(".the");
+			if (!theDiv) return;
+
+			const img = theDiv.querySelector("img")?.getAttribute("src") || "";
+			const name = theDiv.getAttribute("data-name") || "";
+			const author = theDiv.getAttribute("data-author") || "";
+			const genre = theDiv.getAttribute("data-genre") || "";
+			const year = theDiv.getAttribute("data-year") || "";
+			const quantity = theDiv.getAttribute("data-quantity") || "";
+
+			const url = new URL(
+				"../chitietquanly/chitietquanly.html",
+				window.location.origin
+			);
 			url.searchParams.set("img", img);
 			url.searchParams.set("name", name);
 			url.searchParams.set("author", author);
@@ -142,6 +187,7 @@ function initChiTietButtons() {
 		});
 	});
 }
+//
 
 // hiệu ứng thông báo được chỉnh sửa thay cho alert thường
 function showPopup(message) {
@@ -312,12 +358,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	initChiTietButtons();
 
-	const tatBtn = document.querySelector(".tat");
-	if (tatBtn) {
-		tatBtn.addEventListener("click", () => {
-			window.location.href = "../thuvien/thuvien.html";
+	// chức năng này chưa được kiểm định rõ cho cả 3 loại người dùng
+	const tatchung = document.querySelector(".tatchung");
+	const tatnguoidung = document.querySelector(".tatnguoidung");
+	const tatquanly = document.querySelector(".tatquanly");
+	if (tatchung) {
+		tatchung.addEventListener("click", () => {
+			window.location.href = "../thuvienchung/thuvienchung.html";
+		});
+	} else if (tatnguoidung) {
+		tatnguoidung.addEventListener("click", () => {
+			window.location.href = "../thuviennguoidung/thuviennguoidung.html";
+		});
+	} else if (tatquanly) {
+		tatquanly.addEventListener("click", () => {
+			window.location.href = "../thuvienquanly/thuvienquanly.html";
 		});
 	}
+	//
 
 	const savedAdmin = localStorage.getItem("avatarQuanLy");
 	if (savedAdmin) {
@@ -519,7 +577,11 @@ window.showConfirm = function (message, callback) {
 	};
 };
 
-// chức năng chạy mượt lên đầu khi tải lại trang
+// chức năng chạy lên đầu khi tải lại trang
+if ("scrollRestoration" in history) {
+	history.scrollRestoration = "manual";
+}
+
 window.addEventListener("load", () => {
 	if (!location.hash) {
 		window.scrollTo({ top: 0, behavior: "smooth" });

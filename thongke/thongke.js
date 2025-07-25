@@ -1,30 +1,3 @@
-function clearStorage() {
-	localStorage.clear();
-	showPopup("Đã Reset toàn bộ dữ liệu về nguyên bản");
-}
-
-function exportLocalStorage() {
-	const data = {};
-	for (let i = 0; i < localStorage.length; i++) {
-		const key = localStorage.key(i);
-		data[key] = localStorage.getItem(key);
-	}
-
-	const jsonData = JSON.stringify(data, null, 2);
-	const blob = new Blob([jsonData], { type: "application/json" });
-	const url = URL.createObjectURL(blob);
-
-	const a = document.createElement("a");
-	a.href = url;
-	a.download = "localStorage-data.json";
-	a.click();
-	URL.revokeObjectURL(url);
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-	updateStatistics();
-});
-
 function getBooks() {
 	const saved = localStorage.getItem("bookList");
 	if (saved) {
@@ -87,23 +60,68 @@ function updateStatistics() {
 	const borrowCountMap = {};
 
 	borrows.forEach((entry) => {
-		if (entry.bookName) {
-			borrowCountMap[entry.bookName] =
-				(borrowCountMap[entry.bookName] || 0) + 1;
+		const title = entry.bookTitle || entry.bookName;
+		if (title && entry.isApproved && !entry.isCancelled) {
+			borrowCountMap[title] = (borrowCountMap[title] || 0) + 1;
 		}
 	});
 
-	let mostBorrowed = null;
-	let maxBorrow = 0;
+	const entries = Object.entries(borrowCountMap);
+	if (entries.length === 0) {
+		document.getElementById("sachcoluotmuonnhieunhat").textContent =
+			"Hiện chưa có lượt mượn sách";
+	} else {
+		const maxCount = Math.max(...entries.map(([, count]) => count));
+		const mostBorrowedBooks = entries.filter(([, count]) => count === maxCount);
 
-	for (const [title, count] of Object.entries(borrowCountMap)) {
-		if (count > maxBorrow) {
-			maxBorrow = count;
-			mostBorrowed = title;
+		if (mostBorrowedBooks.length === 1) {
+			const [title, count] = mostBorrowedBooks[0];
+			document.getElementById(
+				"sachcoluotmuonnhieunhat"
+			).textContent = `${title} (${count} lượt)`;
+		} else {
+			document.getElementById(
+				"sachcoluotmuonnhieunhat"
+			).textContent = `Có ${mostBorrowedBooks.length} cuốn sách được mượn nhiều nhất (${maxCount} lượt)`;
+		}
+	}
+}
+
+function clearStorage() {
+	localStorage.clear();
+	showPopup("Đã Reset toàn bộ dữ liệu về nguyên bản");
+}
+
+function exportLocalStorage() {
+	const data = {};
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		const value = localStorage.getItem(key);
+
+		try {
+			data[key] = JSON.parse(value);
+		} catch (e) {
+			data[key] = value;
 		}
 	}
 
-	document.getElementById("sachcoluotmuonnhieunhat").textContent = mostBorrowed
-		? `${mostBorrowed} (${maxBorrow} lượt)`
-		: "Chưa có lượt mượn nào";
+	const jsonData = JSON.stringify(data, null, 2);
+	const blob = new Blob([jsonData], { type: "application/json" });
+
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = "localStorage-data.json";
+	document.body.appendChild(a);
+	a.click();
+	document.body.removeChild(a);
+	URL.revokeObjectURL(url);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+	updateStatistics();
+
+	document
+		.getElementById("exportBtn")
+		.addEventListener("click", exportLocalStorage);
+});

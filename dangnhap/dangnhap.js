@@ -25,6 +25,7 @@ function switchForm(target) {
 		btn.textContent = "Đăng ký";
 		btn.setAttribute("onclick", "handleRegister()");
 		btn.style.marginTop = "260px";
+		btn.style.marginBottom = "0";
 		registerForm.style.marginTop = "20px";
 
 		registerLink.classList.add("active");
@@ -33,13 +34,12 @@ function switchForm(target) {
 		btn.textContent = "Đăng nhập";
 		btn.setAttribute("onclick", "handleLogin()");
 		btn.style.marginTop = "230px";
+		btn.style.marginBottom = "112px";
 
 		loginLink.classList.add("active");
 	}
 }
-//
-//
-//
+
 function validatePassword(password) {
 	const regex =
 		/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
