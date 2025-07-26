@@ -59,7 +59,6 @@ function vuilongdangnhap() {
 }
 
 // hiện ứng ẩn hiện và kéo lên kéo xuống trang
-// chức năng này chưa được kiểm định rõ cho cả 3 loại người dùng
 function revealOnScroll() {
 	const reveals = document.querySelectorAll(".reveal");
 	for (let i = 0; i < reveals.length; i++) {
@@ -129,10 +128,15 @@ function initChiTietButtons() {
 			url.searchParams.set("year", year);
 			url.searchParams.set("quantity", quantity);
 
-			window.location.href = url.href;
+			document.body.classList.remove("fade-in");
+			document.body.classList.add("fade-out");
+
+			setTimeout(() => {
+				window.location.href = url.href;
+			}, 800);
 		});
 	});
-	//
+
 	document.querySelectorAll(".chitietnguoidung").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			const theDiv = btn.parentElement.querySelector(".the");
@@ -156,10 +160,15 @@ function initChiTietButtons() {
 			url.searchParams.set("year", year);
 			url.searchParams.set("quantity", quantity);
 
-			window.location.href = url.href;
+			document.body.classList.remove("fade-in");
+			document.body.classList.add("fade-out");
+
+			setTimeout(() => {
+				window.location.href = url.href;
+			}, 800);
 		});
 	});
-	//
+
 	document.querySelectorAll(".chitietquanly").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			const theDiv = btn.parentElement.querySelector(".the");
@@ -183,11 +192,15 @@ function initChiTietButtons() {
 			url.searchParams.set("year", year);
 			url.searchParams.set("quantity", quantity);
 
-			window.location.href = url.href;
+			document.body.classList.remove("fade-in");
+			document.body.classList.add("fade-out");
+
+			setTimeout(() => {
+				window.location.href = url.href;
+			}, 800);
 		});
 	});
 }
-//
 
 // hiệu ứng thông báo được chỉnh sửa thay cho alert thường
 function showPopup(message) {
@@ -276,13 +289,47 @@ function chonAnhNguoiDung() {
 }
 
 // chức năng hiện sách theo danh sách mặc định và cập nhật khi được sửa
+// function renderBooksToBlocks() {
+// 	const storedBooks = typeof getBooks === "function" ? getBooks() : [];
+// 	const usingDefault = !Array.isArray(storedBooks) || storedBooks.length === 0;
+// 	// const books = usingDefault ? defaultBooks : storedBooks;
+// 	//
+// 	const books = JSON.parse(localStorage.getItem("bookList")) || [];
+// 	//
+
+// 	const order = [
+// 		5, 20, 21, 35, 50, 51, 65, 80, 81, 95, 0, 1, 2, 3, 4, 15, 16, 17, 18, 19,
+// 		30, 31, 32, 33, 34, 45, 46, 47, 48, 49, 60, 61, 62, 63, 64, 75, 76, 77, 78,
+// 		79, 90, 91, 92, 93, 94, 105, 106, 107, 108, 109,
+// 	];
+
+// 	const bookBlocks = document.querySelectorAll(".book-box");
+
+// 	bookBlocks.forEach((block, i) => {
+// 		const index = order[i];
+
+// 		const book = books[index];
+// 		if (!book) return;
+
+// 		const bookDiv = block.querySelector(".the");
+// 		if (bookDiv) {
+// 			bookDiv.dataset.name = book.title;
+// 			bookDiv.dataset.author = book.author;
+// 			bookDiv.dataset.genre = book.genre;
+// 			bookDiv.dataset.year = book.year;
+// 			bookDiv.dataset.quantity = book.quantity;
+// 		}
+
+// 		const img = block.querySelector(".sach");
+// 		if (img) img.src = book.image;
+
+// 		const title = block.querySelector("h4");
+// 		if (title) title.textContent = book.title;
+// 	});
+// }
+//
 function renderBooksToBlocks() {
-	const storedBooks = typeof getBooks === "function" ? getBooks() : [];
-	const usingDefault = !Array.isArray(storedBooks) || storedBooks.length === 0;
-	// const books = usingDefault ? defaultBooks : storedBooks;
-	//
 	const books = JSON.parse(localStorage.getItem("bookList")) || [];
-	//
 
 	const order = [
 		5, 20, 21, 35, 50, 51, 65, 80, 81, 95, 0, 1, 2, 3, 4, 15, 16, 17, 18, 19,
@@ -294,11 +341,25 @@ function renderBooksToBlocks() {
 
 	bookBlocks.forEach((block, i) => {
 		const index = order[i];
-
 		const book = books[index];
-		if (!book) return;
 
 		const bookDiv = block.querySelector(".the");
+		const img = block.querySelector(".sach");
+		const title = block.querySelector("h4");
+
+		if (!book || book === null || book.deleted) {
+			if (bookDiv) {
+				bookDiv.dataset.name = "";
+				bookDiv.dataset.author = "";
+				bookDiv.dataset.genre = "";
+				bookDiv.dataset.year = "";
+				bookDiv.dataset.quantity = "";
+			}
+			if (img) img.src = "/anh/theme/nothing.jpg";
+			if (title) title.textContent = "Sách đã bị xóa";
+			return;
+		}
+
 		if (bookDiv) {
 			bookDiv.dataset.name = book.title;
 			bookDiv.dataset.author = book.author;
@@ -306,14 +367,11 @@ function renderBooksToBlocks() {
 			bookDiv.dataset.year = book.year;
 			bookDiv.dataset.quantity = book.quantity;
 		}
-
-		const img = block.querySelector(".sach");
 		if (img) img.src = book.image;
-
-		const title = block.querySelector("h4");
 		if (title) title.textContent = book.title;
 	});
 }
+//
 
 function getBooks() {
 	const saved = localStorage.getItem("bookList");
@@ -358,24 +416,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	initChiTietButtons();
 
-	// chức năng này chưa được kiểm định rõ cho cả 3 loại người dùng
 	const tatchung = document.querySelector(".tatchung");
 	const tatnguoidung = document.querySelector(".tatnguoidung");
 	const tatquanly = document.querySelector(".tatquanly");
 	if (tatchung) {
 		tatchung.addEventListener("click", () => {
-			window.location.href = "../thuvienchung/thuvienchung.html";
+			document.body.classList.remove("fade-in");
+			document.body.classList.add("fade-out");
+
+			setTimeout(() => {
+				window.location.href = "../thuvienchung/thuvienchung.html";
+			}, 800);
 		});
 	} else if (tatnguoidung) {
 		tatnguoidung.addEventListener("click", () => {
-			window.location.href = "../thuviennguoidung/thuviennguoidung.html";
+			document.body.classList.remove("fade-in");
+			document.body.classList.add("fade-out");
+
+			setTimeout(() => {
+				window.location.href = "../thuviennguoidung/thuviennguoidung.html";
+			}, 800);
 		});
 	} else if (tatquanly) {
 		tatquanly.addEventListener("click", () => {
-			window.location.href = "../thuvienquanly/thuvienquanly.html";
+			document.body.classList.remove("fade-in");
+			document.body.classList.add("fade-out");
+
+			setTimeout(() => {
+				window.location.href = "../thuvienquanly/thuvienquanly.html";
+			}, 800);
 		});
 	}
-	//
 
 	const savedAdmin = localStorage.getItem("avatarQuanLy");
 	if (savedAdmin) {

@@ -3,14 +3,15 @@ function getBooks() {
 	return saved ? JSON.parse(saved) : [];
 }
 
-document.querySelectorAll(".muonsachchitiet").forEach((btn) =>
-	btn.addEventListener("click", () => {
-		const bookName = params.get("name") || "";
-		const url = new URL("../muon/muon.html", window.location.origin);
-		url.searchParams.set("book", bookName);
-		window.location.href = url.href;
-	})
-);
+// document.querySelectorAll(".muonchitiet-quanly").forEach((btn) =>
+// 	btn.addEventListener("click", () => {
+// 		showPopup("Chức năng này chỉ dành cho người dùng");
+// 	})
+// );
+
+function chidanhchonguoidung() {
+	showPopup("Chức năng này chỉ dành cho người dùng");
+}
 
 const params = new URLSearchParams(window.location.search);
 const bookName = params.get("name") || "...";

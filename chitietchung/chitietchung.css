@@ -9,6 +9,10 @@ h2 {
 	margin: 10px;
 }
 
+.menu {
+	margin-left: 500px;
+}
+
 .sach {
 	height: 210px;
 	width: 160px;
@@ -33,7 +37,7 @@ h2 {
 	margin-top: 10px;
 }
 
-.muonsachchitiet {
+.muonchitiet-chung {
 	display: inline-block;
 	background-color: #4509ae;
 	color: white;

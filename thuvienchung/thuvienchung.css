@@ -1,3 +1,7 @@
+.menu {
+	margin-left: 500px;
+}
+
 .filter {
 	display: flex;
 	gap: 17px;

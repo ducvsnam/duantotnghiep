@@ -1096,8 +1096,12 @@ h4 {
 	padding-top: 10px;
 }
 
-.chitiet,
-.tat {
+.chitietchung,
+.chitietnguoidung,
+.chitietquanly,
+.tatchung,
+.tatnguoidung,
+.tatquanly {
 	width: 210px;
 	margin-bottom: 15px;
 	padding: 10px;
@@ -1157,11 +1161,17 @@ h4 {
 	width: auto;
 }
 
-.chitiet:hover,
-.tat:hover,
+.chitietchung:hover,
+.chitietnguoidung:hover,
+.chitietquanly:hover,
+.tatchung:hover,
+.tatnguoidung:hover,
+.tatquanly:hover,
 .doimatkhau:hover,
 .xacnhanmuon:hover,
 .muonsachchitiet:hover,
+.muonchitiet-chung:hover,
+.muonchitiet-quanly:hover,
 .nut-dangxuat:hover,
 .nut-doimatkhau:hover,
 .nut-thayanh:hover,
@@ -1174,11 +1184,17 @@ h4 {
 	transform: scale(1.1);
 }
 
-.chitiet:active,
-.tat:active,
+.chitietchung:active,
+.chitietnguoidung:active,
+.chitietquanly:active,
+.tatchung:active,
+.tatnguoidung:active,
+.tatquanly:active,
 .doimatkhau:active,
 .xacnhanmuon:active,
 .muonsachchitiet:active,
+.muonchitiet-chung:active,
+.muonchitiet-quanly:active,
 .nut-dangxuat:active,
 .nut-doimatkhau:active,
 .nut-thayanh:active,
