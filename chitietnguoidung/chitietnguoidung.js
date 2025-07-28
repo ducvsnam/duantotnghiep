@@ -8,9 +8,7 @@ document.querySelectorAll(".muonsachchitiet").forEach((btn) =>
 		const bookName = params.get("name") || "";
 		const url = new URL("../muon/muon.html", window.location.origin);
 		url.searchParams.set("book", bookName);
-		//
-		// window.location.href = url.href;
-		//
+
 		document.body.classList.remove("fade-in");
 		document.body.classList.add("fade-out");
 

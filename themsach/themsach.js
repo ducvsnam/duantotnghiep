@@ -7,36 +7,17 @@ const searchInput = document.getElementById("searchInput");
 searchInput.addEventListener("input", renderBooks);
 
 function renderBooks() {
-	// const books = getBooks();
-	//
-	// const activeBooks = books.filter((book) => !book.deleted);
-	//
 	const books = getBooks().filter((book) => !book.deleted);
-	//
-	// const visibleBooks = books.filter((book) => book && !book.deleted);
-	//
+
 	const keyword = searchInput.value.trim().toLowerCase();
 	const selectedGenre = searchBox.dataset.genre || "";
 
 	const filtered = books.filter((book) => {
-		// const matchTitle = book.title.toLowerCase().includes(keyword);
-		// const matchGenre = selectedGenre === "" || book.genre === selectedGenre;
-		// return matchTitle && matchGenre;
-		//
-		// if (!book) return false;
-		//
 		const matchTitle = book.title?.toLowerCase().includes(keyword);
 		const matchGenre = selectedGenre === "" || book.genre === selectedGenre;
 		return matchTitle && matchGenre;
-		//
 	});
-	//
-	// const filtered = visibleBooks.filter((book) => {
-	// 	const matchTitle = book.title.toLowerCase().includes(keyword);
-	// 	const matchGenre = selectedGenre === "" || book.genre === selectedGenre;
-	// 	return matchTitle && matchGenre;
-	// });
-	//
+
 	result.innerHTML = "";
 
 	const timkiem = document.getElementById("timkiem");
@@ -50,29 +31,15 @@ function renderBooks() {
 	}
 
 	filtered.forEach((book, index) => {
-		// const imgSrc = book.image?.startsWith("data:image/")
-		// 	? book.image
-		// 	: book.image?.startsWith("/")
-		// 	? book.image
-		// 	: "/" + book.image;
-
 		const bookDiv = document.createElement("div");
 		bookDiv.classList.add("reveal");
-		//
-		// if (book.deleted) {
-		// 	bookDiv.innerHTML = `
-		// 	<div class="book-item deleted-book">
-		// 		<img src="/anh/theme/nothing.jpg" />
-		// 		<p>Sách đã bị xóa</p>
-		// 	</div>
-		// `;
-		// } else {
+
 		const imgSrc = book.image?.startsWith("data:image/")
 			? book.image
 			: book.image?.startsWith("/")
 			? book.image
 			: "/" + book.image;
-		//
+
 		bookDiv.innerHTML = `
 				<div class="book-item">
 					<img src="${imgSrc}"/>
@@ -89,67 +56,18 @@ function renderBooks() {
 					</div>
 				</div>
 			`;
-		//
-		// bookDiv.innerHTML = `
-		// 		<div class="book-item">
-		// 			<img src="${imgSrc}"/>
-		// 			<div class="book-info">
-		// 				<p><b>Tên sách:</b> ${book.title}</p>
-		// 				<p><b>Tác giả:</b> ${book.author}</p>
-		// 				<p><b>Thể loại:</b> ${book.genre}</p>
-		// 				<p><b>Năm xuất bản:</b> ${book.year}</p>
-		// 				<p><b>Số lượng:</b> ${book.quantity}</p>
-		// 				<div class="book-buttons">
-		// 					<button onclick="editBook(${index})">Sửa</button>
-		// 					<button onclick="deleteBook(${index})">Xoá</button>
-		// 				</div>
-		// 			</div>
-		// 		</div>
-		// 	`;
-		// }
+
 		result.appendChild(bookDiv);
 	});
 
 	revealOnScroll();
 }
 
-// let editingIndex = null;
-//
 let editingId = null;
-//
 
-// function editBook(index) {
 function editBook(id) {
 	window.scrollTo({ top: 0, behavior: "smooth" });
 
-	// const bookItem = document.querySelectorAll(".book-item")[index];
-	// const bookInfo = bookItem.querySelector(".book-info");
-	// const img = bookItem.querySelector("img");
-
-	// const getValue = (label) => {
-	// 	const line = [...bookInfo.querySelectorAll("p")].find((p) =>
-	// 		p.textContent.startsWith(label)
-	// 	);
-	// 	return line ? line.textContent.replace(label, "").trim() : "";
-	// };
-
-	// document.getElementById("bookTitle").value = getValue("Tên sách:");
-	// document.getElementById("author").value = getValue("Tác giả:");
-	// document.getElementById("genre").value = getValue("Thể loại:");
-	// document.getElementById("year").value = getValue("Năm xuất bản:");
-	// document.getElementById("quantity").value = getValue("Số lượng:");
-
-	// const imgSrc = img.src;
-	// preview.src = imgSrc;
-	// preview.classList.add("show");
-	// document.getElementById("uploadIcon").style.display = "none";
-	// document.getElementById("uploadText").style.display = "none";
-
-	// editingIndex = index;
-	// saveBtn.textContent = "Lưu thông tin";
-	//
-	//
-	//
 	const books = getBooks();
 	const index = books.findIndex((b) => b.id === id);
 	if (index === -1) return;
@@ -173,14 +91,8 @@ function editBook(id) {
 	document.getElementById("uploadIcon").style.display = "none";
 	document.getElementById("uploadText").style.display = "none";
 
-	// editingIndex = index;
-	//
 	editingId = id;
-	//
 	saveBtn.textContent = "Lưu thông tin";
-	//
-	//
-	//
 }
 
 function isValidAuthorName(name) {
@@ -285,7 +197,6 @@ function addBook() {
 
 	const books = getBooks();
 
-	// if (editingIndex === null) {
 	if (editingId === null) {
 		const isDuplicate = books.some(
 			(b) => b.title.toLowerCase() === title.toLowerCase()
@@ -296,9 +207,7 @@ function addBook() {
 		}
 
 		books.push({
-			//
 			id: Date.now(),
-			//
 			title,
 			author,
 			genre,
@@ -306,44 +215,22 @@ function addBook() {
 			quantity: Number(quantity),
 			image: imageSrc,
 		});
-		//
-		localStorage.setItem("bookList", JSON.stringify(books)); // << bước 1
+
+		localStorage.setItem("bookList", JSON.stringify(books));
 		renderBooks();
-		//
+
 		showPopup("Thêm sách thành công");
 		saveBtn.textContent = "Thêm sách";
 	} else {
-		// const isDuplicate = books.some(
-		// 	(b, i) =>
-		// 		i !== editingIndex && b.title.toLowerCase() === title.toLowerCase()
-		// );
-		//
-		// const isDuplicate = books.some((book, i) => {
-		// 	return (
-		// 		book.title.toLowerCase() === title.toLowerCase() && i !== editingIndex
-		// 	);
-		// });
-		//
 		const isDuplicate = books.some(
 			(b) => b.title.toLowerCase() === title.toLowerCase() && b.id !== editingId
 		);
-		//
+
 		if (isDuplicate) {
 			showPopup("Tên sách này đã trùng với một sách khác");
 			return;
 		}
 
-		// const oldBook = books[editingIndex];
-		// books[editingIndex] = {
-		// 	...oldBook,
-		// 	title,
-		// 	author,
-		// 	genre,
-		// 	year: Number(year),
-		// 	quantity: Number(quantity),
-		// 	image: imageSrc,
-		// };
-		//
 		const index = books.findIndex((b) => b.id === editingId);
 		if (index === -1) {
 			showPopup("Không tìm thấy sách để cập nhật");
@@ -359,13 +246,9 @@ function addBook() {
 			quantity: Number(quantity),
 			image: imageSrc,
 		};
-		//
+
 		showPopup("Sửa thông tin sách thành công");
-		//
-		// editingIndex = null;
-		//
 		editingId = null;
-		//
 		saveBtn.textContent = "Thêm sách";
 	}
 
@@ -383,16 +266,6 @@ function addBook() {
 	document.getElementById("uploadText").style.display = "block";
 }
 
-// function getBooks() {
-// 	const saved = localStorage.getItem("bookList");
-// 	if (saved) {
-// 		return JSON.parse(saved);
-// 	} else {
-// 		localStorage.setItem("bookList", JSON.stringify(defaultBooks));
-// 		return defaultBooks;
-// 	}
-// }
-//
 function getBooks() {
 	const books = JSON.parse(localStorage.getItem("bookList") || "[]");
 	let changed = false;
@@ -407,41 +280,21 @@ function getBooks() {
 	}
 	return books;
 }
-//
+
 function saveBooks(books) {
 	localStorage.setItem("bookList", JSON.stringify(books));
 }
 
-// function deleteBook(index) {
-// 	const books = getBooks();
-// 	showConfirm("Bạn có chắc chắn muốn xoá sách này không", function (xacNhan) {
-// 		if (xacNhan) {
-// 			books.splice(index, 1);
-// 			saveBooks(books);
-// 			renderBooks();
-// 		}
-// 	});
-// }
-//
-// function deleteBook(index) {
 function deleteBook(id) {
 	const books = getBooks();
-	//
+
 	const index = books.findIndex((book) => book.id === id);
 	if (index === -1) return;
-	//
+
 	showConfirm("Bạn có chắc chắn muốn xoá sách này không", function (xacNhan) {
 		if (xacNhan) {
-			// if (index >= 0 && index < books.length) {
-			// books[index] = { deleted: true };
-			// saveBooks(books);
-			// renderBooks();
-			//
 			books[index] = {
-				// id: books[index].id || Date.now(),
-				//
 				id,
-				//
 				image: "anh/theme/nothing.jpg",
 				title: "Sách đã bị xóa",
 				author: "",
@@ -451,11 +304,10 @@ function deleteBook(id) {
 			};
 			saveBooks(books);
 			renderBooks();
-			// }
 		}
 	});
 }
-//
+
 function saveNewGenreIfNeeded(genre) {
 	const customGenres = JSON.parse(localStorage.getItem("customGenres") || "[]");
 	if (

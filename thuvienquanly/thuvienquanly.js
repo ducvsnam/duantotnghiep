@@ -14,17 +14,6 @@ const saveBooks = (books) =>
 	localStorage.setItem("bookList", JSON.stringify(books));
 
 function renderBooks(books, bookGrid, timkiem) {
-	// if (books.length === 0) {
-	// 	timkiem.innerHTML = "Không tìm thấy sách phù hợp";
-	// 	timkiem.style.display = "block";
-	// 	bookGrid.innerHTML = "";
-	// 	return;
-	// }
-	//
-	// const filteredBooks = books.filter(
-	// 	(book) => book.image.trim().toLowerCase() !== "nothing.jpg"
-	// );
-	//
 	const filteredBooks = books
 		.map((book, i) => ({ ...book, realIndex: i }))
 		.filter((book) => {
@@ -32,30 +21,17 @@ function renderBooks(books, bookGrid, timkiem) {
 			const title = book.title?.trim().toLowerCase();
 			return img !== "nothing.jpg" && !title.includes("sách đã bị xóa");
 		});
-	//
+
 	if (filteredBooks.length === 0) {
 		timkiem.innerHTML = "Không tìm thấy sách phù hợp";
 		timkiem.style.display = "block";
 		bookGrid.innerHTML = "";
 		return;
 	}
-	//
+
 	timkiem.innerHTML = "";
 	timkiem.style.display = "none";
 
-	// bookGrid.innerHTML = filteredBooks
-	// 	.map((book) => {
-	// 		const imageSrc = book.image.startsWith("/")
-	// 			? ".." + book.image
-	// 			: book.image;
-	// 		return `
-	// 		<div class="book book-card reveal">
-	// 			<img src="${imageSrc}">
-	// 			<div class="book-title">${book.title}</div>
-	// 		</div>`;
-	// 	})
-	// 	.join("");
-	//
 	bookGrid.innerHTML = filteredBooks
 		.map((book) => {
 			const imageSrc = book.image.startsWith("/")

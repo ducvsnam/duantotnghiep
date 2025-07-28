@@ -3,12 +3,6 @@ function getBooks() {
 	return saved ? JSON.parse(saved) : [];
 }
 
-// document.querySelectorAll(".muonchitiet-quanly").forEach((btn) =>
-// 	btn.addEventListener("click", () => {
-// 		showPopup("Chức năng này chỉ dành cho người dùng");
-// 	})
-// );
-
 function chidanhchonguoidung() {
 	showPopup("Chức năng này chỉ dành cho người dùng");
 }
