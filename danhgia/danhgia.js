@@ -42,7 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	//
 	const btn = document.querySelector(".nut-danhgia");
 	const commentInput = document.getElementById("registerComment");
-	const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+	// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+	//
+	if (!window.currentUser) {
+		window.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+	}
+	//
 	const danhGiaList = JSON.parse(localStorage.getItem("danhGiaList")) || [];
 
 	const daDanhGia = danhGiaList.some((dg) => dg.email === currentUser?.email);

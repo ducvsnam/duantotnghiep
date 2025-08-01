@@ -129,12 +129,19 @@ function handleRegister() {
 		showPopup("Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0");
 		return;
 	}
-
-	const newUser = { username, email, password, phone };
+	//
+	const userID = "user_" + Date.now();
+	//
+	// const newUser = { username, email, password, phone };
+	//
+	const newUser = { username, email, password, phone, userID };
+	//
 	users.push(newUser);
 	localStorage.setItem("users", JSON.stringify(users));
 	localStorage.setItem("currentUser", JSON.stringify(newUser));
-
+	//
+	localStorage.setItem("userID", userID);
+	//
 	showPopup("Đăng ký thành công");
 	switchForm("login");
 }
@@ -172,9 +179,13 @@ function handleLogin() {
 				email: found.email,
 				password: found.password,
 				phone: found.phone,
+				//
+				userID: found.userID,
 			})
 		);
-
+		//
+		localStorage.setItem("userID", found.userID);
+		//
 		document.body.classList.remove("fade-in");
 		document.body.classList.add("fade-out");
 
@@ -200,36 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		switchForm("register");
 	} else {
 		switchForm("login");
-	}
-});
-
-document.querySelectorAll("button[data-href]").forEach((btn) => {
-	btn.addEventListener("click", function (e) {
-		e.preventDefault();
-		const href = btn.getAttribute("data-href");
-
-		if (href) {
-			document.body.classList.remove("fade-in");
-			document.body.classList.add("fade-out");
-
-			setTimeout(() => {
-				window.location.href = href;
-			}, 800);
-		}
-	});
-});
-
-document.querySelectorAll("a[href]").forEach((link) => {
-	const href = link.getAttribute("href");
-	if (href && !href.startsWith("#") && !link.hasAttribute("target")) {
-		link.addEventListener("click", function (e) {
-			e.preventDefault();
-			document.body.classList.remove("fade-in");
-			document.body.classList.add("fade-out");
-			setTimeout(() => {
-				window.location.href = href;
-			}, 800);
-		});
 	}
 });
 

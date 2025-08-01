@@ -3,7 +3,12 @@ function changePassword() {
 	const newPassword = document.getElementById("newPassword").value;
 	const confirmPassword = document.getElementById("confirmPassword").value;
 
-	const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+	// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+	//
+	if (!window.currentUser) {
+		window.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+	}
+	//
 	const users = JSON.parse(localStorage.getItem("users")) || [];
 
 	if (currentUser.password !== currentPassword) {

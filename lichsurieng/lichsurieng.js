@@ -1,6 +1,23 @@
-const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 const container = document.getElementById("borrowHistoryList");
+//
+// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+//
+if (!window.currentUser) {
+	window.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+}
+// const currentUser = window.currentUser;
+//
+window.currentUser =
+	window.currentUser || JSON.parse(localStorage.getItem("currentUser"));
+//
+if (!currentUser || !currentUser.userID) {
+	container.innerHTML = `<div class="khongcogi"><p>Bạn chưa mượn sách hoặc đã trả hết</p></div>`;
+	throw new Error("Chưa đăng nhập hoặc thiếu userID");
+}
+//
+// const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
+// const container = document.getElementById("borrowHistoryList");
 
 function normalizeDate(dateStr) {
 	const [d, m, y] = dateStr.split("/");
@@ -29,7 +46,14 @@ function cancelReservation(id) {
 	showConfirm("Bạn có chắc chắn muốn huỷ mượn sách không", (xacNhan) => {
 		if (!xacNhan) return;
 
-		const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+		// const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+		//
+		// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+		//
+		const borrowList =
+			JSON.parse(localStorage.getItem(`borrowList-${currentUser.userID}`)) ||
+			[];
+		//
 		const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 		const index = borrowList.findIndex((b) => b.id === id);
 		if (index !== -1) {
@@ -38,7 +62,13 @@ function cancelReservation(id) {
 			if (book) book.quantity++;
 
 			borrow.isCancelled = true;
-			localStorage.setItem("borrowList", JSON.stringify(borrowList));
+			// localStorage.setItem("borrowList", JSON.stringify(borrowList));
+			//
+			localStorage.setItem(
+				`borrowList-${currentUser.userID}`,
+				JSON.stringify(borrowList)
+			);
+			//
 			localStorage.setItem("bookList", JSON.stringify(bookList));
 			renderBorrowCards();
 		}
@@ -48,8 +78,12 @@ function cancelReservation(id) {
 function renderBorrowCards() {
 	container.innerHTML = "";
 
-	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-	const userBorrows = borrowList.filter((b) => b.email === currentUser.email);
+	// const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+	// const userBorrows = borrowList.filter((b) => b.userID === currentUser.userID);
+	//
+	const userBorrows =
+		JSON.parse(localStorage.getItem(`borrowList-${currentUser.userID}`)) || [];
+	//
 
 	if (userBorrows.length === 0) {
 		container.innerHTML = `<div class="khongcogi"><p>Bạn chưa mượn sách hoặc đã trả hết</p></div>`;
@@ -92,12 +126,13 @@ function renderBorrowCards() {
 		let actionButton = "";
 		if (status === "Chờ duyệt") {
 			actionButton = `<button onclick="cancelReservation(${borrow.id})">Huỷ yêu cầu</button>`;
-		} else if (
-			status.startsWith("Đang mượn") ||
-			status.startsWith("Trả muộn")
-		) {
-			actionButton = `<button onclick="returnBook(${borrow.id})">Đánh dấu đã trả sách</button>`;
 		}
+		// } else if (
+		// 	status.startsWith("Đang mượn") ||
+		// 	status.startsWith("Trả muộn")
+		// ) {
+		// 	actionButton = `<button onclick="returnBook(${borrow.id})">Đánh dấu đã trả sách</button>`;
+		// }
 
 		const thongTin1 = `<p${
 			!actionButton ? ' class="thongtin-khong"' : ""

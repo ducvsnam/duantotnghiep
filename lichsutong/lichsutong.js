@@ -1,4 +1,18 @@
-const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+function getAllBorrowList() {
+	let all = [];
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (key.startsWith("borrowList-")) {
+			try {
+				const list = JSON.parse(localStorage.getItem(key));
+				if (Array.isArray(list)) all = all.concat(list);
+			} catch {}
+		}
+	}
+	return all;
+}
+//
+const borrowList = getAllBorrowList();
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 const container = document.getElementById("borrowHistoryList");
 
@@ -25,35 +39,61 @@ function calculateOverdueDays(dateStr) {
 	return diff;
 }
 
+// function returnBook(borrowId) {
+// 	const borrowList = getAllBorrowList();
+// 	const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
+
+// 	const index = borrowList.findIndex((b) => b.id === borrowId);
+// 	if (index === -1) return;
+
+// 	showConfirm("Xác nhận người dùng đã trả sách này", (agree) => {
+// 		if (!agree) return;
+
+// 		const item = borrowList[index];
+// 		const bookIndex = bookList.findIndex((b) => b.title === item.bookTitle);
+
+// 		if (bookIndex !== -1) {
+// 			bookList[bookIndex].quantity += 1;
+// 			localStorage.setItem("bookList", JSON.stringify(bookList));
+// 		}
+
+// 		borrowList[index].isReturned = true;
+// 		localStorage.setItem("borrowList", JSON.stringify(borrowList));
+
+// 		renderBorrowCards();
+// 	});
+// }
+//
 function returnBook(borrowId) {
-	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
 	const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 
-	const index = borrowList.findIndex((b) => b.id === borrowId);
-	if (index === -1) return;
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (key.startsWith("borrowList-")) {
+			const list = JSON.parse(localStorage.getItem(key)) || [];
+			const index = list.findIndex((b) => b.id === borrowId);
+			if (index !== -1) {
+				const item = list[index];
 
-	showConfirm("Xác nhận người dùng đã trả sách này", (agree) => {
-		if (!agree) return;
+				const bookIndex = bookList.findIndex((b) => b.title === item.bookTitle);
+				if (bookIndex !== -1) {
+					bookList[bookIndex].quantity += 1;
+					localStorage.setItem("bookList", JSON.stringify(bookList));
+				}
 
-		const item = borrowList[index];
-		const bookIndex = bookList.findIndex((b) => b.title === item.bookTitle);
-
-		if (bookIndex !== -1) {
-			bookList[bookIndex].quantity += 1;
-			localStorage.setItem("bookList", JSON.stringify(bookList));
+				list[index].isReturned = true;
+				localStorage.setItem(key, JSON.stringify(list));
+				break;
+			}
 		}
-
-		borrowList[index].isReturned = true;
-		localStorage.setItem("borrowList", JSON.stringify(borrowList));
-
-		renderBorrowCards();
-	});
+	}
+	renderBorrowCards();
 }
-
+//
 function renderBorrowCards() {
 	container.innerHTML = "";
 
-	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
+	const borrowList = getAllBorrowList();
 	const userBorrows = borrowList;
 
 	if (userBorrows.length === 0) {
@@ -104,8 +144,9 @@ function renderBorrowCards() {
 
 			if (borrowDate > today) {
 				actionButton = `<button onclick="handlePreApprove(${borrow.id}, ${daysUntilBorrow})">
-			Duyệt yêu cầu (còn ${daysUntilBorrow} ngày)
-		</button>`;
+					Duyệt yêu cầu (còn ${daysUntilBorrow} ngày)
+				</button>
+				`;
 			} else {
 				actionButton = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
 			}
@@ -157,14 +198,55 @@ function renderBorrowCards() {
 	});
 }
 
+// function approveBorrow(borrowId) {
+// 	const borrowList = getAllBorrowList();
+// 	const index = borrowList.findIndex((b) => b.id === borrowId);
+// 	if (index === -1) return;
+
+// 	borrowList[index].isApproved = true;
+
+// 	localStorage.setItem("borrowList", JSON.stringify(borrowList));
+// 	renderBorrowCards();
+// }
+//
+// function approveBorrow(borrowId) {
+// 	for (let i = 0; i < localStorage.length; i++) {
+// 		const key = localStorage.key(i);
+// 		if (key.startsWith("borrowList-")) {
+// 			const list = JSON.parse(localStorage.getItem(key)) || [];
+// 			const index = list.findIndex((b) => b.id === borrowId);
+// 			if (index !== -1) {
+// 				list[index].isApproved = true;
+// 				localStorage.setItem(key, JSON.stringify(list));
+// 				break;
+// 			}
+// 		}
+// 	}
+// 	renderBorrowCards();
+// }
+//
 function approveBorrow(borrowId) {
-	const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-	const index = borrowList.findIndex((b) => b.id === borrowId);
-	if (index === -1) return;
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (key.startsWith("borrowList-")) {
+			const list = JSON.parse(localStorage.getItem(key)) || [];
+			const index = list.findIndex((b) => b.id === borrowId);
+			if (index !== -1) {
+				const item = list[index];
 
-	borrowList[index].isApproved = true;
+				const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
+				const bookIndex = bookList.findIndex((b) => b.title === item.bookTitle);
+				if (bookIndex !== -1 && bookList[bookIndex].quantity > 0) {
+					bookList[bookIndex].quantity--;
+					localStorage.setItem("bookList", JSON.stringify(bookList));
+				}
 
-	localStorage.setItem("borrowList", JSON.stringify(borrowList));
+				list[index].isApproved = true;
+				localStorage.setItem(key, JSON.stringify(list));
+				break;
+			}
+		}
+	}
 	renderBorrowCards();
 }
 //

@@ -3,11 +3,36 @@ function getBooks() {
 	return saved ? JSON.parse(saved) : [];
 }
 
+// document.querySelectorAll(".muonsachchitiet").forEach((btn) =>
+// 	btn.addEventListener("click", () => {
+// 		const bookName = params.get("name") || "";
+// 		const url = new URL("../muon/muon.html", window.location.origin);
+// 		url.searchParams.set("book", bookName);
+
+// 		document.body.classList.remove("fade-in");
+// 		document.body.classList.add("fade-out");
+
+// 		setTimeout(() => {
+// 			window.location.href = url.href;
+// 		}, 800);
+// 	})
+// );
+//
+//
+//
 document.querySelectorAll(".muonsachchitiet").forEach((btn) =>
 	btn.addEventListener("click", () => {
-		const bookName = params.get("name") || "";
+		const id = Number(params.get("id"));
+		const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
+		const book = bookList.find((b) => b.id === id);
+
+		if (!book) {
+			showPopup("Không tìm thấy sách để mượn");
+			return;
+		}
+
 		const url = new URL("../muon/muon.html", window.location.origin);
-		url.searchParams.set("book", bookName);
+		url.searchParams.set("book", book.title);
 
 		document.body.classList.remove("fade-in");
 		document.body.classList.add("fade-out");
@@ -17,13 +42,19 @@ document.querySelectorAll(".muonsachchitiet").forEach((btn) =>
 		}, 800);
 	})
 );
-
+//
 const params = new URLSearchParams(window.location.search);
-const bookName = params.get("name") || "...";
+// const bookName = params.get("name") || "...";
 
+// const bookList = getBooks();
+// const book = bookList.find((b) => b.title === bookName);
+//
+//
+//
+const bookId = Number(params.get("id"));
 const bookList = getBooks();
-const book = bookList.find((b) => b.title === bookName);
-
+const book = bookList.find((b) => b.id === bookId);
+//
 if (book) {
 	const imgSrc = book.image?.startsWith("data:image/")
 		? book.image
