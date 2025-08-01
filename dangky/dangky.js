@@ -74,6 +74,11 @@ function handleRegister() {
 		return;
 	}
 
+	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+		showPopup("Email không hợp lệ");
+		return;
+	}
+
 	if (email.length < 6) {
 		showPopup("Email không được ít hơn 6 ký tự");
 		return;

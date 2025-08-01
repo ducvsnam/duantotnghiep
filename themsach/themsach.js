@@ -99,7 +99,10 @@ function isValidAuthorName(name) {
 	const value = name.trim();
 	if (!value || /^[ .-]+$/.test(value)) return false;
 
-	const baseRegex = /^[\p{L} .-]{3,40}$/u;
+	// const baseRegex = /^[\p{L} .-]{3,40}$/u;
+	//
+	const baseRegex = /^[\p{L}\d .-]{3,40}$/u;
+	//
 	if (!baseRegex.test(value)) return false;
 
 	if (/ {2,}/.test(value) || /\.{2,}/.test(value) || /-{2,}/.test(value))

@@ -19,7 +19,7 @@ const adminOnlyPages = [
 	"themsach.html",
 	"thongke.html",
 	"thongtinquanly.html",
-	"xemdanhgia.html",
+	"xemdanhgiaquanly.html",
 	"chitietquanly.html",
 	"thuvienquanly.html",
 ];
@@ -28,6 +28,7 @@ const userOnlyPages = [
 	"muon.html",
 	"thongtinrieng.html",
 	"danhgia.html",
+	"xemdanhgianguoidung.html",
 	"doimatkhau.html",
 	"chitietnguoidung.html",
 	"thuviennguoidung.html",
@@ -39,20 +40,20 @@ const isAllowed = allowAnonymous.includes(pageName);
 const isAdminPage = adminOnlyPages.includes(pageName);
 const isUserPage = userOnlyPages.includes(pageName);
 
-// không cho bất kỳ ai vào các trang chức năng nếu chưa đăng nhập
-if (!currentUser && !isAllowed) {
-	window.location.href = "../dangnhap/dangnhap.html?unauth=1";
-}
+// // không cho bất kỳ ai vào các trang chức năng nếu chưa đăng nhập
+// if (!currentUser && !isAllowed) {
+// 	window.location.href = "../dangnhap/dangnhap.html?unauth=1";
+// }
 
-// không cho bất kỳ ai vào các trang chức năng dành cho quản lý nếu không phải quản lý
-if (isAdminPage && (!currentUser || currentUser.username !== "CatBoss")) {
-	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
-}
+// // không cho bất kỳ ai vào các trang chức năng dành cho quản lý nếu không phải quản lý
+// if (isAdminPage && (!currentUser || currentUser.username !== "CatBoss")) {
+// 	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+// }
 
-// không cho bất kỳ ai vào các trang chức năng dành cho người dùng nếu không phải người dùng
-if (isUserPage && currentUser?.username === "CatBoss") {
-	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
-}
+// // không cho bất kỳ ai vào các trang chức năng dành cho người dùng nếu không phải người dùng
+// if (isUserPage && currentUser?.username === "CatBoss") {
+// 	window.location.href = "../dangnhap/dangnhap.html?noaccess=1";
+// }
 
 function vuilongdangnhap() {
 	showPopup("Vui lòng đăng nhập để dùng chức năng này");
@@ -313,10 +314,15 @@ function chonAnhNguoiDung() {
 function renderBooksToBlocks() {
 	const books = JSON.parse(localStorage.getItem("bookList")) || [];
 
+	// const order = [
+	// 	5, 20, 21, 35, 50, 51, 65, 80, 81, 95, 0, 1, 2, 3, 4, 15, 16, 17, 18, 19,
+	// 	30, 31, 32, 33, 34, 45, 46, 47, 48, 49, 60, 61, 62, 63, 64, 75, 76, 77, 78,
+	// 	79, 90, 91, 92, 93, 94, 105, 106, 107, 108, 109,
+	// ];
+
 	const order = [
-		5, 20, 21, 35, 50, 51, 65, 80, 81, 95, 0, 1, 2, 3, 4, 15, 16, 17, 18, 19,
-		30, 31, 32, 33, 34, 45, 46, 47, 48, 49, 60, 61, 62, 63, 64, 75, 76, 77, 78,
-		79, 90, 91, 92, 93, 94, 105, 106, 107, 108, 109,
+		0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+		21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
 	];
 
 	const bookBlocks = document.querySelectorAll(".book-box");

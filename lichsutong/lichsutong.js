@@ -95,8 +95,20 @@ function renderBorrowCards() {
 		}
 
 		let actionButton = "";
+		// if (status === "Chờ duyệt") {
+		// 	actionButton = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
+		// } else if (
+		//
 		if (status === "Chờ duyệt") {
-			actionButton = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
+			const daysUntilBorrow = calculateDaysLeft(borrow.borrowDate);
+
+			if (borrowDate > today) {
+				actionButton = `<button onclick="handlePreApprove(${borrow.id}, ${daysUntilBorrow})">
+			Duyệt yêu cầu (còn ${daysUntilBorrow} ngày)
+		</button>`;
+			} else {
+				actionButton = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
+			}
 		} else if (
 			status.startsWith("Đang mượn") ||
 			status.startsWith("Trả muộn")
@@ -155,5 +167,13 @@ function approveBorrow(borrowId) {
 	localStorage.setItem("borrowList", JSON.stringify(borrowList));
 	renderBorrowCards();
 }
-
+//
+function handlePreApprove(id, daysLeft) {
+	if (daysLeft > 0) {
+		showPopup("Chưa đến ngày mượn sách nên không thể duyệt lúc này");
+	} else {
+		approveBorrow(id);
+	}
+}
+//
 renderBorrowCards();

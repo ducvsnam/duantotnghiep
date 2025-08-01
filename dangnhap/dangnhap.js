@@ -93,6 +93,11 @@ function handleRegister() {
 		return;
 	}
 
+	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+		showPopup("Email không hợp lệ");
+		return;
+	}
+
 	if (!validatePassword(password)) {
 		showPopup(
 			"Mật khẩu phải có ít nhất 8 ký tự gồm 1 chữ hoa 1 chữ thường 1 số và 1 ký tự đặc biệt"

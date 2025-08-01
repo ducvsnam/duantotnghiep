@@ -25,3 +25,8 @@ p {
 .book-item button {
 	margin-top: 2px;
 }
+/*  */
+.book-item button:last-of-type:hover {
+	font-size: 22px;
+	transform: scale(1.1);
+}

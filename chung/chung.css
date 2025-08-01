@@ -253,7 +253,8 @@ select option {
 .down,
 .back,
 .back-thongtin,
-.back-thongke {
+.back-thongke,
+.back-danhgia {
 	font-weight: bold;
 	cursor: pointer;
 	transition: 0.2s;
@@ -282,7 +283,8 @@ select option {
 
 .back,
 .back-thongtin,
-.back-thongke {
+.back-thongke,
+.back-danhgia {
 	bottom: 610px;
 	height: 40px;
 }
@@ -291,7 +293,8 @@ select option {
 .down::before,
 .back::before,
 .back-thongtin::before,
-.back-thongke::before {
+.back-thongke::before,
+.back-danhgia::before {
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 100%);
@@ -328,11 +331,18 @@ select option {
 	width: 100%;
 }
 
+.back-danhgia::before {
+	content: "⬅ Quay lại trang đánh giá";
+	transform: translateX(100%);
+	width: 100%;
+}
+
 .up span,
 .down span,
 .back span,
 .back-thongtin span,
-.back-thongke span {
+.back-thongke span,
+.back-danhgia span {
 	display: inline-block;
 	transition: transform 0.3s ease;
 	position: relative;
@@ -349,7 +359,8 @@ select option {
 
 .back:hover span,
 .back-thongtin:hover span,
-.back-thongke:hover span {
+.back-thongke:hover span,
+.back-danhgia:hover span {
 	transform: translateX(-200%);
 }
 
@@ -357,7 +368,8 @@ select option {
 .down:hover,
 .back:hover,
 .back-thongtin:hover,
-.back-thongke:hover {
+.back-thongke:hover,
+.back-danhgia:hover {
 	font-size: 25px;
 	transform: scale(1.1);
 	padding: 0 12px;
@@ -365,7 +377,8 @@ select option {
 
 .back:hover,
 .back-thongtin:hover,
-.back-thongke:hover {
+.back-thongke:hover,
+.back-danhgia:hover {
 	left: 21.5px;
 	bottom: 607px;
 	font-size: 20px;
@@ -376,7 +389,8 @@ select option {
 .down:hover::before,
 .back:hover::before,
 .back-thongtin:hover::before,
-.back-thongke:hover::before {
+.back-thongke:hover::before,
+.back-danhgia:hover::before {
 	transform: translate(-50%, 0%);
 	opacity: 1;
 }
@@ -385,7 +399,8 @@ select option {
 .down:active,
 .back:active,
 .back-thongtin:active,
-.back-thongke:active {
+.back-thongke:active,
+.back-danhgia:active {
 	transform: scale(1.1) translate(3px, 3px);
 	box-shadow: 0 0 black;
 }
@@ -853,7 +868,8 @@ header .container {
 
 .khung-info,
 .khung-danhgia,
-.khung-xemdanhgia,
+.khung-xemdanhgiaquanly,
+.khung-xemdanhgianguoidung,
 .khung-thongke {
 	display: flex;
 	background-color: #4509ae;
@@ -1135,7 +1151,9 @@ h4 {
 .nut-doimatkhau,
 .nut-thayanh,
 .nut-danhgia,
-.nut-xemdanhgia,
+.nut-xemdanhgiaquanly,
+.nut-xemdanhgianguoidung,
+.nut-camon,
 .nut-taidulieu,
 #clearStorageBtn {
 	background-color: #4509ae;
@@ -1176,7 +1194,9 @@ h4 {
 .nut-doimatkhau:hover,
 .nut-thayanh:hover,
 .nut-danhgia:hover,
-.nut-xemdanhgia:hover,
+.nut-xemdanhgiaquanly:hover,
+.nut-xemdanhgianguoidung:hover,
+.nut-camon:hover,
 .nut-taidulieu:hover,
 #mainActionBtn:hover,
 #clearStorageBtn:hover {
@@ -1199,7 +1219,9 @@ h4 {
 .nut-doimatkhau:active,
 .nut-thayanh:active,
 .nut-danhgia:active,
-.nut-xemdanhgia:active,
+.nut-xemdanhgiaquanly:active,
+.nut-xemdanhgianguoidung:active,
+.nut-camon:active,
 .nut-taidulieu:active,
 #mainActionBtn:active,
 #clearStorageBtn:active {

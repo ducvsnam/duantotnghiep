@@ -22,7 +22,7 @@ if (!reviewList) {
 		const comment = review.comment?.trim() || "Không có bình luận";
 
 		card.innerHTML = `
-			<div class="khung-xemdanhgia">
+			<div class="khung-xemdanhgiaquanly">
 				<div class="dong-thongtin">
 					<img src="${avatar}" class="anh-danhgia"/>
 					<b>${name}</b> - ${email}

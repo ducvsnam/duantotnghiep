@@ -3,14 +3,17 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Cats Stack | Quản lý | Thống Kê</title>
+		<title>Cats Stack | Quản Lý | Thống Kê | Xem Đánh Giá</title>
 		<link rel="icon" href="../anh/theme/logo.png" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 		/>
 		<link rel="stylesheet" href="../chung/chung.css" />
-		<link rel="stylesheet" href="../thongke/thongke.css" />
+		<link
+			rel="stylesheet"
+			href="../xemdanhgianguoidung/xemdanhgianguoidung.css"
+		/>
 	</head>
 	<body>
 		<header>
@@ -23,47 +26,26 @@
 				</div>
 				<nav>
 					<ul class="menu">
-						<li><a href="../quanly/quanly.html">Trang Chủ</a></li>
-						<li><a href="../themsach/themsach.html">Thêm Sách</a></li>
-						<li><a href="../lichsutong/lichsutong.html">Lịch Sử</a></li>
 						<li>
-							<a href="../thongke/thongke.html" class="active">Thống Kê</a>
+							<a href="../nguoidung/nguoidung.html">Trang Chủ</a>
+						</li>
+						<li><a href="../muon/muon.html">Mượn Sách</a></li>
+						<li><a href="../lichsurieng/lichsurieng.html">Lịch Sử</a></li>
+						<li>
+							<a href="../danhgia/danhgia.html" class="active">Đánh Giá</a>
 						</li>
 					</ul>
 				</nav>
 				<div class="avatar">
 					<a href="../thongtinquanly/thongtinquanly.html">
-						<img src="../anh/theme/anhboss.png" class="ava-img-admin" />
+						<img src="../anh/theme/noava.jpg" class="ava-img-user" />
 					</a>
 				</div>
 			</div>
 		</header>
 
 		<div class="reveal">
-			<div class="form-wrapper">
-				<div class="khung-thongke">
-					<h2>
-						Tổng số sách còn trong thư viện: <span id="tongsoSach"></span>
-					</h2>
-					<h2>
-						Sách có số lượng nhiều nhất:
-						<span id="sachcosoluongnhieunhat"></span>
-					</h2>
-					<h2>
-						Sách có lượt mượn nhiều nhất:
-						<span id="sachcoluotmuonnhieunhat"></span>
-					</h2>
-				</div>
-			</div>
-			<div class="nut">
-				<!-- <button id="clearStorageBtn" onclick="clearStorage()">
-					Khôi phục dữ liệu
-				</button> -->
-				<button class="nut-taidulieu" id="exportBtn">Tải file dữ liệu</button>
-				<a href="../xemdanhgiaquanly/xemdanhgiaquanly.html">
-					<button class="nut-xemdanhgiaquanly">Xem đánh giá</button>
-				</a>
-			</div>
+			<div id="reviewList" class="card-container"></div>
 		</div>
 
 		<footer>
@@ -72,10 +54,12 @@
 					<div class="footer-links">
 						<h3>Liên Kết</h3>
 						<ul>
-							<li><a href="../quanly/quanly.html">Trang Chủ</a></li>
-							<li><a href="../themsach/themsach.html">Thêm Sách</a></li>
-							<li><a href="../lichsutong/lichsutong.html">Lịch Sử</a></li>
-							<li><a href="../thongke/thongke.html">Thống Kê</a></li>
+							<li>
+								<a href="../nguoidung/nguoidung.html">Trang Chủ</a>
+							</li>
+							<li><a href="../muon/muon.html">Mượn Sách</a></li>
+							<li><a href="../lichsurieng/lichsurieng.html">Lịch Sử</a></li>
+							<li><a href="../danhgia/danhgia.html">Đánh Giá</a></li>
 						</ul>
 					</div>
 					<div class="footer-human">
@@ -105,6 +89,10 @@
 			</div>
 		</footer>
 
+		<button class="back-danhgia" data-href="../danhgia/danhgia.html">
+			<span>⬅ Quay lại trang đánh giá</span>
+		</button>
+
 		<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="up">
 			<span>⬆</span>
 		</button>
@@ -127,8 +115,7 @@
 			</div>
 		</div>
 
-		<script src="../chung/chung.js"></script>
-		<script src="../chung/sach.js"></script>
-		<script src="../thongke/thongke.js"></script>
+		<script src="../chung/chung.js" defer></script>
+		<script src="../xemdanhgianguoidung/xemdanhgianguoidung.js" defer></script>
 	</body>
 </html>

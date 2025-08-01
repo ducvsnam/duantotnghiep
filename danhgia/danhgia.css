@@ -36,6 +36,10 @@ textarea::-webkit-scrollbar {
 	margin-bottom: 104px;
 }
 
+.nut-xemdanhgianguoidung {
+	width: 250px;
+}
+
 .rating {
 	display: flex;
 	flex-direction: row-reverse;
@@ -105,4 +109,23 @@ textarea::-webkit-scrollbar {
 		transform: scale(1);
 		opacity: 1;
 	}
+}
+/*  */
+.khung-camon {
+	text-align: center;
+	margin-top: 120px;
+	margin-bottom: 109px;
+}
+
+.khung-camon h2 {
+	margin-bottom: 10px;
+	color: #4509ae;
+	font-size: 50px;
+}
+
+.khung-camon p {
+	margin-bottom: 20px;
+	color: #4509ae;
+	font-size: 40px;
+	font-weight: bold;
 }
