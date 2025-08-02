@@ -95,20 +95,56 @@ function editBook(id) {
 	saveBtn.textContent = "Lưu thông tin";
 }
 
+// function isValidAuthorName(name) {
+// 	const value = name.trim();
+// 	if (!value || /^[ .-]+$/.test(value)) return false;
+
+// 	// const baseRegex = /^[\p{L} .-]{3,40}$/u;
+// 	//
+// 	const baseRegex = /^[\p{L}\d .-]{3,40}$/u;
+// 	//
+// 	if (!baseRegex.test(value)) return false;
+
+// 	if (/ {2,}/.test(value) || /\.{2,}/.test(value) || /-{2,}/.test(value))
+// 		return false;
+
+// 	if (/^[.-]/.test(value) || /[.-]$/.test(value)) return false;
+
+// 	if (!/[\p{L}]/u.test(value)) return false;
+
+// 	return true;
+// }
+
+// function isValidBookTitle(title) {
+// 	const value = title.trim();
+// 	if (!value || /^[ .,:-]+$/.test(value)) return false;
+
+// 	const baseRegex = /^[\p{L}0-9 .,:-]{3,40}$/u;
+// 	if (!baseRegex.test(value)) return false;
+
+// 	if (
+// 		/ {2,}/.test(value) ||
+// 		/\.{2,}/.test(value) ||
+// 		/:{2,}/.test(value) ||
+// 		/-{2,}/.test(value) ||
+// 		/,{2,}/.test(value)
+// 	)
+// 		return false;
+
+// 	if (/^[.:/-]/.test(value) || /[.:/-]$/.test(value)) return false;
+
+// 	if (!/[\p{L}0-9]/u.test(value)) return false;
+
+// 	return true;
+// }
+//
+//
+//
 function isValidAuthorName(name) {
 	const value = name.trim();
-	if (!value || /^[ .-]+$/.test(value)) return false;
+	if (value.length < 2 || value.length > 40) return false;
 
-	// const baseRegex = /^[\p{L} .-]{3,40}$/u;
-	//
-	const baseRegex = /^[\p{L}\d .-]{3,40}$/u;
-	//
-	if (!baseRegex.test(value)) return false;
-
-	if (/ {2,}/.test(value) || /\.{2,}/.test(value) || /-{2,}/.test(value))
-		return false;
-
-	if (/^[.-]/.test(value) || /[.-]$/.test(value)) return false;
+	if (!/^[\p{L}\d .-]+$/u.test(value)) return false;
 
 	if (!/[\p{L}]/u.test(value)) return false;
 
@@ -117,33 +153,33 @@ function isValidAuthorName(name) {
 
 function isValidBookTitle(title) {
 	const value = title.trim();
-	if (!value || /^[ .,:-]+$/.test(value)) return false;
+	if (value.length < 2 || value.length > 40) return false;
 
-	const baseRegex = /^[\p{L}0-9 .,:-]{3,40}$/u;
-	if (!baseRegex.test(value)) return false;
+	if (!/^[\p{L}\d .,:;'"!?()-]+$/u.test(value)) return false;
 
-	if (
-		/ {2,}/.test(value) ||
-		/\.{2,}/.test(value) ||
-		/:{2,}/.test(value) ||
-		/-{2,}/.test(value) ||
-		/,{2,}/.test(value)
-	)
-		return false;
-
-	if (/^[.:/-]/.test(value) || /[.:/-]$/.test(value)) return false;
-
-	if (!/[\p{L}0-9]/u.test(value)) return false;
+	if (!/[\p{L}\d]/u.test(value)) return false;
 
 	return true;
 }
-
+//
 function addBook() {
 	const title = document.getElementById("bookTitle").value.trim();
 	const author = document.getElementById("author").value.trim();
 	const genre = document.getElementById("genre").value.trim();
 	const year = document.getElementById("year").value.trim();
 	const quantity = document.getElementById("quantity").value.trim();
+
+	if (
+		!title ||
+		!author ||
+		!genre ||
+		!year ||
+		!quantity ||
+		!preview.classList.contains("show")
+	) {
+		showPopup("Vui lòng điền đầy đủ thông tin và chọn ảnh bìa");
+		return;
+	}
 
 	if (!isValidAuthorName(author)) {
 		showPopup("Tên tác giả không hợp lệ");
@@ -161,18 +197,6 @@ function addBook() {
 		if (imageSrc.startsWith(window.location.origin)) {
 			imageSrc = imageSrc.replace(window.location.origin, "");
 		}
-	}
-
-	if (
-		!title ||
-		!author ||
-		!genre ||
-		!year ||
-		!quantity ||
-		!preview.classList.contains("show")
-	) {
-		showPopup("Vui lòng điền đầy đủ thông tin và chọn ảnh bìa");
-		return;
 	}
 
 	if (isNaN(quantity) || Number(quantity) < 0) {

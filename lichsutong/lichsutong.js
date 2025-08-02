@@ -117,16 +117,30 @@ function renderBorrowCards() {
 
 		let status = "";
 		if (borrow.isCancelled) {
-			status = "Đã huỷ";
+			// status = "Đã huỷ";
+			if (borrow.cancelledByUser) {
+				status = "Đã huỷ";
+			} else if (borrow.cancelledByAdmin) {
+				status = "Đã bị huỷ yêu cầu";
+			} else {
+				status = "Đã huỷ";
+			}
+			//
 		} else if (!borrow.isApproved && returnDate && today > returnDate) {
 			status = "Quá hạn duyệt";
 		} else if (!borrow.isApproved) {
 			status = "Chờ duyệt";
+			// } else if (returnDate && today > returnDate) {
+			// 	const overdue = calculateOverdueDays(borrow.returnDate);
+			// 	status = `Trả muộn (quá ${overdue} ngày)`;
+			// } else if (borrow.isReturned) {
+			// 	status = "Đã trả";
+			//
+		} else if (borrow.isReturned) {
+			status = "Đã trả";
 		} else if (returnDate && today > returnDate) {
 			const overdue = calculateOverdueDays(borrow.returnDate);
 			status = `Trả muộn (quá ${overdue} ngày)`;
-		} else if (borrow.isReturned) {
-			status = "Đã trả";
 		} else if (borrowDate > today) {
 			status = "Đặt trước";
 		} else {
@@ -139,24 +153,50 @@ function renderBorrowCards() {
 		// 	actionButton = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
 		// } else if (
 		//
+		// if (status === "Chờ duyệt") {
+		// 	const daysUntilBorrow = calculateDaysLeft(borrow.borrowDate);
+
+		// 	if (borrowDate > today) {
+		// 		actionButton = `<button onclick="handlePreApprove(${borrow.id}, ${daysUntilBorrow})">
+		// 			Duyệt yêu cầu (còn ${daysUntilBorrow} ngày)
+		// 		</button>
+		// 		`;
+		// 	} else {
+		// 		actionButton = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
+		// 	}
+		// } else if (
+		// 	status.startsWith("Đang mượn") ||
+		// 	status.startsWith("Trả muộn")
+		// ) {
+		// 	actionButton = `<button onclick="returnBook(${borrow.id})">Đánh dấu đã trả sách</button>`;
+		// }
+		// //
+		// const cancelBtn = `<button class="btn-cancel" onclick="cancelBorrow(${borrow.id})">Huỷ yêu cầu</button>`;
+		// actionButton = approveBtn + cancelBtn;
+		//
 		if (status === "Chờ duyệt") {
 			const daysUntilBorrow = calculateDaysLeft(borrow.borrowDate);
 
+			let approveBtn = "";
 			if (borrowDate > today) {
-				actionButton = `<button onclick="handlePreApprove(${borrow.id}, ${daysUntilBorrow})">
-					Duyệt yêu cầu (còn ${daysUntilBorrow} ngày)
-				</button>
+				approveBtn = `
+					<button onclick="handlePreApprove(${borrow.id}, ${daysUntilBorrow})">
+						Duyệt yêu cầu (còn ${daysUntilBorrow} ngày)
+					</button>
 				`;
 			} else {
-				actionButton = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
+				approveBtn = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
 			}
+
+			const cancelBtn = `<button class="btn-cancel" onclick="cancelBorrowByAdmin(${borrow.id})">Huỷ yêu cầu</button>`;
+			actionButton = approveBtn + cancelBtn;
 		} else if (
 			status.startsWith("Đang mượn") ||
 			status.startsWith("Trả muộn")
 		) {
 			actionButton = `<button onclick="returnBook(${borrow.id})">Đánh dấu đã trả sách</button>`;
 		}
-
+		//
 		const thongTin1 = `<p${
 			!actionButton ? ' class="thongtin-khong"' : ""
 		}><b>Họ tên người mượn:</b> ${borrow.name}</p>`;
@@ -197,7 +237,43 @@ function renderBorrowCards() {
 		container.appendChild(card);
 	});
 }
+//
+// function cancelBorrow(id) {
+// 	const borrowList = getAllBorrowList();
+// 	const index = borrowList.findIndex((b) => b.id === id);
+// 	if (index === -1) return;
 
+// 	const confirmCancel = showConfirm(
+// 		"Bạn có chắc muốn huỷ yêu cầu mượn sách này"
+// 	);
+// 	if (!confirmCancel) return;
+
+// 	borrowList[index].isCancelled = true;
+// 	renderBorrowCards();
+// }
+//
+function cancelBorrowByAdmin(id) {
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (key.startsWith("borrowList-")) {
+			const list = JSON.parse(localStorage.getItem(key)) || [];
+			const index = list.findIndex((b) => b.id === id);
+			if (index !== -1) {
+				showConfirm("Bạn có chắc muốn huỷ yêu cầu mượn sách này", (xacNhan) => {
+					if (!xacNhan) return;
+
+					list[index].isCancelled = true;
+					list[index].cancelledByAdmin = true;
+
+					localStorage.setItem(key, JSON.stringify(list));
+					renderBorrowCards();
+				});
+				break;
+			}
+		}
+	}
+}
+//
 // function approveBorrow(borrowId) {
 // 	const borrowList = getAllBorrowList();
 // 	const index = borrowList.findIndex((b) => b.id === borrowId);
