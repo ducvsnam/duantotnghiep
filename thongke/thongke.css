@@ -4,6 +4,7 @@
 
 .khung-thongke {
 	min-width: 500px;
+	max-width: 1400px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -17,7 +18,7 @@
 }
 
 .form-wrapper {
-	margin-top: 150px;
+	margin-top: 100px;
 }
 
 .nut {

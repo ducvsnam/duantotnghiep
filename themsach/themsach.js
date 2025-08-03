@@ -34,11 +34,22 @@ function renderBooks() {
 		const bookDiv = document.createElement("div");
 		bookDiv.classList.add("reveal");
 
-		const imgSrc = book.image?.startsWith("data:image/")
-			? book.image
-			: book.image?.startsWith("/")
-			? book.image
-			: "/" + book.image;
+		// const imgSrc = book.image?.startsWith("data:image/")
+		// 	? book.image
+		// 	: book.image?.startsWith("/")
+		// 	? book.image
+		// 	: "/" + book.image;
+		//
+		//
+		//
+		// const imgSrc =
+		// 	localStorage.getItem("bookImage-" + book.id) || "/anh/theme/nothing.jpg";
+		// //
+		const imgSrc =
+			localStorage.getItem("bookImage-" + book.id) ||
+			book.image ||
+			"anh/theme/nothing.jpg";
+		//
 
 		bookDiv.innerHTML = `
 				<div class="book-item">
@@ -80,11 +91,22 @@ function editBook(id) {
 	document.getElementById("year").value = book.year || "";
 	document.getElementById("quantity").value = book.quantity || "";
 
-	const imgSrc = book.image?.startsWith("data:image/")
-		? book.image
-		: book.image?.startsWith("/")
-		? book.image
-		: "/" + book.image;
+	// const imgSrc = book.image?.startsWith("data:image/")
+	// 	? book.image
+	// 	: book.image?.startsWith("/")
+	// 	? book.image
+	// 	: "/" + book.image;
+	//
+	//
+	//
+	// const imgSrc =
+	// 	localStorage.getItem("bookImage-" + book.id) || "/anh/theme/nothing.jpg";
+	//
+	const imgSrc =
+		localStorage.getItem("bookImage-" + book.id) ||
+		book.image ||
+		"anh/theme/nothing.jpg";
+	//
 
 	preview.src = imgSrc;
 	preview.classList.add("show");
@@ -95,51 +117,6 @@ function editBook(id) {
 	saveBtn.textContent = "Lưu thông tin";
 }
 
-// function isValidAuthorName(name) {
-// 	const value = name.trim();
-// 	if (!value || /^[ .-]+$/.test(value)) return false;
-
-// 	// const baseRegex = /^[\p{L} .-]{3,40}$/u;
-// 	//
-// 	const baseRegex = /^[\p{L}\d .-]{3,40}$/u;
-// 	//
-// 	if (!baseRegex.test(value)) return false;
-
-// 	if (/ {2,}/.test(value) || /\.{2,}/.test(value) || /-{2,}/.test(value))
-// 		return false;
-
-// 	if (/^[.-]/.test(value) || /[.-]$/.test(value)) return false;
-
-// 	if (!/[\p{L}]/u.test(value)) return false;
-
-// 	return true;
-// }
-
-// function isValidBookTitle(title) {
-// 	const value = title.trim();
-// 	if (!value || /^[ .,:-]+$/.test(value)) return false;
-
-// 	const baseRegex = /^[\p{L}0-9 .,:-]{3,40}$/u;
-// 	if (!baseRegex.test(value)) return false;
-
-// 	if (
-// 		/ {2,}/.test(value) ||
-// 		/\.{2,}/.test(value) ||
-// 		/:{2,}/.test(value) ||
-// 		/-{2,}/.test(value) ||
-// 		/,{2,}/.test(value)
-// 	)
-// 		return false;
-
-// 	if (/^[.:/-]/.test(value) || /[.:/-]$/.test(value)) return false;
-
-// 	if (!/[\p{L}0-9]/u.test(value)) return false;
-
-// 	return true;
-// }
-//
-//
-//
 function isValidAuthorName(name) {
 	const value = name.trim();
 	if (value.length < 2 || value.length > 40) return false;
@@ -191,13 +168,25 @@ function addBook() {
 		return;
 	}
 
-	let imageSrc = preview.src;
-
-	if (!imageSrc.startsWith("data:image/")) {
-		if (imageSrc.startsWith(window.location.origin)) {
-			imageSrc = imageSrc.replace(window.location.origin, "");
-		}
+	// let imageSrc = preview.src;
+	//
+	const imageSrc = preview.dataset.compressed || preview.src;
+	const id = editingId !== null ? editingId : Date.now();
+	//
+	//
+	//
+	// if (!imageSrc.startsWith("data:image/")) {
+	// 	if (imageSrc.startsWith(window.location.origin)) {
+	// 		imageSrc = imageSrc.replace(window.location.origin, "");
+	// 	}
+	// }
+	//
+	//
+	//
+	if (imageSrc.startsWith("data:image/")) {
+		localStorage.setItem("bookImage-" + id, imageSrc);
 	}
+	//
 
 	if (isNaN(quantity) || Number(quantity) < 0) {
 		showPopup("Số lượng sách phải là số dương");
@@ -233,16 +222,37 @@ function addBook() {
 			return;
 		}
 
+		// books.push({
+		// 	id: Date.now(),
+		// 	title,
+		// 	author,
+		// 	genre,
+		// 	year: Number(year),
+		// 	quantity: Number(quantity),
+		// 	image: imageSrc,
+		// });
+		//
+		//
+		//
+		const id = Date.now();
+		//
+		if (imageSrc.startsWith("data:image/")) {
+			localStorage.setItem("bookImage-" + id, imageSrc);
+		}
+		//
 		books.push({
-			id: Date.now(),
+			id,
 			title,
 			author,
 			genre,
 			year: Number(year),
 			quantity: Number(quantity),
-			image: imageSrc,
 		});
-
+		//
+		// if (imageSrc.startsWith("data:image/")) {
+		// 	localStorage.setItem("bookImage-" + id, imageSrc);
+		// }
+		//
 		localStorage.setItem("bookList", JSON.stringify(books));
 		renderBooks();
 
@@ -273,6 +283,11 @@ function addBook() {
 			quantity: Number(quantity),
 			image: imageSrc,
 		};
+		//
+		if (imageSrc.startsWith("data:image/")) {
+			localStorage.setItem("bookImage-" + editingId, imageSrc);
+		}
+		//
 
 		showPopup("Sửa thông tin sách thành công");
 		editingId = null;
@@ -311,29 +326,132 @@ function getBooks() {
 function saveBooks(books) {
 	localStorage.setItem("bookList", JSON.stringify(books));
 }
+//
+function getAllBorrowList() {
+	let all = [];
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (key.startsWith("borrowList-")) {
+			try {
+				const list = JSON.parse(localStorage.getItem(key));
+				if (Array.isArray(list)) all = all.concat(list);
+			} catch {}
+		}
+	}
+	return all;
+}
+//
+// function deleteBook(id) {
+// 	const books = getBooks();
 
+// 	const index = books.findIndex((book) => book.id === id);
+// 	if (index === -1) return;
+
+// 	showConfirm("Bạn có chắc chắn muốn xoá sách này không", function (xacNhan) {
+// 		if (xacNhan) {
+// 			books[index] = {
+// 				id,
+// 				image: "anh/theme/nothing.jpg",
+// 				title: "Sách đã bị xóa",
+// 				author: "",
+// 				genre: "",
+// 				quantity: 0,
+// 				deleted: true,
+// 			};
+// 			//
+// 			localStorage.removeItem("bookImage-" + id);
+// 			//
+// 			saveBooks(books);
+// 			renderBooks();
+// 		}
+// 	});
+// }
+//
+//
+//
 function deleteBook(id) {
 	const books = getBooks();
-
 	const index = books.findIndex((book) => book.id === id);
 	if (index === -1) return;
 
+	const book = books[index];
+	const bookTitle = book.title;
+	const allBorrows = getAllBorrowList();
+
+	const stillBorrowed = allBorrows.some(
+		(b) =>
+			b.bookTitle === bookTitle &&
+			!b.isCancelled &&
+			!b.isReturned &&
+			b.isApproved
+	);
+	if (stillBorrowed) {
+		showPopup("Không thể xoá sách đang được mượn hoặc trả muộn");
+		return;
+	}
+
 	showConfirm("Bạn có chắc chắn muốn xoá sách này không", function (xacNhan) {
-		if (xacNhan) {
-			books[index] = {
-				id,
-				image: "anh/theme/nothing.jpg",
-				title: "Sách đã bị xóa",
-				author: "",
-				genre: "",
-				quantity: 0,
-				deleted: true,
-			};
-			saveBooks(books);
-			renderBooks();
+		if (!xacNhan) return;
+
+		books[index] = {
+			id,
+			// image: "../anh/theme/nothing.jpg",
+			//
+			image: window.location.origin + "/anh/theme/nothing.jpg",
+			//
+			title: "Sách đã bị xóa",
+			author: "",
+			genre: "",
+			quantity: 0,
+			deleted: true,
+		};
+		localStorage.removeItem("bookImage-" + id);
+		saveBooks(books);
+
+		for (let i = 0; i < localStorage.length; i++) {
+			const key = localStorage.key(i);
+			if (!key.startsWith("borrowList-")) continue;
+
+			const list = JSON.parse(localStorage.getItem(key)) || [];
+			let changed = false;
+
+			list.forEach((borrow) => {
+				if (borrow.bookTitle !== bookTitle) return;
+
+				if (borrow.isCancelled) {
+					borrow.removed = true;
+					changed = true;
+				} else if (!borrow.isApproved && borrow.returnDate) {
+					const today = new Date();
+					const [d, m, y] = borrow.returnDate.split("/");
+					const returnDate = new Date(y, m - 1, d);
+					returnDate.setHours(0, 0, 0, 0);
+					today.setHours(0, 0, 0, 0);
+
+					if (today > returnDate) {
+						borrow.removed = true;
+						changed = true;
+					} else {
+						borrow.isCancelled = true;
+						borrow.cancelledByAdmin = true;
+						borrow.removedPending = true;
+						changed = true;
+					}
+				} else if (borrow.isReturned) {
+					borrow.removed = true;
+					changed = true;
+				}
+			});
+
+			if (changed) {
+				localStorage.setItem(key, JSON.stringify(list));
+			}
 		}
+
+		renderBooks();
 	});
 }
+//
 
 function saveNewGenreIfNeeded(genre) {
 	const customGenres = JSON.parse(localStorage.getItem("customGenres") || "[]");
@@ -348,19 +466,62 @@ function saveNewGenreIfNeeded(genre) {
 	}
 }
 
+// imageUpload.addEventListener("change", function (e) {
+// 	const file = e.target.files[0];
+// 	if (file) {
+// 		const reader = new FileReader();
+// 		reader.onload = function (e) {
+// 			preview.src = e.target.result;
+// 			preview.classList.add("show");
+// 			document.getElementById("uploadIcon").style.display = "none";
+// 			document.getElementById("uploadText").style.display = "none";
+// 		};
+// 		reader.readAsDataURL(file);
+// 	}
+// });
+//
+//
+//
 imageUpload.addEventListener("change", function (e) {
 	const file = e.target.files[0];
-	if (file) {
-		const reader = new FileReader();
-		reader.onload = function (e) {
-			preview.src = e.target.result;
+	if (!file) return;
+
+	const reader = new FileReader();
+	reader.onload = function (event) {
+		const img = new Image();
+		img.onload = function () {
+			const MAX_WIDTH = 300;
+			const MAX_HEIGHT = 400;
+
+			let width = img.width;
+			let height = img.height;
+
+			if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+				const scale = Math.min(MAX_WIDTH / width, MAX_HEIGHT / height);
+				width = width * scale;
+				height = height * scale;
+			}
+
+			const canvas = document.createElement("canvas");
+			canvas.width = width;
+			canvas.height = height;
+			const ctx = canvas.getContext("2d");
+			ctx.drawImage(img, 0, 0, width, height);
+
+			const compressed = canvas.toDataURL("image/jpeg", 0.7);
+
+			preview.src = compressed;
 			preview.classList.add("show");
+			preview.dataset.compressed = compressed;
+
 			document.getElementById("uploadIcon").style.display = "none";
 			document.getElementById("uploadText").style.display = "none";
 		};
-		reader.readAsDataURL(file);
-	}
+		img.src = event.target.result;
+	};
+	reader.readAsDataURL(file);
 });
+//
 
 const defaultGenres = [
 	"Trinh thám",

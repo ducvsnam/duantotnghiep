@@ -1,4 +1,4 @@
-// chức năng bảo mật web
+// Chức năng bảo mật web
 let currentUser = null;
 try {
 	currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
@@ -59,7 +59,7 @@ function vuilongdangnhap() {
 	showPopup("Vui lòng đăng nhập để dùng chức năng này");
 }
 
-// hiện ứng ẩn hiện và kéo lên kéo xuống trang
+// Hiện ứng ẩn hiện và kéo lên kéo xuống trang
 function revealOnScroll() {
 	const reveals = document.querySelectorAll(".reveal");
 	for (let i = 0; i < reveals.length; i++) {
@@ -531,6 +531,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 	//
 	renderBooksToBlocks();
+
+	document
+		.querySelector(".nut-dangxuat")
+		.addEventListener("click", function () {
+			localStorage.removeItem("currentUser");
+
+			history.replaceState(null, "", location.href);
+			window.addEventListener("popstate", () => {
+				location.href = "../chinh/chinh.html";
+			});
+
+			window.location.href = "../chinh/chinh.html";
+		});
 });
 
 // chức năng chuyển trang mượn mà

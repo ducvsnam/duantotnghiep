@@ -107,7 +107,25 @@ function renderBorrowCards() {
 
 	userBorrows.forEach((borrow) => {
 		const book = bookList.find((b) => b.title === borrow.bookTitle);
-		const imgSrc = book?.image || "";
+		// const imgSrc = book?.image || "";
+		//let imgSrc = "";
+
+		if (book?.id) {
+			imgSrc =
+				localStorage.getItem("bookImage-" + book.id) ||
+				book.image ||
+				// 		"../anh/theme/nothing.jpg";
+				// } else {
+				// 	imgSrc = book?.image || "../anh/theme/nothing.jpg";
+				// }
+				//
+				window.location.origin + "/anh/theme/nothing.jpg";
+		} else {
+			imgSrc = book?.image?.startsWith("http")
+				? book.image
+				: window.location.origin + "/anh/theme/nothing.jpg";
+		}
+		//
 		const borrowDate = borrow.borrowDate
 			? normalizeDate(borrow.borrowDate)
 			: null;
@@ -116,8 +134,16 @@ function renderBorrowCards() {
 			: null;
 
 		let status = "";
-		if (borrow.isCancelled) {
+		// if (borrow.isCancelled) {
+		//
+		if (borrow.removed) {
+			status = "Sách này đã bị gỡ khỏi thư viện bởi quản lý";
+		} else if (borrow.removedPending) {
+			status = "Không thể xử lý yêu cầu vì sách đã bị gỡ khỏi thư viện";
+		} else if (borrow.isCancelled) {
+			//
 			// status = "Đã huỷ";
+			//
 			if (borrow.cancelledByUser) {
 				status = "Đã huỷ";
 			} else if (borrow.cancelledByAdmin) {
@@ -141,8 +167,8 @@ function renderBorrowCards() {
 		} else if (returnDate && today > returnDate) {
 			const overdue = calculateOverdueDays(borrow.returnDate);
 			status = `Trả muộn (quá ${overdue} ngày)`;
-		} else if (borrowDate > today) {
-			status = "Đặt trước";
+			// } else if (borrowDate > today) {
+			// 	status = "Đặt trước";
 		} else {
 			const daysLeft = calculateDaysLeft(borrow.returnDate);
 			status = `Đang mượn (còn ${daysLeft} ngày)`;
