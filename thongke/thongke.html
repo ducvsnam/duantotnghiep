@@ -40,31 +40,48 @@
 		</header>
 
 		<div class="reveal">
-			<div class="form-wrapper">
-				<div class="khung-thongke">
-					<h2>
-						Tổng số sách còn trong thư viện: <span id="tongsoSach"></span>
-					</h2>
-					<h2>Số sách đang cho mượn: <span id="sosachdangchomuon"></span></h2>
-					<h2>
-						Sách có số lượng nhiều nhất:
-						<span id="sachcosoluongnhieunhat"></span>
-					</h2>
-					<h2>
-						Sách có lượt mượn nhiều nhất:
-						<span id="sachcoluotmuonnhieunhat"></span>
-					</h2>
-				</div>
-			</div>
 			<div class="nut">
-				<button id="clearStorageBtn" onclick="clearStorage()">
+				<!-- <button id="clearStorageBtn" onclick="clearStorage()">
 					Khôi phục dữ liệu
-				</button>
+				</button> -->
 				<button class="nut-taidulieu" id="exportBtn">Tải file dữ liệu</button>
 				<a href="../xemdanhgiaquanly/xemdanhgiaquanly.html">
 					<button class="nut-xemdanhgiaquanly">Xem đánh giá</button>
 				</a>
 			</div>
+
+			<table>
+				<tr>
+					<th>Tổng số sách còn trong thư viện</th>
+				</tr>
+				<tr>
+					<td id="tongsoSach">...</td>
+				</tr>
+			</table>
+
+			<table>
+				<tr>
+					<th>Số sách đang cho mượn</th>
+					<th class="col-soluong">Số lượng</th>
+				</tr>
+				<tbody id="table-sachdangchomuon"></tbody>
+			</table>
+
+			<table>
+				<tr>
+					<th>Sách có lượt mượn nhiều nhất</th>
+					<th class="col-soluong">Số lượng</th>
+				</tr>
+				<tbody id="table-sachmuonnhieunhat"></tbody>
+			</table>
+
+			<table>
+				<tr>
+					<th>Sách có số lượng nhiều nhất</th>
+					<th class="col-soluong">Số lượng</th>
+				</tr>
+				<tbody id="table-sachnhieunhat"></tbody>
+			</table>
 		</div>
 
 		<footer>

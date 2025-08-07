@@ -120,19 +120,17 @@ function handleRegister() {
 		showPopup("Số điện thoại phải gồm 10 chữ số và bắt đầu bằng số 0");
 		return;
 	}
-	//
+
 	const userID = "user_" + Date.now();
-	//
-	// const newUser = { username, email, password, phone };
-	//
+
 	const newUser = { username, email, password, phone, userID };
-	//
+
 	users.push(newUser);
 	localStorage.setItem("users", JSON.stringify(users));
 	localStorage.setItem("currentUser", JSON.stringify(newUser));
-	//
+
 	localStorage.setItem("userID", userID);
-	//
+
 	showPopup("Đăng ký thành công");
 	switchForm("login");
 }
@@ -162,6 +160,11 @@ function handleLogin() {
 		(u) => u.username === username && u.password === password
 	);
 
+	if (!username || !password) {
+		showPopup("Vui lòng điền đầy đủ thông tin");
+		return;
+	}
+
 	if (found) {
 		localStorage.setItem(
 			"currentUser",
@@ -170,13 +173,12 @@ function handleLogin() {
 				email: found.email,
 				password: found.password,
 				phone: found.phone,
-				//
 				userID: found.userID,
 			})
 		);
-		//
+
 		localStorage.setItem("userID", found.userID);
-		//
+
 		document.body.classList.remove("fade-in");
 		document.body.classList.add("fade-out");
 

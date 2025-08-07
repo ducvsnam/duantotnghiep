@@ -11,7 +11,7 @@ function getAllBorrowList() {
 	}
 	return all;
 }
-//
+
 const borrowList = getAllBorrowList();
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 const container = document.getElementById("borrowHistoryList");
@@ -39,31 +39,6 @@ function calculateOverdueDays(dateStr) {
 	return diff;
 }
 
-// function returnBook(borrowId) {
-// 	const borrowList = getAllBorrowList();
-// 	const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-
-// 	const index = borrowList.findIndex((b) => b.id === borrowId);
-// 	if (index === -1) return;
-
-// 	showConfirm("Xác nhận người dùng đã trả sách này", (agree) => {
-// 		if (!agree) return;
-
-// 		const item = borrowList[index];
-// 		const bookIndex = bookList.findIndex((b) => b.title === item.bookTitle);
-
-// 		if (bookIndex !== -1) {
-// 			bookList[bookIndex].quantity += 1;
-// 			localStorage.setItem("bookList", JSON.stringify(bookList));
-// 		}
-
-// 		borrowList[index].isReturned = true;
-// 		localStorage.setItem("borrowList", JSON.stringify(borrowList));
-
-// 		renderBorrowCards();
-// 	});
-// }
-//
 function returnBook(borrowId) {
 	const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 
@@ -75,21 +50,25 @@ function returnBook(borrowId) {
 			if (index !== -1) {
 				const item = list[index];
 
-				const bookIndex = bookList.findIndex((b) => b.title === item.bookTitle);
-				if (bookIndex !== -1) {
-					bookList[bookIndex].quantity += 1;
-					localStorage.setItem("bookList", JSON.stringify(bookList));
-				}
+				if (item.isApproved && !item.isReturned) {
+					const bookIndex = bookList.findIndex(
+						(b) => b.title === item.bookTitle
+					);
+					if (bookIndex !== -1) {
+						bookList[bookIndex].quantity += 1;
+						localStorage.setItem("bookList", JSON.stringify(bookList));
+					}
 
-				list[index].isReturned = true;
-				localStorage.setItem(key, JSON.stringify(list));
+					list[index].isReturned = true;
+					localStorage.setItem(key, JSON.stringify(list));
+				}
 				break;
 			}
 		}
 	}
 	renderBorrowCards();
 }
-//
+
 function renderBorrowCards() {
 	container.innerHTML = "";
 
@@ -106,26 +85,21 @@ function renderBorrowCards() {
 	today.setHours(0, 0, 0, 0);
 
 	userBorrows.forEach((borrow) => {
-		const book = bookList.find((b) => b.title === borrow.bookTitle);
-		// const imgSrc = book?.image || "";
-		//let imgSrc = "";
+		const book = bookList.find((b) => b.title === borrow.bookTitle) || null;
 
-		if (book?.id) {
+		let imgSrc = window.location.origin + "/anh/theme/nothing.jpg";
+
+		if (book) {
+			const localImg = localStorage.getItem("bookImage-" + book.id);
 			imgSrc =
-				localStorage.getItem("bookImage-" + book.id) ||
-				book.image ||
-				// 		"../anh/theme/nothing.jpg";
-				// } else {
-				// 	imgSrc = book?.image || "../anh/theme/nothing.jpg";
-				// }
-				//
-				window.location.origin + "/anh/theme/nothing.jpg";
-		} else {
-			imgSrc = book?.image?.startsWith("http")
-				? book.image
-				: window.location.origin + "/anh/theme/nothing.jpg";
+				localImg ||
+				(book.image?.startsWith("/")
+					? window.location.origin + book.image
+					: book.image?.startsWith("http")
+					? book.image
+					: imgSrc);
 		}
-		//
+
 		const borrowDate = borrow.borrowDate
 			? normalizeDate(borrow.borrowDate)
 			: null;
@@ -134,16 +108,12 @@ function renderBorrowCards() {
 			: null;
 
 		let status = "";
-		// if (borrow.isCancelled) {
-		//
+
 		if (borrow.removed) {
 			status = "Sách này đã bị gỡ khỏi thư viện bởi quản lý";
 		} else if (borrow.removedPending) {
-			status = "Không thể xử lý yêu cầu vì sách đã bị gỡ khỏi thư viện";
+			status = "Yêu cầu không thể xử lý vì sách đã bị xoá";
 		} else if (borrow.isCancelled) {
-			//
-			// status = "Đã huỷ";
-			//
 			if (borrow.cancelledByUser) {
 				status = "Đã huỷ";
 			} else if (borrow.cancelledByAdmin) {
@@ -151,56 +121,28 @@ function renderBorrowCards() {
 			} else {
 				status = "Đã huỷ";
 			}
-			//
 		} else if (!borrow.isApproved && returnDate && today > returnDate) {
 			status = "Quá hạn duyệt";
 		} else if (!borrow.isApproved) {
 			status = "Chờ duyệt";
-			// } else if (returnDate && today > returnDate) {
-			// 	const overdue = calculateOverdueDays(borrow.returnDate);
-			// 	status = `Trả muộn (quá ${overdue} ngày)`;
-			// } else if (borrow.isReturned) {
-			// 	status = "Đã trả";
-			//
 		} else if (borrow.isReturned) {
 			status = "Đã trả";
 		} else if (returnDate && today > returnDate) {
 			const overdue = calculateOverdueDays(borrow.returnDate);
 			status = `Trả muộn (quá ${overdue} ngày)`;
-			// } else if (borrowDate > today) {
-			// 	status = "Đặt trước";
 		} else {
 			const daysLeft = calculateDaysLeft(borrow.returnDate);
 			status = `Đang mượn (còn ${daysLeft} ngày)`;
 		}
 
+		//
+		let extraClass = "";
+		//
 		let actionButton = "";
-		// if (status === "Chờ duyệt") {
-		// 	actionButton = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
-		// } else if (
-		//
-		// if (status === "Chờ duyệt") {
-		// 	const daysUntilBorrow = calculateDaysLeft(borrow.borrowDate);
-
-		// 	if (borrowDate > today) {
-		// 		actionButton = `<button onclick="handlePreApprove(${borrow.id}, ${daysUntilBorrow})">
-		// 			Duyệt yêu cầu (còn ${daysUntilBorrow} ngày)
-		// 		</button>
-		// 		`;
-		// 	} else {
-		// 		actionButton = `<button onclick="approveBorrow(${borrow.id})">Duyệt yêu cầu</button>`;
-		// 	}
-		// } else if (
-		// 	status.startsWith("Đang mượn") ||
-		// 	status.startsWith("Trả muộn")
-		// ) {
-		// 	actionButton = `<button onclick="returnBook(${borrow.id})">Đánh dấu đã trả sách</button>`;
-		// }
-		// //
-		// const cancelBtn = `<button class="btn-cancel" onclick="cancelBorrow(${borrow.id})">Huỷ yêu cầu</button>`;
-		// actionButton = approveBtn + cancelBtn;
-		//
 		if (status === "Chờ duyệt") {
+			//
+			extraClass = "pending-approval";
+			//
 			const daysUntilBorrow = calculateDaysLeft(borrow.borrowDate);
 
 			let approveBtn = "";
@@ -222,7 +164,7 @@ function renderBorrowCards() {
 		) {
 			actionButton = `<button onclick="returnBook(${borrow.id})">Đánh dấu đã trả sách</button>`;
 		}
-		//
+
 		const thongTin1 = `<p${
 			!actionButton ? ' class="thongtin-khong"' : ""
 		}><b>Họ tên người mượn:</b> ${borrow.name}</p>`;
@@ -246,7 +188,9 @@ function renderBorrowCards() {
 		}><b>Trạng thái:</b> ${status}</p>`;
 
 		const card = document.createElement("div");
-		card.className = "book-item";
+
+		card.className = `book-item ${extraClass}`;
+
 		card.innerHTML = `
 			<img src="${imgSrc}"/>
 			<div class="book-info">
@@ -263,21 +207,7 @@ function renderBorrowCards() {
 		container.appendChild(card);
 	});
 }
-//
-// function cancelBorrow(id) {
-// 	const borrowList = getAllBorrowList();
-// 	const index = borrowList.findIndex((b) => b.id === id);
-// 	if (index === -1) return;
 
-// 	const confirmCancel = showConfirm(
-// 		"Bạn có chắc muốn huỷ yêu cầu mượn sách này"
-// 	);
-// 	if (!confirmCancel) return;
-
-// 	borrowList[index].isCancelled = true;
-// 	renderBorrowCards();
-// }
-//
 function cancelBorrowByAdmin(id) {
 	for (let i = 0; i < localStorage.length; i++) {
 		const key = localStorage.key(i);
@@ -299,59 +229,33 @@ function cancelBorrowByAdmin(id) {
 		}
 	}
 }
-//
-// function approveBorrow(borrowId) {
-// 	const borrowList = getAllBorrowList();
-// 	const index = borrowList.findIndex((b) => b.id === borrowId);
-// 	if (index === -1) return;
 
-// 	borrowList[index].isApproved = true;
-
-// 	localStorage.setItem("borrowList", JSON.stringify(borrowList));
-// 	renderBorrowCards();
-// }
-//
-// function approveBorrow(borrowId) {
-// 	for (let i = 0; i < localStorage.length; i++) {
-// 		const key = localStorage.key(i);
-// 		if (key.startsWith("borrowList-")) {
-// 			const list = JSON.parse(localStorage.getItem(key)) || [];
-// 			const index = list.findIndex((b) => b.id === borrowId);
-// 			if (index !== -1) {
-// 				list[index].isApproved = true;
-// 				localStorage.setItem(key, JSON.stringify(list));
-// 				break;
-// 			}
-// 		}
-// 	}
-// 	renderBorrowCards();
-// }
-//
 function approveBorrow(borrowId) {
 	for (let i = 0; i < localStorage.length; i++) {
 		const key = localStorage.key(i);
 		if (key.startsWith("borrowList-")) {
 			const list = JSON.parse(localStorage.getItem(key)) || [];
 			const index = list.findIndex((b) => b.id === borrowId);
-			if (index !== -1) {
+			if (index !== -1 && !list[index].isApproved) {
 				const item = list[index];
 
 				const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
 				const bookIndex = bookList.findIndex((b) => b.title === item.bookTitle);
+
 				if (bookIndex !== -1 && bookList[bookIndex].quantity > 0) {
 					bookList[bookIndex].quantity--;
 					localStorage.setItem("bookList", JSON.stringify(bookList));
-				}
 
-				list[index].isApproved = true;
-				localStorage.setItem(key, JSON.stringify(list));
+					list[index].isApproved = true;
+					localStorage.setItem(key, JSON.stringify(list));
+				}
 				break;
 			}
 		}
 	}
 	renderBorrowCards();
 }
-//
+
 function handlePreApprove(id, daysLeft) {
 	if (daysLeft > 0) {
 		showPopup("Chưa đến ngày mượn sách nên không thể duyệt lúc này");
@@ -359,5 +263,5 @@ function handlePreApprove(id, daysLeft) {
 		approveBorrow(id);
 	}
 }
-//
+
 renderBorrowCards();

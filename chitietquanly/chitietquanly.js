@@ -8,17 +8,11 @@ function chidanhchonguoidung() {
 }
 
 const params = new URLSearchParams(window.location.search);
-// const bookName = params.get("name") || "...";
 
-// const bookList = getBooks();
-// const book = bookList.find((b) => b.title === bookName);
-//
-//
-//
 const bookId = Number(params.get("id"));
 const bookList = getBooks();
 const book = bookList.find((b) => b.id === bookId);
-//
+
 if (book) {
 	const imgSrc = book.image?.startsWith("data:image/")
 		? book.image

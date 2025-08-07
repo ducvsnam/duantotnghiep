@@ -25,8 +25,22 @@ p {
 .book-item button {
 	margin-top: 2px;
 }
-/*  */
+
 .book-item button:last-of-type:hover {
 	font-size: 22px;
 	transform: scale(1.1);
+}
+
+.book-item.pending-approval {
+	height: 310px;
+}
+
+.book-item.pending-approval .book-buttons {
+	display: grid;
+	gap: 15px;
+}
+
+.book-item.pending-approval img {
+	width: 200px;
+	height: 290px;
 }

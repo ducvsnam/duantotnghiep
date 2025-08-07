@@ -129,17 +129,9 @@ function initChiTietButtons() {
 				"../chitietchung/chitietchung.html",
 				window.location.origin
 			);
-			// url.searchParams.set("img", img);
-			// url.searchParams.set("name", name);
-			// url.searchParams.set("author", author);
-			// url.searchParams.set("genre", genre);
-			// url.searchParams.set("year", year);
-			// url.searchParams.set("quantity", quantity);
-			//
-			//
-			//
+
 			url.searchParams.set("id", book.id);
-			//
+
 			document.body.classList.remove("fade-in");
 			document.body.classList.add("fade-out");
 
@@ -172,17 +164,9 @@ function initChiTietButtons() {
 				"../chitietnguoidung/chitietnguoidung.html",
 				window.location.origin
 			);
-			// url.searchParams.set("img", img);
-			// url.searchParams.set("name", name);
-			// url.searchParams.set("author", author);
-			// url.searchParams.set("genre", genre);
-			// url.searchParams.set("year", year);
-			// url.searchParams.set("quantity", quantity);
-			//
-			//
-			//
+
 			url.searchParams.set("id", book.id);
-			//
+
 			document.body.classList.remove("fade-in");
 			document.body.classList.add("fade-out");
 
@@ -215,17 +199,9 @@ function initChiTietButtons() {
 				"../chitietquanly/chitietquanly.html",
 				window.location.origin
 			);
-			// url.searchParams.set("img", img);
-			// url.searchParams.set("name", name);
-			// url.searchParams.set("author", author);
-			// url.searchParams.set("genre", genre);
-			// url.searchParams.set("year", year);
-			// url.searchParams.set("quantity", quantity);
-			//
-			//
-			//
+
 			url.searchParams.set("id", book.id);
-			//
+
 			document.body.classList.remove("fade-in");
 			document.body.classList.add("fade-out");
 
@@ -292,40 +268,6 @@ function chonAnhQuanLy() {
 	};
 }
 
-// function chonAnhNguoiDung() {
-// 	const input = document.getElementById("imageUploadUser");
-// 	if (!input) return;
-// 	input.click();
-
-// 	input.onchange = function (e) {
-// 		const file = e.target.files[0];
-// 		if (!file) return;
-
-// 		const reader = new FileReader();
-// 		reader.onload = function (e) {
-// 			const newSrc = e.target.result;
-
-// 			const infoImg = document.getElementById("ava-info");
-// 			if (infoImg) infoImg.src = newSrc;
-
-// 			const pageImgNoi = document.getElementById("ava-page-user");
-// 			if (pageImgNoi) pageImgNoi.src = newSrc;
-
-// 			const pageImgNgoai = document.getElementsByClassName("ava-img-user");
-// 			for (let i = 0; i < pageImgNgoai.length; i++) {
-// 				pageImgNgoai[i].src = newSrc;
-// 			}
-
-// 			localStorage.setItem("avatarNguoiDung", newSrc);
-// 		};
-// 		reader.readAsDataURL(file);
-// 	};
-// }
-//
-//
-//
-//
-//
 function chonAnhNguoiDung() {
 	const input = document.getElementById("imageUploadUser");
 	if (!input) return;
@@ -358,9 +300,7 @@ function chonAnhNguoiDung() {
 		reader.readAsDataURL(file);
 	};
 }
-//
 
-// chức năng hiện sách theo danh sách mặc định và cập nhật khi được sửa
 function renderBooksToBlocks() {
 	const books = JSON.parse(localStorage.getItem("bookList")) || [];
 
@@ -498,21 +438,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	// const savedUser = localStorage.getItem("avatarNguoiDung");
-	// if (savedUser) {
-	// 	const userInfoImg = document.getElementById("ava-info");
-	// 	const userpageImgNoi = document.getElementById("ava-page-user");
-	// 	const userpageImgNgoai = document.getElementsByClassName("ava-img-user");
-
-	// 	if (userInfoImg) userInfoImg.src = savedUser;
-	// 	if (userpageImgNoi) userpageImgNoi.src = savedUser;
-	// 	for (let i = 0; i < userpageImgNgoai.length; i++) {
-	// 		userpageImgNgoai[i].src = savedUser;
-	// 	}
-	// }
-	//
-	//
-	//
 	const userID = localStorage.getItem("userID");
 	const savedUser =
 		localStorage.getItem(`avatarNguoiDung_${userID}`) ||
@@ -529,12 +454,12 @@ document.addEventListener("DOMContentLoaded", () => {
 			userpageImgNgoai[i].src = savedUser;
 		}
 	}
-	//
+
 	renderBooksToBlocks();
 
-	document
-		.querySelector(".nut-dangxuat")
-		.addEventListener("click", function () {
+	const logoutBtn = document.querySelector(".nut-dangxuat");
+	if (logoutBtn) {
+		logoutBtn.addEventListener("click", function () {
 			localStorage.removeItem("currentUser");
 
 			history.replaceState(null, "", location.href);
@@ -542,8 +467,14 @@ document.addEventListener("DOMContentLoaded", () => {
 				location.href = "../chinh/chinh.html";
 			});
 
-			window.location.href = "../chinh/chinh.html";
+			document.body.classList.remove("fade-in");
+			document.body.classList.add("fade-out");
+
+			setTimeout(() => {
+				window.location.href = "../chinh/chinh.html";
+			}, 800);
 		});
+	}
 });
 
 // chức năng chuyển trang mượn mà

@@ -3,20 +3,18 @@ if (!localStorage.getItem("bookList")) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-	//
 	if (!window.currentUser) {
 		window.currentUser = JSON.parse(localStorage.getItem("currentUser"));
 	}
-	//
+
 	if (currentUser) {
 		document.getElementById("welcome").textContent =
 			currentUser.username || "...";
 	}
-	//
+
 	checkOverdueBooks();
 });
-//
+
 function checkOverdueBooks() {
 	const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 	if (!currentUser || !currentUser.userID) return;

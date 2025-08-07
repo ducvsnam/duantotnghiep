@@ -57,6 +57,10 @@ p {
 	margin: 20px 10px;
 }
 
+.thongtin-info h2 {
+	margin: 35px 10px;
+}
+
 .thuonghieu,
 .loichao {
 	top: 42%;
@@ -230,8 +234,8 @@ select option {
 	font-weight: bold;
 	font-size: 20px;
 	transition: 0.1s;
-	width: 380px;
-	margin-left: 15px;
+	width: 358px;
+	margin-left: 16px;
 }
 
 .book-item button:hover,

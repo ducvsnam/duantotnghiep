@@ -3,23 +3,19 @@ if (!localStorage.getItem("bookList")) {
 }
 
 const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-// const borrowList = JSON.parse(localStorage.getItem("borrowList")) || [];
-//
-// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-//
+
 if (!window.currentUser) {
 	window.currentUser = JSON.parse(localStorage.getItem("currentUser"));
 }
-//
+
 if (!currentUser || !currentUser.email) {
 	showPopup("Không xác định được người dùng");
 	throw new Error("Dữ liệu currentUser không hợp lệ");
 }
-//
+
 const borrowList =
-	// JSON.parse(localStorage.getItem(`borrowList-${currentUser.email}`)) || [];
 	JSON.parse(localStorage.getItem(`borrowList-${currentUser.userID}`)) || [];
-//
+
 const input = document.getElementById("bookTitle");
 const suggestionsBox = document.getElementById("suggestions");
 
@@ -118,16 +114,13 @@ function borrowBook() {
 
 	const alreadyBorrowed = borrowList.find(
 		(b) =>
-			// b.email === currentUser.email &&
-			//
 			b.userID === currentUser.userID &&
-			//
 			b.bookTitle === bookTitle &&
 			!b.isReturned &&
 			!b.isCancelled
 	);
 	if (alreadyBorrowed) {
-		showPopup("Bạn đã mượn sách này và chưa trả");
+		showPopup("Bạn không được gửi cùng lúc 2 yêu cầu cho 1 cuốn sách");
 		return;
 	}
 
@@ -156,19 +149,11 @@ function borrowBook() {
 		return;
 	}
 
-	// bookList[bookIndex].quantity--;
-	// localStorage.setItem("bookList", JSON.stringify(bookList));
-	//
-	// const userBorrowList =
-	// 	JSON.parse(localStorage.getItem(`borrowList-${currentUser.email}`)) || [];
-	//
 	borrowList.push({
 		id: Date.now(),
 		name: currentUser.name || currentUser.username || "Không rõ",
 		email: currentUser.email,
-		//
 		userID: currentUser.userID,
-		//
 		phone: currentUser.phone || "—",
 		bookTitle,
 		borrowDate: borrowedDate,
@@ -177,14 +162,12 @@ function borrowBook() {
 		isCancelled: false,
 		isApproved: false,
 	});
-	// localStorage.setItem("borrowList", JSON.stringify(borrowList));
-	//
+
 	localStorage.setItem(
-		// `borrowList-${currentUser.email}`,
 		`borrowList-${currentUser.userID}`,
 		JSON.stringify(borrowList)
 	);
-	//
+
 	showPopup("Mượn sách thành công");
 	document.querySelectorAll("input").forEach((i) => (i.value = ""));
 	suggestionsBox.innerHTML = "";
@@ -214,12 +197,6 @@ document.addEventListener("click", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-	// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-	// if (!currentUser || !currentUser.email) {
-	// 	showPopup("Không xác định được người dùng");
-	// 	return;
-	// }
-	//
 	const borrowedDisplay = document.getElementById("borrowedDateDisplay");
 	const borrowedHidden = document.getElementById("borrowedDate");
 	const returnDisplay = document.getElementById("returnDateDisplay");

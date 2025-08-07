@@ -15,6 +15,7 @@
 .nut-xemdanhgiaquanly,
 #clearStorageBtn {
 	width: 400px;
+	margin-bottom: 50px;
 }
 
 .form-wrapper {
@@ -22,5 +23,51 @@
 }
 
 .nut {
-	margin-bottom: 24px;
+	margin-bottom: 0;
+}
+
+table {
+	width: 55%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 0 2px black;
+	overflow: hidden;
+	font-size: 20px;
+}
+
+th,
+td {
+	border: none;
+	border-bottom: 2px solid black;
+	border-right: 2px solid black;
+	padding: 8px 12px;
+	text-align: center;
+	background-color: white;
+	color: #4509ae;
+	font-weight: bold;
+	text-shadow: 1px 1px 0 black;
+}
+
+tr td:last-child,
+tr th:last-child {
+	border-right: none;
+}
+
+tr:last-child td {
+	border-bottom: none;
+}
+
+th {
+	background-color: #4509ae;
+	color: white;
+}
+
+.col-soluong {
+	width: 150px;
+	min-width: 150px;
+	max-width: 150px;
+	white-space: nowrap;
+	text-align: center;
 }

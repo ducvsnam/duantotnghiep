@@ -3,16 +3,31 @@ function changePassword() {
 	const newPassword = document.getElementById("newPassword").value;
 	const confirmPassword = document.getElementById("confirmPassword").value;
 
-	// const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-	//
 	if (!window.currentUser) {
 		window.currentUser = JSON.parse(localStorage.getItem("currentUser"));
 	}
-	//
+
 	const users = JSON.parse(localStorage.getItem("users")) || [];
+
+	if (!currentPassword || !newPassword || !confirmPassword) {
+		showPopup("Vui lòng nhập đầy đủ thông tin");
+		return;
+	}
 
 	if (currentUser.password !== currentPassword) {
 		showPopup("Mật khẩu hiện tại không đúng");
+		return;
+	}
+
+	if (newPassword === currentPassword) {
+		showPopup("Mật khẩu mới phải khác mật khẩu hiện tại");
+		return;
+	}
+
+	if (!validatePassword(newPassword)) {
+		showPopup(
+			"Mật khẩu mới phải có ít nhất 8 ký tự bao gồm 1 chữ hoa 1 chữ thường 1 số và ký tự đặc biệt"
+		);
 		return;
 	}
 
