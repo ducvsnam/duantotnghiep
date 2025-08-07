@@ -14,8 +14,8 @@
 .nut-taidulieu,
 .nut-xemdanhgiaquanly,
 #clearStorageBtn {
-	width: 400px;
-	margin-bottom: 50px;
+	width: 770px;
+	margin-bottom: 35px;
 }
 
 .form-wrapper {
@@ -27,7 +27,7 @@
 }
 
 table {
-	width: 55%;
+	width: 50%;
 	border-collapse: collapse;
 	margin-bottom: 20px;
 	border: none;

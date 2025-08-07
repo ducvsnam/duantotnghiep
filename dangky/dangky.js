@@ -103,11 +103,11 @@ function handleRegister() {
 
 	const users = JSON.parse(localStorage.getItem("users") || "[]");
 	const exists = users.find(
-		(u) => u.username === username || u.email === email
+		(u) => u.username === username || u.email === email || u.phone === phone
 	);
 
 	if (exists) {
-		showPopup("Tên đăng nhập hoặc email đã tồn tại");
+		showPopup("Tên đăng nhập hoặc email hoặc số điện thoại đã tồn tại");
 		return;
 	}
 
