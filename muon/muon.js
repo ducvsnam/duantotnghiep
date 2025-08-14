@@ -38,7 +38,7 @@ function updateSuggestions() {
 	if (filtered.length === 0) {
 		const div = document.createElement("div");
 		div.textContent = value
-			? `Không có cuốn sách nào tên là "${value}"`
+			? `Không tìm thấy cuốn sách tên "${value}"`
 			: "Không còn sách nào để gợi ý";
 		div.style.padding = "8px";
 		div.style.overflow = "hidden";

@@ -55,9 +55,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		const rating = selectedStar.value;
 		const comment = commentInput.value.trim();
-		const avatar =
-			localStorage.getItem("avatarNguoiDung") || "../anh/theme/noava.jpg";
-
+		// const avatar =
+		// 	localStorage.getItem("avatarNguoiDung") || "../anh/theme/noava.jpg";
+		//
+		const userID = currentUser?.userID || localStorage.getItem("userID");
+		const avatarKey = userID ? `avatarNguoiDung_${userID}` : "avatarNguoiDung";
+		const avatar = localStorage.getItem(avatarKey) || "../anh/theme/noava.jpg";
+		//
 		const newReview = {
 			name: currentUser?.username || "Ẩn danh",
 			email: currentUser?.email || "Không rõ",

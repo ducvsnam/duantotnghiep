@@ -11,7 +11,19 @@ if (!reviewList) {
 		const card = document.createElement("div");
 		card.className = "review-card";
 
-		const avatar = review.image || "../anh/theme/noava.jpg";
+		// const avatar = review.image || "../anh/theme/noava.jpg";
+		//
+		const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+		const currentAvatar =
+			localStorage.getItem("avatarNguoiDung") || currentUser?.avatar;
+
+		const avatar =
+			review.image &&
+			review.image.trim() !== "" &&
+			review.image !== "../anh/theme/noava.jpg"
+				? review.image
+				: currentAvatar || "../anh/theme/noava.jpg";
+		//
 		const name = review.name || "Ẩn danh";
 		const email = review.email || "Không rõ";
 		const rating = parseInt(review.rating) || 0;
