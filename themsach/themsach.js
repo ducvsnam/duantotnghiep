@@ -161,7 +161,7 @@ function addBook() {
 	}
 
 	const currentYear = new Date().getFullYear();
-	if (!/^\d{4}$/.test(year) || year < 868 || year > currentYear) {
+	if (!/^\d{4}$/.test(year) || year < 1000 || year > currentYear) {
 		showPopup("Năm xuất bản không hợp lệ");
 		return;
 	}
