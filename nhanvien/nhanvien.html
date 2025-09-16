@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Cats Stack | Người Dùng | Thông Tin</title>
+		<title>Cats Stack | Nhân viên | Thông Tin</title>
 		<link rel="icon" href="../anh/theme/logo.png" />
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 		/>
 		<link rel="stylesheet" href="../chung/chung.css" />
-		<link rel="stylesheet" href="../thongtinrieng/thongtinrieng.css" />
+		<link rel="stylesheet" href="../nhanvien/nhanvien.css" />
 	</head>
 	<body>
 		<header>
@@ -23,14 +23,15 @@
 				</div>
 				<nav>
 					<ul class="menu">
-						<li><a href="../nguoidung/nguoidung.html">Trang Chủ</a></li>
-						<li><a href="../muon/muon.html">Mượn Sách</a></li>
-						<li><a href="../lichsurieng/lichsurieng.html">Lịch Sử</a></li>
-						<li><a href="../danhgia/danhgia.html">Đánh Giá</a></li>
+						<li>
+							<a href="../phieumuon_nhanvien/phieumuon_nhanvien.html"
+								>Phiếu mượn</a
+							>
+						</li>
 					</ul>
 				</nav>
 				<div class="avatar">
-					<a href="../thongtinrieng/thongtinrieng.html">
+					<a href="../nhanvien/nhanvien.html">
 						<img src="../anh/theme/noava.jpg" id="ava-page-user" />
 					</a>
 				</div>
@@ -39,7 +40,7 @@
 
 		<div class="reveal">
 			<div class="form-wrapper">
-				<h1>Thông Tin Người Dùng</h1>
+				<h1>Thông Tin Nhân viên</h1>
 				<div class="khung-info">
 					<div class="anh-info">
 						<img src="../anh/theme/noava.jpg" id="ava-info" />
@@ -54,20 +55,14 @@
 						</button>
 					</div>
 					<div class="thongtin-info">
-						<h2>Tên đăng nhập: <span id="ten-dangnhap">...</span></h2>
-						<h2>Số điện thoại: <span id="so-dien-thoai">...</span></h2>
-						<h2>Email: <span id="email">...</span></h2>
+						<h2>Nhân viên: <span id="ten-dangnhap"></span></h2>
+						<h2>Số điện thoại: <span id="so-dien-thoai"></span></h2>
+						<h2>Email: <span id="email"></span></h2>
 					</div>
 				</div>
 				<div class="nut">
 					<button class="nut-dangxuat" data-href="../chinh/chinh.html">
 						Đăng xuất
-					</button>
-					<button
-						class="nut-doimatkhau"
-						data-href="../doimatkhau/doimatkhau.html"
-					>
-						Đổi mật khẩu
 					</button>
 				</div>
 			</div>
@@ -75,37 +70,6 @@
 
 		<footer>
 			<div class="container">
-				<div class="footer-content">
-					<div class="footer-links">
-						<h3>Liên Kết</h3>
-						<ul>
-							<li><a href="../nguoidung/nguoidung.html">Trang Chủ</a></li>
-							<li><a href="../muon/muon.html">Mượn Sách</a></li>
-							<li><a href="../lichsurieng/lichsurieng.html">Lịch Sử</a></li>
-							<li><a href="../danhgia/danhgia.html">Đánh Giá</a></li>
-						</ul>
-					</div>
-					<div class="footer-human">
-						<h3>Người Thực Hiện</h3>
-						<ul>
-							<li>
-								<p>Phạm Đông Anh</p>
-							</li>
-							<li><p>Bùi Bảo Đức</p></li>
-							<li><p>Nguyễn Xuân Trúc Quỳnh</p></li>
-							<li><p>Nguyễn Công Hữu</p></li>
-						</ul>
-					</div>
-					<div class="footer-contact">
-						<h3>Liên Hệ</h3>
-						<p>
-							<i class="fas fa-map-marker-alt"></i> 464 Quang Trung, Hà Đông, Hà
-							Nội
-						</p>
-						<p><i class="fas fa-phone"></i> 0373922616</p>
-						<p><i class="fas fa-envelope"></i> catsstack@gmail.com</p>
-					</div>
-				</div>
 				<div class="footer-bottom">
 					<p>© 2025 Cats Stack</p>
 				</div>
@@ -135,6 +99,6 @@
 		</div>
 
 		<script src="../chung/chung.js"></script>
-		<script src="../thongtinrieng/thongtinrieng.js"></script>
+		<script src="../nhanvien/nhanvien.js"></script>
 	</body>
 </html>

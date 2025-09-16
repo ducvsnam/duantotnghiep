@@ -1067,13 +1067,7 @@ footer::before {
 
 .footer-bottom {
 	text-align: center;
-	padding-top: 20px;
-	border-top: 3px solid transparent;
-	border-image-source: linear-gradient(to right, azure, #00bfff);
-	border-image-slice: 1;
-	color: white;
-	position: relative;
-	z-index: 1;
+	padding-top: 10px;
 }
 
 /* giao diện trang chủ */
@@ -1116,7 +1110,7 @@ h4 {
 	padding-top: 10px;
 }
 
-.chitietchung,
+.chitietsach,
 .chitietnguoidung,
 .chitietquanly,
 .tatchung,
@@ -1183,7 +1177,7 @@ h4 {
 	width: auto;
 }
 
-.chitietchung:hover,
+.chitietsach:hover,
 .chitietnguoidung:hover,
 .chitietquanly:hover,
 .tatchung:hover,
@@ -1208,7 +1202,7 @@ h4 {
 	transform: scale(1.1);
 }
 
-.chitietchung:active,
+.chitietsach:active,
 .chitietnguoidung:active,
 .chitietquanly:active,
 .tatchung:active,

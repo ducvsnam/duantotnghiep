@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Cats Stack | Quản lý | Thêm Sách</title>
+		<title>Cats Stack | Quản lý | Quản lý</title>
 		<link rel="icon" href="../anh/theme/logo.png" />
 		<link
 			rel="stylesheet"
@@ -23,12 +23,12 @@
 				</div>
 				<nav>
 					<ul class="menu">
-						<li><a href="../quanly/quanly.html">Trang Chủ</a></li>
-						<li>
-							<a href="../themsach/themsach.html" class="active">Thêm Sách</a>
-						</li>
-						<li><a href="../lichsutong/lichsutong.html">Lịch Sử</a></li>
-						<li><a href="../thongke/thongke.html">Thống Kê</a></li>
+						<li><a href="../themsach/themsach.html" class="active">Sách</a></li>
+						<li><a href="../themsach/themsach.html">Danh mục</a></li>
+						<li><a href="../themsach/themsach.html">Nhân viên</a></li>
+						<li><a href="../themsach/themsach.html">Sinh viên</a></li>
+						<li><a href="../themsach/themsach.html">Giáo viên</a></li>
+						<li><a href="../quanlymuon/quanlymuon.html">Phiếu mượn</a></li>
 					</ul>
 				</nav>
 				<div class="avatar">
@@ -60,7 +60,7 @@
 							></path>
 						</svg>
 						<div id="uploadText">
-							<span>Bấm vào đây để tải lên ảnh</span>
+							<span>Bấm vào đây để tải lên sách</span>
 						</div>
 					</label>
 					<input
@@ -69,38 +69,6 @@
 						accept="image/*"
 						style="display: none"
 					/>
-
-					<div class="info-fields">
-						<input
-							type="text"
-							id="bookTitle"
-							placeholder="Nhập tên sách..."
-							maxlength="45"
-							autocomplete="off"
-						/>
-						<input
-							type="text"
-							id="author"
-							placeholder="Nhập tên tác giả..."
-							maxlength="45"
-							autocomplete="off"
-						/>
-						<input type="text" id="genre" readonly maxlength="45" />
-						<input
-							type="text"
-							id="year"
-							placeholder="Nhập năm xuất bản..."
-							maxlength="45"
-							autocomplete="off"
-						/>
-						<input
-							type="text"
-							id="quantity"
-							placeholder="Nhập số lượng sách..."
-							maxlength="45"
-							autocomplete="off"
-						/>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -108,7 +76,7 @@
 		<div id="suggestionsinfo"></div>
 
 		<div class="reveal">
-			<button id="saveBtn">Thêm sách</button>
+			<button id="saveBtn">Xác nhận thêm sách</button>
 		</div>
 
 		<div class="reveal">
@@ -138,37 +106,6 @@
 
 		<footer>
 			<div class="container">
-				<div class="footer-content">
-					<div class="footer-links">
-						<h3>Liên Kết</h3>
-						<ul>
-							<li><a href="../quanly/quanly.html">Trang Chủ</a></li>
-							<li><a href="../themsach/themsach.html">Thêm Sách</a></li>
-							<li><a href="../lichsutong/lichsutong.html">Lịch Sử</a></li>
-							<li><a href="../thongke/thongke.html">Thống Kê</a></li>
-						</ul>
-					</div>
-					<div class="footer-human">
-						<h3>Người Thực Hiện</h3>
-						<ul>
-							<li>
-								<p>Phạm Đông Anh</p>
-							</li>
-							<li><p>Bùi Bảo Đức</p></li>
-							<li><p>Nguyễn Xuân Trúc Quỳnh</p></li>
-							<li><p>Nguyễn Công Hữu</p></li>
-						</ul>
-					</div>
-					<div class="footer-contact">
-						<h3>Liên Hệ</h3>
-						<p>
-							<i class="fas fa-map-marker-alt"></i> 464 Quang Trung, Hà Đông, Hà
-							Nội
-						</p>
-						<p><i class="fas fa-phone"></i> 0373922616</p>
-						<p><i class="fas fa-envelope"></i> catsstack@gmail.com</p>
-					</div>
-				</div>
 				<div class="footer-bottom">
 					<p>© 2025 Cats Stack</p>
 				</div>

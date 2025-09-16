@@ -6,33 +6,9 @@ try {
 	currentUser = null;
 }
 
-const allowAnonymous = [
-	"chinh.html",
-	"dangnhap.html",
-	"dangky.html",
-	"chitietchung.html",
-	"thuvienchung.html",
-];
-const adminOnlyPages = [
-	"lichsutong.html",
-	"quanly.html",
-	"themsach.html",
-	"thongke.html",
-	"thongtinquanly.html",
-	"xemdanhgiaquanly.html",
-	"chitietquanly.html",
-	"thuvienquanly.html",
-];
-const userOnlyPages = [
-	"nguoidung.html",
-	"muon.html",
-	"thongtinrieng.html",
-	"danhgia.html",
-	"xemdanhgianguoidung.html",
-	"doimatkhau.html",
-	"chitietnguoidung.html",
-	"thuviennguoidung.html",
-];
+const allowAnonymous = ["dangnhap.html"];
+const adminOnlyPages = ["sach.html", "chitietsach.html", "quanlymuon.html"];
+const userOnlyPages = ["phieumuon.html"];
 
 const pageName = window.location.pathname.split("/").pop();
 
@@ -104,9 +80,9 @@ function toggleScrollButton() {
 window.addEventListener("load", toggleScrollButton);
 window.addEventListener("scroll", toggleScrollButton);
 
-// thông tin trang chi tiết sách cho mọi đối tượng
+// thông tin trang chi tiết sách
 function initChiTietButtons() {
-	document.querySelectorAll(".chitietchung").forEach((btn) => {
+	document.querySelectorAll(".chitietsach").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			const theDiv = btn.parentElement.querySelector(".the");
 			if (!theDiv) return;
@@ -126,77 +102,7 @@ function initChiTietButtons() {
 			}
 
 			const url = new URL(
-				"../chitietchung/chitietchung.html",
-				window.location.origin
-			);
-
-			url.searchParams.set("id", book.id);
-
-			document.body.classList.remove("fade-in");
-			document.body.classList.add("fade-out");
-
-			setTimeout(() => {
-				window.location.href = url.href;
-			}, 800);
-		});
-	});
-
-	document.querySelectorAll(".chitietnguoidung").forEach((btn) => {
-		btn.addEventListener("click", () => {
-			const theDiv = btn.parentElement.querySelector(".the");
-			if (!theDiv) return;
-
-			const img = theDiv.querySelector("img")?.getAttribute("src") || "";
-			const name = theDiv.getAttribute("data-name") || "";
-			const author = theDiv.getAttribute("data-author") || "";
-			const genre = theDiv.getAttribute("data-genre") || "";
-			const year = theDiv.getAttribute("data-year") || "";
-			const quantity = theDiv.getAttribute("data-quantity") || "";
-
-			const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-			const book = bookList.find((b) => b.title === name);
-			if (!book || book.isDeleted) {
-				showPopup("Sách Không Còn Tồn Tại");
-				return;
-			}
-
-			const url = new URL(
-				"../chitietnguoidung/chitietnguoidung.html",
-				window.location.origin
-			);
-
-			url.searchParams.set("id", book.id);
-
-			document.body.classList.remove("fade-in");
-			document.body.classList.add("fade-out");
-
-			setTimeout(() => {
-				window.location.href = url.href;
-			}, 800);
-		});
-	});
-
-	document.querySelectorAll(".chitietquanly").forEach((btn) => {
-		btn.addEventListener("click", () => {
-			const theDiv = btn.parentElement.querySelector(".the");
-			if (!theDiv) return;
-
-			const img = theDiv.querySelector("img")?.getAttribute("src") || "";
-			const name = theDiv.getAttribute("data-name") || "";
-			const author = theDiv.getAttribute("data-author") || "";
-			const genre = theDiv.getAttribute("data-genre") || "";
-			const year = theDiv.getAttribute("data-year") || "";
-			const quantity = theDiv.getAttribute("data-quantity") || "";
-
-			const bookList = JSON.parse(localStorage.getItem("bookList")) || [];
-			const book = bookList.find((b) => b.title === name);
-			if (!book || book.isDeleted) {
-				showPopup("Sách Không Còn Tồn Tại");
-				return;
-			}
-
-			const url = new URL(
-				"../chitietquanly/chitietquanly.html",
+				"../chitietsach/chitietsach.html",
 				window.location.origin
 			);
 
@@ -299,55 +205,6 @@ function chonAnhNguoiDung() {
 		};
 		reader.readAsDataURL(file);
 	};
-}
-
-function renderBooksToBlocks() {
-	const books = JSON.parse(localStorage.getItem("bookList")) || [];
-
-	// const order = [
-	// 	5, 20, 21, 35, 50, 51, 65, 80, 81, 95, 0, 1, 2, 3, 4, 15, 16, 17, 18, 19,
-	// 	30, 31, 32, 33, 34, 45, 46, 47, 48, 49, 60, 61, 62, 63, 64, 75, 76, 77, 78,
-	// 	79, 90, 91, 92, 93, 94, 105, 106, 107, 108, 109,
-	// ];
-
-	const order = [
-		0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-		21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
-	];
-
-	const bookBlocks = document.querySelectorAll(".book-box");
-
-	bookBlocks.forEach((block, i) => {
-		const index = order[i];
-		const book = books[index];
-
-		const bookDiv = block.querySelector(".the");
-		const img = block.querySelector(".sach");
-		const title = block.querySelector("h4");
-
-		if (!book || book === null || book.deleted) {
-			if (bookDiv) {
-				bookDiv.dataset.name = "";
-				bookDiv.dataset.author = "";
-				bookDiv.dataset.genre = "";
-				bookDiv.dataset.year = "";
-				bookDiv.dataset.quantity = "";
-			}
-			if (img) img.src = "/anh/theme/nothing.jpg";
-			if (title) title.textContent = "Sách đã bị xóa";
-			return;
-		}
-
-		if (bookDiv) {
-			bookDiv.dataset.name = book.title;
-			bookDiv.dataset.author = book.author;
-			bookDiv.dataset.genre = book.genre;
-			bookDiv.dataset.year = book.year;
-			bookDiv.dataset.quantity = book.quantity;
-		}
-		if (img) img.src = book.image;
-		if (title) title.textContent = book.title;
-	});
 }
 
 function getBooks() {
