@@ -1,5 +1,5 @@
-const imageUpload = document.getElementById("imageUpload");
-const preview = document.getElementById("preview");
+// const imageUpload = document.getElementById("imageUpload");
+// const preview = document.getElementById("preview");
 const saveBtn = document.getElementById("saveBtn");
 const result = document.getElementById("result");
 const searchInput = document.getElementById("searchInput");
@@ -87,46 +87,57 @@ function getAllBorrowList() {
 	return all;
 }
 
-imageUpload.addEventListener("change", function (e) {
-	const file = e.target.files[0];
-	if (!file) return;
+// imageUpload.addEventListener("change", function (e) {
+// 	const file = e.target.files[0];
+// 	if (!file) return;
 
-	const reader = new FileReader();
-	reader.onload = function (event) {
-		const img = new Image();
-		img.onload = function () {
-			const MAX_WIDTH = 300;
-			const MAX_HEIGHT = 400;
+// 	const reader = new FileReader();
+// 	reader.onload = function (event) {
+// 		const img = new Image();
+// 		img.onload = function () {
+// 			const MAX_WIDTH = 300;
+// 			const MAX_HEIGHT = 400;
 
-			let width = img.width;
-			let height = img.height;
+// 			let width = img.width;
+// 			let height = img.height;
 
-			if (width > MAX_WIDTH || height > MAX_HEIGHT) {
-				const scale = Math.min(MAX_WIDTH / width, MAX_HEIGHT / height);
-				width = width * scale;
-				height = height * scale;
-			}
+// 			if (width > MAX_WIDTH || height > MAX_HEIGHT) {
+// 				const scale = Math.min(MAX_WIDTH / width, MAX_HEIGHT / height);
+// 				width = width * scale;
+// 				height = height * scale;
+// 			}
 
-			const canvas = document.createElement("canvas");
-			canvas.width = width;
-			canvas.height = height;
-			const ctx = canvas.getContext("2d");
-			ctx.drawImage(img, 0, 0, width, height);
+// 			const canvas = document.createElement("canvas");
+// 			canvas.width = width;
+// 			canvas.height = height;
+// 			const ctx = canvas.getContext("2d");
+// 			ctx.drawImage(img, 0, 0, width, height);
 
-			const compressed = canvas.toDataURL("image/jpeg", 0.7);
+// 			const compressed = canvas.toDataURL("image/jpeg", 0.7);
 
-			preview.src = compressed;
-			preview.classList.add("show");
-			preview.dataset.compressed = compressed;
+// 			preview.src = compressed;
+// 			preview.classList.add("show");
+// 			preview.dataset.compressed = compressed;
 
-			document.getElementById("uploadIcon").style.display = "none";
-			document.getElementById("uploadText").style.display = "none";
-		};
-		img.src = event.target.result;
-	};
-	reader.readAsDataURL(file);
+// 			document.getElementById("uploadIcon").style.display = "none";
+// 			document.getElementById("uploadText").style.display = "none";
+// 		};
+// 		img.src = event.target.result;
+// 	};
+// 	reader.readAsDataURL(file);
+// });
+//
+const fileInput = document.getElementById("excelUpload");
+const uploadIcon = document.getElementById("uploadIcon");
+const excelIcon = document.getElementById("excelIcon");
+
+fileInput.addEventListener("change", function () {
+	if (this.files.length > 0) {
+		uploadIcon.style.display = "none";
+		excelIcon.style.display = "block";
+	}
 });
-
+//
 const defaultGenres = [
 	"Trinh thám",
 	"Ngôn tình",

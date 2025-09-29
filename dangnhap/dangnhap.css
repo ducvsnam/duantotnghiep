@@ -28,8 +28,8 @@ input {
 
 #mainActionBtn {
 	padding: 10px 20px;
-	background: #4509ae;
-	color: white;
+	background: white;
+	color: #4509ae;
 	text-shadow: 1px 1px 0 black;
 	box-shadow: 4px 4px 0 black;
 	border: 2px solid black;
@@ -38,8 +38,9 @@ input {
 	transition: 0.1s;
 	font-size: 20px;
 	font-weight: bold;
-	margin-top: 230px;
-	margin-bottom: 113px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 100px;
 }
 
 #mainActionBtn:hover {
@@ -66,5 +67,5 @@ input {
 }
 
 footer {
-	margin-top: 55px;
+	margin-top: 375px;
 }

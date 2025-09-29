@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	renderBooksToBlocks();
+	// renderBooksToBlocks();
 
 	const logoutBtn = document.querySelector(".nut-dangxuat");
 	if (logoutBtn) {
@@ -366,38 +366,34 @@ document.querySelectorAll("a[href]").forEach((link) => {
 });
 
 // chức năng ẩn hiện mật khẩu và tự động đổi text về pass khi lưu
-document.querySelectorAll(".input-container").forEach((container) => {
-	const input = container.querySelector("input");
-	const toggle = container.querySelector(".eye-toggle");
+const loginPasswordInput = document.getElementById("loginPassword");
+const loginPasswordToggle = document.querySelector(
+	"#loginPassword ~ .eye-toggle"
+);
 
-	if (input && toggle) {
-		toggle.addEventListener("click", () => {
-			const isVisible = input.type === "text";
-			input.type = isVisible ? "password" : "text";
-			toggle.classList.toggle("active", !isVisible);
-		});
-	}
-});
+if (loginPasswordInput && loginPasswordToggle) {
+	loginPasswordToggle.addEventListener("click", () => {
+		const isVisible = loginPasswordInput.type === "text";
+		loginPasswordInput.type = isVisible ? "password" : "text";
+		loginPasswordToggle.classList.toggle("active", !isVisible);
+	});
+}
 
 document.getElementById("mainActionBtn")?.addEventListener("click", () => {
-	document.querySelectorAll(".input-container").forEach((container) => {
-		const input = container.querySelector("input");
-		const toggle = container.querySelector(".eye-toggle");
+	const input = document.getElementById("loginPassword");
+	const toggle = document.querySelector("#loginPassword ~ .eye-toggle");
 
-		if (input && input.type === "text") input.type = "password";
-		if (toggle) toggle.classList.remove("active");
-	});
+	if (input && input.type === "text") input.type = "password";
+	if (toggle) toggle.classList.remove("active");
 });
 
 document.querySelectorAll(".doimatkhau").forEach((btn) => {
 	btn.addEventListener("click", () => {
-		document.querySelectorAll(".input-container").forEach((container) => {
-			const input = container.querySelector("input");
-			const toggle = container.querySelector(".eye-toggle");
+		const input = document.getElementById("loginPassword");
+		const toggle = document.querySelector("#loginPassword ~ .eye-toggle");
 
-			if (input && input.type === "text") input.type = "password";
-			if (toggle) toggle.classList.remove("active");
-		});
+		if (input && input.type === "text") input.type = "password";
+		if (toggle) toggle.classList.remove("active");
 	});
 });
 

@@ -62,10 +62,8 @@ p {
 	color: white;
 	text-shadow: 1px 1px 0 black;
 	position: absolute;
-	bottom: 10px;
+	bottom: 0px;
 	text-align: center;
-	padding: 5px;
-	margin-bottom: 40px;
 }
 
 .info-fields {

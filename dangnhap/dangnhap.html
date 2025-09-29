@@ -28,17 +28,17 @@
 			<div class="flip-card__inner" id="flipCard">
 				<div class="card-face card-front">
 					<div id="loginForm">
-						<label>Tên đăng nhập</label>
-						<input
-							type="text"
-							id="loginUsername"
-							placeholder="Nhập tên đăng nhập..."
-							maxlength="40"
-							autocomplete="off"
-						/>
-						<label>Mật khẩu</label>
-						<form class="form">
+						<form class="form" method="POST" action="dangnhap.php">
 							<div class="input-container">
+								<label>Tên đăng nhập</label>
+								<input
+									type="text"
+									id="loginUsername"
+									placeholder="Nhập tên đăng nhập..."
+									maxlength="40"
+									autocomplete="off"
+								/>
+								<label>Mật khẩu</label>
 								<input
 									type="password"
 									id="loginPassword"
@@ -103,7 +103,8 @@
 				</div>
 			</div>
 
-			<button id="mainActionBtn" onclick="handleLogin()">Đăng nhập</button>
+			<!-- <button id="mainActionBtn" onclick="handleLogin()">Đăng nhập</button> -->
+			<button id="mainActionBtn">Đăng nhập</button>
 		</div>
 
 		<footer>
